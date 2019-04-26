@@ -24,20 +24,22 @@ public class MealPlanner {
 		GroceryListHandler groceryListHandler = new GroceryListHandler();
 		//creates a page to handle files i.e. read or write
 		FileHandler fileHandler = new FileHandler();
-
-		port(1234);
+		RecipeDisplayHandler recipeDisplayHandler = new RecipeDisplayHandler();
 		
-		get("/", homePageHandle); //first page that opens
+		port(4041);
+		//first page that opens
+		// prompt the user whether they would like to create a new meal plan or use an
+		// existing one?
+		get("/", homePageHandle); 
+		
 		get("/searchrecipe", recipeSearchHandler); //recipe search page path
-		get("/getrecipe", recipeSearchHandler);//recipe display page path
 		get("/calendar", calendarHandler); //calendar page path
 		get("/grocerylist", groceryListHandler); //grocery list page path
 		get("/retrievemealplan", fileHandler);//retrieve meal plan page path
 		post("/createmealplan", recipeSearchHandler); //create a meal plan page path
-		get("/displayrecipes", recipeSearchHandler);//create a display searched recipe path
-
-		// prompt the user whether they would like to create a new meal plan or use an
-		// existing one?
+		post("/displayrecipelist", recipeDisplayHandler);//create a display searched recipe path
+		get("/displayrecipelist", recipeDisplayHandler);//create a display searched recipe path
+		get("/displayfullrecipe", recipeDisplayHandler);//create a display searched recipe path
 
 		// user input verification and related actions
 
@@ -67,37 +69,37 @@ public class MealPlanner {
 		// if the user chooses to search for an recipe on the API, it will run through
 		// the API handler class create a dish object using the DishReader class
 
-		String recipeToSearch = "";
-		yummlyAPIHandler apiHandler = new yummlyAPIHandler(recipeToSearch);
-
-		// search for recipes on yummly
-		try {
-			apiHandler.searchReceipe();
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		// user to chose the recipe (TODO add error catching here or use GUI to select)
-		String recipeChosen = "";
-
-		// get recipe of the chosen dish
-		String dishID = apiHandler.getDishID(recipeChosen);
-		try {
-
-			// create a new dish JSON object
-			JSONObject receipeJSON = apiHandler.getRecipe(dishID);
-
-			// create a new dish reader object
-			DishReader dishReader = new DishReader(receipeJSON);
-
-			// create a new dish object
-			Dish dishCreated = dishReader.getDishCreated();
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		String recipeToSearch = "";
+//		YummlyAPIHandler apiHandler = new YummlyAPIHandler(recipeToSearch);
+//
+//		// search for recipes on yummly
+//		try {
+//			apiHandler.searchReceipe();
+//		} catch (Exception e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//
+//		// user to chose the recipe (TODO add error catching here or use GUI to select)
+//		String recipeChosen = "";
+//
+//		// get recipe of the chosen dish
+//		String dishID = apiHandler.getDishID(recipeChosen);
+//		try {
+//
+//			// create a new dish JSON object
+//			JSONObject receipeJSON = apiHandler.getRecipe(dishID);
+//
+//			// create a new dish reader object
+//			DishReader dishReader = new DishReader(receipeJSON);
+//
+//			// create a new dish object
+//			Dish dishCreated = dishReader.getDishCreated();
+//
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 
 		// if the serving size is different from the user's default size then use the
 		// converter class to

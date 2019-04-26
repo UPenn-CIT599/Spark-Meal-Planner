@@ -16,7 +16,7 @@ class yummlyAPIHandlerTest {
 	 */
 	@Test
 	void testSearchReceipe() {
-		yummlyAPIHandler apihandler = new yummlyAPIHandler("cake");
+		YummlyAPIHandler apihandler = new YummlyAPIHandler("cake");
 		try {
 			apihandler.searchReceipe();
 		} catch (Exception e) {
@@ -34,7 +34,7 @@ class yummlyAPIHandlerTest {
 	 */
 	@Test
 	void testGetDishID() throws Exception {
-		yummlyAPIHandler apihandler = new yummlyAPIHandler("cake");
+		YummlyAPIHandler apihandler = new YummlyAPIHandler("cake");
 		apihandler.searchReceipe();
 		System.out.println(apihandler.getRecipeNameAndDishID().toString());
 

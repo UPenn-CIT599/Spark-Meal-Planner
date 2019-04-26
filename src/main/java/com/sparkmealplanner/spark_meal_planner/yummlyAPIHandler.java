@@ -16,14 +16,14 @@ import org.json.*;
  * 
  * https://docs.oracle.com/javase/tutorial/networking/urls/readingWriting.html
  */
-public class yummlyAPIHandler {
-	private static JSONObject getRecipeJSON;
+public class YummlyAPIHandler {
+	private JSONObject getRecipeJSON;
 	private JSONObject searchRecipeJSON;
-	private static String recipeToSearch;
+	private String recipeToSearch;
 	private String recipeName;
 	private String dishID;
-	private static HashMap<String, String> recipeNameAndDishID = new HashMap<String, String>();
-	private static String recipeStepsURL;
+	private HashMap<String, String> recipeNameAndDishID = new HashMap<String, String>();
+	private String recipeStepsURL;
 
 	/**
 	 * The following constructor creates an API handler object specific to
@@ -31,7 +31,7 @@ public class yummlyAPIHandler {
 	 * 
 	 * @param recipeToSearch recipe name to search
 	 */
-	public yummlyAPIHandler(String recipeToSearch) {
+	public YummlyAPIHandler(String recipeToSearch) {
 		this.recipeToSearch = recipeToSearch;
 	}
 
@@ -69,7 +69,7 @@ public class yummlyAPIHandler {
 	 * @return hashmap of recipe name and ID
 	 * @throws Exception
 	 */
-	public static HashMap<String, String> searchReceipe() throws Exception {
+	public HashMap<String, String> searchReceipe() throws Exception {
 
 		// URLencoding parameter names and values (i.e. replacing " " to "+")
 		recipeToSearch = recipeToSearch.replace(" ", "+");
@@ -80,6 +80,7 @@ public class yummlyAPIHandler {
 
 		// initializing the url object
 		URL yummylySearchURL = new URL(url);
+		System.out.println(yummylySearchURL);
 
 		// opens the connection
 		HttpURLConnection connection = (HttpURLConnection) yummylySearchURL.openConnection();
@@ -148,12 +149,12 @@ public class yummlyAPIHandler {
 	 * @throws Exception
 	 * @return JSON object from Yummly
 	 */
-	public static JSONObject getRecipe(String recipeID) throws Exception {
+	public JSONObject getRecipe(String recipeID) throws Exception {
 
 		// URLencoding parameter names and values (i.e. replacing " " to "+")
 		String url = "http://api.yummly.com/v1/api/recipe/" + recipeID
 				+ "?_app_id=07657d11&_app_key=6d13fda0951bfe4dc2f12d1690058462";
-		System.out.println(url);
+		//System.out.println(url);
 
 		// initializing the url and connection objects
 		URL yummylySearchURL = new URL(url);
@@ -217,7 +218,7 @@ public class yummlyAPIHandler {
 	 * 
 	 * @param responseCode response code
 	 */
-	public static void getResponseCodeExplanation(int responseCode) {
+	public void getResponseCodeExplanation(int responseCode) {
 		// error checking for the response code (i.e. 200 being valid, 400 being bad
 		// request, 409 being API limit exceeded, and 500 being Internal Server Error
 
