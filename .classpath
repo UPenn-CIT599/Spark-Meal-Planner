@@ -23,9 +23,8 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/Krishna1/eclipse-workspace/spark-meal-planner/java-json.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="/Users/Krishna1/Downloads/junit-4.13-beta-2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/vinee/eclipse-workspace/Spark-Meal-Planner/java-json.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
