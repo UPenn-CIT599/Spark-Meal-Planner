@@ -6,9 +6,11 @@ import spark.Route;
 
 public class SavedMealPlanHandler implements Route {
 
-	private final String htmlHead = "<html><head><title>Grocery List</title></head>";
 	public Object handle(Request request, Response response) throws Exception {
-		return htmlHead + "<body><h3>Grocery List</h3>"+
-	"<button><a href=\"/\">Go back to your list</a></button></body></html>";
+		return TagCreator.gethtmlHead("Grocery List") 
+				+ "<body><h3>Grocery List</h3>"
+				+"<button><a href=\"/\">Go back to your list</a></button> "
+				+ TagCreator.getFooter()
+				+ "</body></html>";
 	}
 }

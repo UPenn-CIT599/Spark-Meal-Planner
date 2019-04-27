@@ -24,7 +24,8 @@ public class YummlyAPIHandler {
 	private String dishID;
 	private HashMap<String, String> recipeNameAndDishID = new HashMap<String, String>();
 	private String recipeStepsURL;
-	private String attributionText;
+	private String searchRecipeAttributionhtml;
+	private String getRecipeAttributionhtml;
 
 	/**
 	 * The following constructor creates an API handler object specific to
@@ -60,6 +61,26 @@ public class YummlyAPIHandler {
 	public JSONObject getSearchRecipeJSON() {
 		return searchRecipeJSON;
 	}
+	
+	
+
+	/**
+	 * Getter method
+	 * 
+	 * @return the searchRecipeAttributionhtml
+	 */
+	public String getSearchRecipeAttributionhtml() {
+		return searchRecipeAttributionhtml;
+	}
+
+	/**
+	 * Getter method
+	 * 
+	 * @return the getRecipeAttributionhtml
+	 */
+	public String getGetRecipeAttributionhtml() {
+		return getRecipeAttributionhtml;
+	}
 
 	/**
 	 * 
@@ -83,7 +104,7 @@ public class YummlyAPIHandler {
 
 		// initializing the url object
 		URL yummylySearchURL = new URL(url);
-		//System.out.println(yummylySearchURL);
+		//System.out.println("search url: " + yummylySearchURL);
 
 		// opens the connection
 		HttpURLConnection connection = (HttpURLConnection) yummylySearchURL.openConnection();
@@ -110,7 +131,8 @@ public class YummlyAPIHandler {
 				// creating JSON array which is linked to key "matches" in the JSON object
 				JSONArray receipesArray = searchRecipeJSON.getJSONArray("matches");
 //				System.out.println("total recipes " + receipesArray.length());
-
+				
+				
 				// looping through the JSON array
 				for (int i = 0; i < receipesArray.length(); i++) {
 //					System.out.println(receipesArray.get(i));
@@ -134,6 +156,10 @@ public class YummlyAPIHandler {
 				// "logo" related to the attribution
 				//System.out.println("Attributions:");
 				JSONObject attribution = searchRecipeJSON.getJSONObject("attribution");
+				searchRecipeAttributionhtml = (String) attribution.get("html");
+				//System.out.println(searchRecipeAttributionhtml);
+				//recipeNameAndDishID.put("Attribution html", searchRecipeAttributionhtml);
+
 				//System.out.println(attribution.get("text") + " at: " + attribution.get("url"));
 				//System.out.println("Find logo at: " + attribution.get("logo") + "\n");
 
@@ -157,7 +183,7 @@ public class YummlyAPIHandler {
 		// URLencoding parameter names and values (i.e. replacing " " to "+")
 		String url = "http://api.yummly.com/v1/api/recipe/" + recipeID
 				+ "?_app_id=07657d11&_app_key=6d13fda0951bfe4dc2f12d1690058462";
-		System.out.println(url);
+		//System.out.println("get recipe url: " + url);
 
 		// initializing the url and connection objects
 		URL yummylySearchURL = new URL(url);
@@ -166,7 +192,7 @@ public class YummlyAPIHandler {
 		// checking response code for continuation of the process
 		int responseCode = connection.getResponseCode();
 
-		// System.out.println("Response Code : " + responseCode);
+		//System.out.println("Response Code : " + responseCode);
 		getResponseCodeExplanation(responseCode);
 
 		// continue the process only if a valid response code of 200 is given by API
@@ -181,9 +207,9 @@ public class YummlyAPIHandler {
 			while ((inputLine = in.readLine()) != null) {
 
 				// creating a JSON object to obtain information
-				JSONObject getRecipeJSON = new JSONObject(inputLine);
-				getRecipeJSON = getRecipeJSON;
-//				System.out.println();
+				getRecipeJSON = new JSONObject(inputLine);
+//				System.out.println("passed");
+//				System.out.println(getRecipeJSON.toString());
 
 				// The following is created to meet Yummly's mandatory attribution requirements
 
@@ -195,8 +221,7 @@ public class YummlyAPIHandler {
 				// JSON object "attribution" stores information such as "text", "url", and
 				// "logo" related to the attribution
 				JSONObject attribution = getRecipeJSON.getJSONObject("attribution");
-				attributionText = "Attributions: " + attribution.get("text") + " at: " + attribution.get("url");
-				//System.out.println("Find logo at: " + attribution.get("logo") + "\n");
+				getRecipeAttributionhtml = (String) attribution.get("html");
 			}
 			in.close();
 		}

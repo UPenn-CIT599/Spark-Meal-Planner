@@ -11,12 +11,15 @@ import static spark.Spark.port;
  */
 public class App {
 	public static void main(String[] args) {
-//		MealPlanner mp = new MealPlanner();
-//		mp.run();
-		CalendarHandler calendarHandler = new CalendarHandler();
-		HomePageHandler homePageHandler = new HomePageHandler();
-		port(8080);
-		get("/",homePageHandler);
-		get("/Calendar", calendarHandler);
+		MealPlanner mp = new MealPlanner();
+		mp.run();
+		
+		//Vineela the following is already in the meal planner class where the app logic is contained.
+
+//		CalendarHandler calendarHandler = new CalendarHandler();
+//		HomePageHandler homePageHandler = new HomePageHandler();
+//		port(8080);
+//		get("/",homePageHandler);
+//		get("/Calendar", calendarHandler);
 	}
 }

@@ -17,6 +17,7 @@ public class Dish {
 									// where the user can find the steps
 	private double cookingTimeInSeconds;
 	private int numOfPeopleToServe; // serving size
+	private String attribution;
 
 	/**
 	 * The following constructor creates a Dish object with the following
@@ -91,5 +92,22 @@ public class Dish {
 	 */
 	public int getNumOfPeopleToServe() {
 		return numOfPeopleToServe;
+	}
+
+	/**
+	 * Getter method
+	 * @return the attribution Yummly attribution
+	 */
+	public String getAttribution() {
+		return attribution;
+	}
+
+	/**
+	 * Setter method - optional instance variable
+	 * 
+	 * @param attribution the attribution to set attribution html to set
+	 */
+	public void setAttribution(String attribution) {
+		this.attribution = attribution;
 	}
 }

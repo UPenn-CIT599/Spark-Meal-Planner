@@ -14,25 +14,20 @@ import org.json.JSONObject;
 public class MealPlanner {
 
 	public void run() {
-		//creates home page
-		HomePageHandler homePageHandle = new HomePageHandler();
-		//creates recipe search page
+
+		//use http://localhost:4042 in browser
+		port(4043);
+
+		//creates various page handlers
+		HomePageHandler homePageHandle = new HomePageHandler(); 
 		RecipeSearchHandler recipeSearchHandler = new RecipeSearchHandler();
-		//creates calendar view page
 		CalendarHandler calendarHandler = new CalendarHandler();
-		//creates grocery list page
 		GroceryListHandler groceryListHandler = new GroceryListHandler();
-		//creates a page to handle files i.e. read or write
 		FileHandler fileHandler = new FileHandler();
 		RecipeListDisplayHandler recipeListDisplayHandler = new RecipeListDisplayHandler();
 		RecipeDisplayHandler recipeDisplayHandler = new RecipeDisplayHandler();
 		
-		port(4043);
-		//first page that opens
-		// prompt the user whether they would like to create a new meal plan or use an
-		// existing one?
-		get("/", homePageHandle); 
-		
+		get("/", homePageHandle); 	
 		get("/searchrecipe", recipeSearchHandler); //recipe search page path
 		get("/calendar", calendarHandler); //calendar page path
 		get("/grocerylist", groceryListHandler); //grocery list page path

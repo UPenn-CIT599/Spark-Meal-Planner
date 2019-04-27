@@ -12,40 +12,55 @@ import spark.Route;
 public class RecipeDisplayHandler implements Route {
 
 	private String recipeID;
-	private final String htmlHead = "<html><head><title>Full Recipe</title></head>";
 	JSONObject recipeJSON = null;
 	
 	public Object handle(Request request, Response response) throws Exception {
+				
 		recipeID = request.queryParams("id");
-		System.out.println("Search term entered by the user :" + recipeID);
-		return htmlHead + "<body><div><h3>Full Recipe <h3></div>" + getFullRecipeWithAPI() +  "</body></html>";
+		
+		//System.out.println("Search term entered by the user: " + recipeID);
+
+		return TagCreator.gethtmlHead("Full Recipe") 
+				+ "<body><div><h3>Full Recipe <h3></div>" 
+				+ getFullRecipeWithAPI() 
+				+ TagCreator.getFooter()
+				+ "</body></html>";
 	}
 
 	
 	public String getFullRecipeWithAPI() {
-		System.out.println("going through API handler: " + recipeID);
+		
+		//System.out.println("going through API handler: " + recipeID);
+		
 		YummlyAPIHandler apiHandler = new YummlyAPIHandler();
 		Dish dish = null;
+		String recipeStepsURL = "";
 
 		try {
-			apiHandler.getRecipe(recipeID);
-			DishReader dr = new DishReader (apiHandler.getGetRecipeJSON());
-			dish = dr.getDishCreated();
-			System.out.println(dish.getDishName());
 			
+			apiHandler.getRecipe(recipeID);
+			JSONObject recipeJSON = apiHandler.getGetRecipeJSON();
+			JSONObject source = recipeJSON.getJSONObject("source");
+			recipeStepsURL = (String) source.get("sourceRecipeUrl");
+			
+			DishReader dr = new DishReader (apiHandler.getGetRecipeJSON());
+			dish = dr.getDishCreated();			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-
-		
-
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("<div><ul>");
-		sb.append("<li>" + recipeJSON + "<li>" + dish.getCookingTimeInSeconds() + "<li>");
-		sb.append("</ul></div>");
+		sb.append("<div>");
+		
+		sb.append("<p> Recipe Name: " + dish.getDishName() + "</p>");
+		sb.append("<p> Recipe Serving Size: " + dish.getNumOfPeopleToServe() + "</p>");
+		sb.append("<p> Cooking time in minutes: " + dish.getCookingTimeInSeconds()/60 + "</p>");
+		sb.append("<p><a href=\"" + dish.getCookingStepsURL() + "\">Visit original recipe site </a></p>");
+		sb.append("<p>" + dish.getAttribution() + "</p>");
+		
+		sb.append("</div>");
 
 		return sb.toString();
 	}
