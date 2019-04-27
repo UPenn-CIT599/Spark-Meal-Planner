@@ -24,9 +24,10 @@ public class MealPlanner {
 		GroceryListHandler groceryListHandler = new GroceryListHandler();
 		//creates a page to handle files i.e. read or write
 		FileHandler fileHandler = new FileHandler();
+		RecipeListDisplayHandler recipeListDisplayHandler = new RecipeListDisplayHandler();
 		RecipeDisplayHandler recipeDisplayHandler = new RecipeDisplayHandler();
 		
-		port(4041);
+		port(4043);
 		//first page that opens
 		// prompt the user whether they would like to create a new meal plan or use an
 		// existing one?
@@ -36,11 +37,10 @@ public class MealPlanner {
 		get("/calendar", calendarHandler); //calendar page path
 		get("/grocerylist", groceryListHandler); //grocery list page path
 		get("/retrievemealplan", fileHandler);//retrieve meal plan page path
-		post("/createmealplan", recipeSearchHandler); //create a meal plan page path
-		post("/displayrecipelist", recipeDisplayHandler);//create a display searched recipe path
-		get("/displayrecipelist", recipeDisplayHandler);//create a display searched recipe path
-		get("/displayfullrecipe", recipeDisplayHandler);//create a display searched recipe path
-
+		get("/displayrecipelist", recipeListDisplayHandler);//create a display searched recipe path
+		get("/displayfullrecipe", recipeListDisplayHandler);//create a display searched recipe path
+		get("/recipechosen", recipeDisplayHandler);//create a display searched recipe path
+		
 		// user input verification and related actions
 
 		// add code here evaluate (if block) for retrieving old meal plan here

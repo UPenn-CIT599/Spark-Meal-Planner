@@ -1,14 +1,14 @@
 package com.sparkmealplanner.spark_meal_planner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * @author Krishna
  *
  */
-class yummlyAPIHandlerTest {
+class YummlyAPIHandlerTest {
 
 	/**
 	 * Test method for {@link yummlyAPIHandler#searchReceipe()}. checks for 20 items
@@ -16,9 +16,9 @@ class yummlyAPIHandlerTest {
 	 */
 	@Test
 	void testSearchReceipe() {
-		YummlyAPIHandler apihandler = new YummlyAPIHandler("cake");
+		YummlyAPIHandler apihandler = new YummlyAPIHandler();
 		try {
-			apihandler.searchReceipe();
+			apihandler.searchReceipe("cake");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -34,8 +34,8 @@ class yummlyAPIHandlerTest {
 	 */
 	@Test
 	void testGetDishID() throws Exception {
-		YummlyAPIHandler apihandler = new YummlyAPIHandler("cake");
-		apihandler.searchReceipe();
+		YummlyAPIHandler apihandler = new YummlyAPIHandler();
+		apihandler.searchReceipe("cake");
 		System.out.println(apihandler.getRecipeNameAndDishID().toString());
 
 		String dishID = apihandler.getDishID("Honey Bun Cake");

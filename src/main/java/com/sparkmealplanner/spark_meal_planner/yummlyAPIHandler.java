@@ -24,6 +24,7 @@ public class YummlyAPIHandler {
 	private String dishID;
 	private HashMap<String, String> recipeNameAndDishID = new HashMap<String, String>();
 	private String recipeStepsURL;
+	private String attributionText;
 
 	/**
 	 * The following constructor creates an API handler object specific to
@@ -31,8 +32,8 @@ public class YummlyAPIHandler {
 	 * 
 	 * @param recipeToSearch recipe name to search
 	 */
-	public YummlyAPIHandler(String recipeToSearch) {
-		this.recipeToSearch = recipeToSearch;
+	public YummlyAPIHandler() {
+		//this.recipeToSearch = recipeToSearch;
 	}
 
 	/**
@@ -69,8 +70,10 @@ public class YummlyAPIHandler {
 	 * @return hashmap of recipe name and ID
 	 * @throws Exception
 	 */
-	public HashMap<String, String> searchReceipe() throws Exception {
+	public HashMap<String, String> searchReceipe(String recipeToSearch) throws Exception {
 
+		this.recipeToSearch = recipeToSearch;
+		
 		// URLencoding parameter names and values (i.e. replacing " " to "+")
 		recipeToSearch = recipeToSearch.replace(" ", "+");
 
@@ -80,7 +83,7 @@ public class YummlyAPIHandler {
 
 		// initializing the url object
 		URL yummylySearchURL = new URL(url);
-		System.out.println(yummylySearchURL);
+		//System.out.println(yummylySearchURL);
 
 		// opens the connection
 		HttpURLConnection connection = (HttpURLConnection) yummylySearchURL.openConnection();
@@ -119,7 +122,7 @@ public class YummlyAPIHandler {
 					String recipeName = (String) dishInfo.get("recipeName");
 
 					// adding index in front of the recipe name
-					System.out.println(i + 1 + ". " + recipeName);
+					//System.out.println(i + 1 + ". " + recipeName);
 
 					// storing dish ID
 					String dishID = (String) dishInfo.get("id");
@@ -129,10 +132,10 @@ public class YummlyAPIHandler {
 
 				// JSON object "attribution" stores information such as "text", "url", and
 				// "logo" related to the attribution
-				System.out.println("Attributions:");
+				//System.out.println("Attributions:");
 				JSONObject attribution = searchRecipeJSON.getJSONObject("attribution");
-				System.out.println(attribution.get("text") + " at: " + attribution.get("url"));
-				System.out.println("Find logo at: " + attribution.get("logo") + "\n");
+				//System.out.println(attribution.get("text") + " at: " + attribution.get("url"));
+				//System.out.println("Find logo at: " + attribution.get("logo") + "\n");
 
 			}
 			in.close();
@@ -154,7 +157,7 @@ public class YummlyAPIHandler {
 		// URLencoding parameter names and values (i.e. replacing " " to "+")
 		String url = "http://api.yummly.com/v1/api/recipe/" + recipeID
 				+ "?_app_id=07657d11&_app_key=6d13fda0951bfe4dc2f12d1690058462";
-		//System.out.println(url);
+		System.out.println(url);
 
 		// initializing the url and connection objects
 		URL yummylySearchURL = new URL(url);
@@ -187,14 +190,13 @@ public class YummlyAPIHandler {
 				// JSON object "source" stores information on the original source of the recipe
 				JSONObject source = getRecipeJSON.getJSONObject("source");
 				recipeStepsURL = (String) source.get("sourceRecipeUrl");
-				System.out.println("Find Recipe steps at: " + recipeStepsURL);
+				//System.out.println("Find Recipe steps at: " + recipeStepsURL);
 
 				// JSON object "attribution" stores information such as "text", "url", and
 				// "logo" related to the attribution
-				System.out.println("Attributions:");
 				JSONObject attribution = getRecipeJSON.getJSONObject("attribution");
-				System.out.println(attribution.get("text") + " at: " + attribution.get("url"));
-				System.out.println("Find logo at: " + attribution.get("logo") + "\n");
+				attributionText = "Attributions: " + attribution.get("text") + " at: " + attribution.get("url");
+				//System.out.println("Find logo at: " + attribution.get("logo") + "\n");
 			}
 			in.close();
 		}

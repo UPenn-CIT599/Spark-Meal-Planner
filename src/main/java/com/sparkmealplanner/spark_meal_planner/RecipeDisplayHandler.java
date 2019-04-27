@@ -1,6 +1,9 @@
 package com.sparkmealplanner.spark_meal_planner;
 
 import java.util.HashMap;
+import java.util.Map.Entry;
+
+import org.json.JSONObject;
 
 import spark.Request;
 import spark.Response;
@@ -8,42 +11,40 @@ import spark.Route;
 
 public class RecipeDisplayHandler implements Route {
 
-	private String recipeToSearch = RecipeSearchHandler.getRecipeToSearch();
-	private HashMap<String, String> recipeNameAndDishID;
-//	private String recipeID;
+	private String recipeID;
 	private final String htmlHead = "<html><head><title>Full Recipe</title></head>";
-
-	public RecipeDisplayHandler() {
-		recipeNameAndDishID = new HashMap<String, String>();
-	}
-
+	JSONObject recipeJSON = null;
+	
 	public Object handle(Request request, Response response) throws Exception {
-		System.out.println(recipeToSearch);
-		return htmlHead + "<body><div><h3>Recipe Search List List<h3></div>" + searchRecipeWithAPI()+"</body></html>";
+		recipeID = request.queryParams("id");
+		System.out.println("Search term entered by the user :" + recipeID);
+		return htmlHead + "<body><div><h3>Full Recipe <h3></div>" + getFullRecipeWithAPI() +  "</body></html>";
 	}
 
-	public String searchRecipeWithAPI() {
-//		YummlyAPIHandler apiHandler = new YummlyAPIHandler(recipeToSearch);
+	
+	public String getFullRecipeWithAPI() {
+		System.out.println("going through API handler: " + recipeID);
+		YummlyAPIHandler apiHandler = new YummlyAPIHandler();
+		Dish dish = null;
+
 		try {
-//			recipeNameAndDishID = apiHandler.searchReceipe();
+			apiHandler.getRecipe(recipeID);
+			DishReader dr = new DishReader (apiHandler.getGetRecipeJSON());
+			dish = dr.getDishCreated();
+			System.out.println(dish.getDishName());
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		recipeNameAndDishID.put("1", "Cake1");
-		recipeNameAndDishID.put("2", "Cake2");
+
+		
 
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("<div><ul>");
-
-		for (String recipe : recipeNameAndDishID.keySet()) {
-			sb.append("<li>" + recipe
-					+ "<button style=\"margin-left: 10px\" onclick=\"location.href='/\\"
-					+ "'\">DONE</button></li>");
-		}
-
+		sb.append("<li>" + recipeJSON + "<li>" + dish.getCookingTimeInSeconds() + "<li>");
 		sb.append("</ul></div>");
 
 		return sb.toString();
