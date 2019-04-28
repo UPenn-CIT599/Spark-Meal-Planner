@@ -20,13 +20,11 @@ public class Calendar {
 	public Calendar() {
 		for (String day : daysOfTheWeek) {
 			for (String meal : meals) {
-				//TODO we may change the key formation based on it's display on the GUI
 				String calendarKey = day + meal;// key for the calendar HasMap using the dayOfWeek and meal
 				calendar.put(calendarKey, "Not Picked Yet");
 			}
 		}
 	}
-
 	/**
 	 * The following method modifies the calendar instance variable based on the day
 	 * and meal selected and replaces the "Not Picked Yet" string with the dishName
@@ -37,7 +35,6 @@ public class Calendar {
 	 * @return updated calendar
 	 */
 	public HashMap<String, String> addADishToCalendar(String mealName, String dayOfTheWeek, String dishName) {
-		//TODO add error checking mechanism to ensure a key exists
 		String calendarKey = dayOfTheWeek + mealName;
 		calendar.put(calendarKey, dishName);
 		return calendar;
@@ -52,7 +49,6 @@ public class Calendar {
 	 * @return updated calendar
 	 */
 	public HashMap<String, String> removeADishFromTheCalendar(String mealName, String dayOfTheWeek) {
-		//TODO add error checking mechanism to ensure a key exists
 		String calendarKey = dayOfTheWeek + mealName;
 		calendar.put(calendarKey, "Not Picked Yet");
 		return calendar;
@@ -68,8 +64,17 @@ public class Calendar {
 	 * @return updated calendar
 	 */
 	public HashMap<String, String> swapAMeal(String mealKeytoChangeFrom, String mealKeyToChangeTo) {
-		// TODO update the calendar to move a dish from a given meal to a new meal
-		// chosen by the user
+	    	String tempRecipeStorage = calendar.get("mealKeytoChangeFrom");
+	    	calendar.put(mealKeytoChangeFrom, "Not Picked Yet");
+	    	calendar.put(mealKeyToChangeTo, tempRecipeStorage);
 		return calendar;
 	}
+        /**
+         * Getter method to access the calendar instance variable from a different class
+         * @return calendar
+         */
+	public HashMap<String, String> getCalendar() {
+	    return calendar;
+	}
+	
 }
