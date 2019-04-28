@@ -52,9 +52,7 @@ public class RecipeListDisplayHandler implements Route {
 					+ recipe.getValue()
 					+ "'\">Show Full Recipe</button>" 					
 					
-					+ "<form action=\"/calendar\"&id= "
-					+ recipe.getValue() //not working
-					+ "method=\"get\">" 
+					+ "<form action=\"/calendar\"method=\"get\">"
 					+ "<select id=\"dayandmeal\" name=\"calendar_day_and_meal\">"
 					+ "<option value=\"\" selected=\"selected\" >Select a Calendar Option</option>"
 					+ "<option value=\"monday_breakfast\" >Monday Breakfast</option>"
@@ -87,7 +85,6 @@ public class RecipeListDisplayHandler implements Route {
 					+ "<option value=\"sunday_dinner\" >Sunday Dinner</option>" 
 					+ "</select>" 
 					+ "<button style=\"margin-left: 10px\" type=\"submit\">Add</button></form>"
-
 					);
 		}
 
