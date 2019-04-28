@@ -49,8 +49,13 @@ public class RecipeListDisplayHandler implements Route {
 		for (Entry<String, String> recipe : recipeNameAndDishID.entrySet()) {
 			sb.append("<li>" + recipe.getKey()
 					+ "<button style=\"margin-left: 10px\" onclick=\"location.href='/recipechosen?id="
-					+ recipe.getValue() + "'\">Show Full Recipe</button>" + "<label>"
-					+ "<select id=\"calendar_meal\" name=\"calendar_meal\">"
+					+ recipe.getValue()
+					+ "'\">Show Full Recipe</button>" 					
+					
+					+ "<form action=\"/calendar\"&id= "
+					+ recipe.getValue() //not working
+					+ "method=\"get\">" 
+					+ "<select id=\"dayandmeal\" name=\"calendar_day_and_meal\">"
 					+ "<option value=\"\" selected=\"selected\" >Select a Calendar Option</option>"
 					+ "<option value=\"monday_breakfast\" >Monday Breakfast</option>"
 					+ "<option value=\"monday_lunch\" >Monday Lunch</option>"
@@ -79,7 +84,11 @@ public class RecipeListDisplayHandler implements Route {
 					+ "<option value=\"sunday_breakfast\" >Sunday Breakfast</option>"
 					+ "<option value=\"sunday_lunch\" >Sunday Lunch</option>"
 					+ "<option value=\"sunday_snack\" >Sunday Snack</option>"
-					+ "<option value=\"sunday_dinner\" >Sunday Dinner</option>" + "</select>" + "</label>");
+					+ "<option value=\"sunday_dinner\" >Sunday Dinner</option>" 
+					+ "</select>" 
+					+ "<button style=\"margin-left: 10px\" type=\"submit\">Add</button></form>"
+
+					);
 		}
 
 		sb.append("<br><br>" + attributionHtml);

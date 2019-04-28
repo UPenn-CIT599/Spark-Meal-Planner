@@ -12,7 +12,7 @@ public class RecipeSearchHandler implements Route {
 
 	private final String searchRecipeForm = "<div><form action=\"/displayrecipelist\" method=\"get\">Enter a recipe to search:"
 			+ "<input type=\"text\" name=\"recipetosearch\"><br><br>"
-			+ "<button style=\"margin-left: 10px\" onclick=\"location.href='/taskdone?id=\">Search</button></li>";
+			+ "<button style=\"margin-left: 10px\">Search</button></li>";
 
 	/**
 	 * Handle method to create a form to collect recipe search term
