@@ -13,8 +13,8 @@ public class Dish {
 	private String dishID;
 	private String dishName;
 	private ArrayList<Ingredient> ingredients;
-	private String cookingStepsURL;// the API will not give a cooking step but rather a URL to the original recipe
-									// where the user can find the steps
+	private String cookingStepsURL;// the API will not give cooking steps but rather a URL 
+	//to the original recipe where the user can find the steps
 	private double cookingTimeInSeconds;
 	private int numOfPeopleToServe; // serving size
 	private String attribution;
@@ -36,6 +36,12 @@ public class Dish {
 		this.cookingStepsURL = cookingStepsURL;
 		this.cookingTimeInSeconds = cookingTimeInSeconds;
 		this.numOfPeopleToServe = numOfPeopleToServe;
+	}
+	
+	public Dish(String dishName, ArrayList<Ingredient> ingredients, String cookingStepsURL) {
+	this.dishName = dishName;
+	this.ingredients = ingredients;
+	this.cookingStepsURL = cookingStepsURL;
 	}
 
 	// see the getter methods below

@@ -8,7 +8,6 @@ import spark.Route;
 
 public class CalendarHandler implements Route {
 
-    private final String htmlHead = "<html><head><title>Meal Planner Calendar</title></head>";
     private String CalendarDisplayHTML;
     
     public void calendarDisplay(Calendar calendar) {
@@ -66,15 +65,14 @@ public class CalendarHandler implements Route {
 	"  </tr>\r\n" + 
 	"</table>\r\n";
     }
-    public void calendarDisplayAddMeal() {
-	
-    }
+
     public Object handle(Request request, Response response) throws Exception {
 	Calendar c = new Calendar();
 	calendarDisplay(c);
-	return htmlHead + "<body><h3>Meal Planner Calendar</h3>" + 
+	return TagCreator.gethtmlHead("Meal Planner Calendar") + 
 		"<div class=\"dropdown\">\r\n" + 
 		"<div class=\"dropdown-content\">\r\n" + 
+		"<p> Pick a day and Meal to add the recipe to</p>"+
 		"  <select>\r\n" + 
 		"  <option value=\"Sunday\">Sunday</option>\r\n" + 
 		"  <option value=\"Monday\">Monday</option>\r\n" + 
@@ -98,7 +96,6 @@ public class CalendarHandler implements Route {
 		"<button>Submit</button>\r\n"+
 		CalendarDisplayHTML+
 		"<button onclick=\"window.print()\">Print This Page</button>\r\n"+
-		"<button><a href = \"/GroceryList\">Display Grocery List</button>\r\n"+
-		"<button><a href=\"/todo\">Go back to the Recipe List</a></button></body></html>";
+		TagCreator.getFooter() + "</body></html>";
     }
 }
