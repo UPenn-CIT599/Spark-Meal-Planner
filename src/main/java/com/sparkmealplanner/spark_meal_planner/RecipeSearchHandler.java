@@ -20,9 +20,9 @@ public class RecipeSearchHandler implements Route {
 	public Object handle(Request request, Response response) throws Exception {
 		
 		return TagCreator.gethtmlHead("Search Recipe")
-				+ "<body><h3>Search My Recipes Below</h3>" 
+				+TagCreator.createBodyTitle("Search My Recipes Below")
 				+ searchRecipeForm
 				+ TagCreator.getFooter()
-				+ "</body></html>";
+				+TagCreator.closeTag();
 		}
 }

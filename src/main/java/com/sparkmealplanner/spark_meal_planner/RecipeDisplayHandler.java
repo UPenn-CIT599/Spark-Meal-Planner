@@ -1,5 +1,6 @@
 package com.sparkmealplanner.spark_meal_planner;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
@@ -13,29 +14,33 @@ public class RecipeDisplayHandler implements Route {
 
 	private String recipeID;
 	JSONObject recipeJSON = null;
+	static Dish dish = null;
 	
 	public Object handle(Request request, Response response) throws Exception {
 				
-		recipeID = request.queryParams("id");
-		
-		//System.out.println("Search term entered by the user: " + recipeID);
-
+		recipeID = request.queryParams("recipeid");
 		return TagCreator.gethtmlHead("Full Recipe") 
-				+ "<body><div><h3>Full Recipe <h3></div>" 
+				+TagCreator.createBodyTitle("Full Recipe")
 				+ getFullRecipeWithAPI() 
 				+ TagCreator.getFooter()
-				+ "</body></html>";
+				+TagCreator.closeTag();
+	}
+	
+	/**
+	 * @return the dish
+	 */
+	public static Dish getDishFromFullRecipeView() {
+		return dish;
 	}
 
-	
 	public String getFullRecipeWithAPI() {
 		
 		//System.out.println("going through API handler: " + recipeID);
 		
 		YummlyAPIHandler apiHandler = new YummlyAPIHandler();
-		Dish dish = null;
+		
 		String recipeStepsURL = "";
-
+		ArrayList <Ingredient> ingredients = new ArrayList <Ingredient>();
 		try {
 			
 			apiHandler.getRecipe(recipeID);
@@ -44,7 +49,8 @@ public class RecipeDisplayHandler implements Route {
 			recipeStepsURL = (String) source.get("sourceRecipeUrl");
 			
 			DishReader dr = new DishReader (apiHandler.getGetRecipeJSON());
-			dish = dr.getDishCreated();			
+			dish = dr.getDishCreated();
+			ingredients = dish.getIngredients();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -57,6 +63,15 @@ public class RecipeDisplayHandler implements Route {
 		sb.append("<p> Recipe Name: " + dish.getDishName() + "</p>");
 		sb.append("<p> Recipe Serving Size: " + dish.getNumOfPeopleToServe() + "</p>");
 		sb.append("<p> Cooking time in minutes: " + dish.getCookingTimeInSeconds()/60 + "</p>");
+		sb.append("<p> Ingredients: </p>");
+		sb.append("<ul>");
+		
+		for (Ingredient ingredient : ingredients) {
+			//System.out.println(ingredient.getIngredientLine());
+			sb.append("<li>" + ingredient.getIngredientLine()+ "</li>");
+		}
+		sb.append("</ul>");
+		
 		sb.append("<p><a href=\"" + dish.getCookingStepsURL() + "\">Visit original recipe site </a></p>");
 		sb.append("<p>" + dish.getAttribution() + "</p>");
 		

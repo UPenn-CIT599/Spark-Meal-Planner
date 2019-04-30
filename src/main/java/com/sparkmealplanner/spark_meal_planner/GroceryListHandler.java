@@ -10,6 +10,7 @@ public class GroceryListHandler implements Route {
 		return TagCreator.gethtmlHead("Grocery List") 
 				+ "<body><h3>Grocery List</h3>"+
 				"<button><a href=\"/\">Go back to your list</a></button></body></html>"
-				+TagCreator.getFooter();
+				+TagCreator.getFooter()
+				+TagCreator.closeTag();
 	}
 }

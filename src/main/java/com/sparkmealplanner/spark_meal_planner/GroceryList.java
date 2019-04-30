@@ -54,15 +54,11 @@ public class GroceryList {
 	 * @param indexOfTheItemToBeRemoved index of the item to be removed
 	 */
 	public void removeIngredientsFromGroceryList(HashMap<String, ArrayList<Ingredient>> groceryList,
-			String DishNameToChange, int indexOfTheItemToBeRemoved) {
+			String DishNameToChange, String ingredientLine) {
 
 		// setting the list of ingredients
 		listOfIngredients = groceryList.get(DishNameToChange);
 
-//		Testing the code below	
-//		int inIndex = Integer.parseInt(in);
-//		int removalIndex = inIndex-1;
-//		groceryList.remove(removalIndex);
 	}
 
 	/**

@@ -36,4 +36,13 @@ public class Ingredient {
 		return quantity;
 	}
 
+	/**
+	 * @param ingredientLine the ingredientLine to set
+	 */
+	public void setIngredientLine(String ingredientLine) {
+		this.ingredientLine = ingredientLine;
+	}
+	
+	
+
 }
