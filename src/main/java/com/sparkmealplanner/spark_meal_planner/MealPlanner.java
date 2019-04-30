@@ -16,26 +16,28 @@ public class MealPlanner {
 	public void run() {
 
 		//use http://localhost:4042 in browser
-		port(4043);
+		port(8080);
 
 		//creates various page handlers
 		HomePageHandler homePageHandle = new HomePageHandler(); 
 		RecipeSearchHandler recipeSearchHandler = new RecipeSearchHandler();
 		CalendarHandler calendarHandler = new CalendarHandler();
 		GroceryListHandler groceryListHandler = new GroceryListHandler();
-		FileHandler fileHandler = new FileHandler();
+		FAQHandler faqHandler = new FAQHandler();
 		RecipeListDisplayHandler recipeListDisplayHandler = new RecipeListDisplayHandler();
 		RecipeDisplayHandler recipeDisplayHandler = new RecipeDisplayHandler();
+		ManualRecipeInputHandler manualRecipeHandler = new ManualRecipeInputHandler();
 		
-		get("/", homePageHandle); 	
+		get("/", homePageHandle); 
 		get("/searchrecipe", recipeSearchHandler); //recipe search page path
 		get("/calendar", calendarHandler); //calendar page path
 		get("/grocerylist", groceryListHandler); //grocery list page path
-		get("/retrievemealplan", fileHandler);//retrieve meal plan page path
+		get("/faqs", faqHandler);//retrieve meal plan page path
 		get("/displayrecipelist", recipeListDisplayHandler);//create a display searched recipe path
 		get("/displayfullrecipe", recipeListDisplayHandler);//create a display searched recipe path
 		get("/recipechosen", recipeDisplayHandler);//create a display searched recipe path
-		
+		get("/addrecipe", manualRecipeHandler);//create a display searched recipe path
+
 		// user input verification and related actions
 
 		// add code here evaluate (if block) for retrieving old meal plan here

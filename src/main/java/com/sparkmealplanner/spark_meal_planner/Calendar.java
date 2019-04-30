@@ -8,8 +8,8 @@ import java.util.HashMap;
  */
 public class Calendar {
     private HashMap<String, String> calendar = new HashMap(); // HashMap to store the calendar for a week
-    private String[] daysOfTheWeek = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
-    private String[] meals = { "Breakfast", "Lunch", "Snack", "Dinner" };
+    private static String[] daysOfTheWeek = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+    private static String[] meals = { "Breakfast", "Lunch", "Snack", "Dinner" };
 //    private String alert = "<p> alert(Are you sure you want to replace the existing meal?)</p>";
 
     /**
@@ -29,6 +29,20 @@ public class Calendar {
     }
 
     /**
+	 * @return the daysOfTheWeek
+	 */
+	public static String[] getDaysOfTheWeek() {
+		return daysOfTheWeek;
+	}
+
+	/**
+	 * @return the meals
+	 */
+	public static String[] getMeals() {
+		return meals;
+	}
+
+	/**
      * The following method modifies the calendar instance variable based on the day
      * and meal selected and replaces the "Not Picked Yet" string with the dishName
      * 
