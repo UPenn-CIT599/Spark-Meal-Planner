@@ -26,7 +26,6 @@ public class CalendarHandler implements Route {
 	private String recipeIDToAdd;
 	String dayAndMealSelected;
 	
-	
 	/**
 	 * Method handler to implement the route class
 	 */

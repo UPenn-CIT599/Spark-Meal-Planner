@@ -66,19 +66,20 @@ public class ManualRecipeInputHandler implements Route{
 	    StringBuilder sb = new StringBuilder();
 	    sb.append("Please enter the number of ingredients in your recipe to proceed with adding the ingredient list:<input type=\"text\" id=\"ingredients\" name=\"ingredients\" value=\"\"><br />\r\n" + 
 	    	"<a href=\"#\" id=\"addingredients\" onclick=\"addFields()\">Add your list of Ingredients</a>\r\n" + 
+		"<button style=\"margin-left: 10px\" type=\"submit\">Submit The Recipe</button>\"" + "</form></div>" +
 	    	"<div id=\"container\"/>");
 	    return sb.toString();
 	}
 	
-//	public String IngredientList() {
-//	    StringBuilder sb = new StringBuilder();
-//	    sb.append("<div><ol>");
-//	    for (Ingredient ingredient : manIngredients) {
-//		sb.append("<li>" + ingredient.getIngredientLine() + "</li>");
-//	    }
-//	    sb.append("</ol></div>");
-//	    return sb.toString();
-//	}
+	public String IngredientList() {
+	    StringBuilder sb = new StringBuilder();
+	    sb.append("<div><ol>");
+	    for (Ingredient ingredient : manIngredients) {
+		sb.append("<li>" + ingredient.getIngredientLine() + "</li>");
+	    }
+	    sb.append("</ol></div>");
+	    return sb.toString();
+	}
 	public String myfunction() {
 	    StringBuilder sb = new StringBuilder();
 	    sb.append("<script>");
@@ -97,11 +98,6 @@ public class ManualRecipeInputHandler implements Route{
 	    	"            }\r\n" + 
 	    	"        }");
 	    sb.append("</script>");
-	    return sb.toString();
-	}
-	public String submit() {
-	    StringBuilder sb = new StringBuilder();
-	    sb.append("<button style=\"margin-left: 10px\" type=\"submit\">Submit The Recipe</button>" + "</form></div>");	    
 	    return sb.toString();
 	}
 	/**
@@ -150,17 +146,22 @@ public class ManualRecipeInputHandler implements Route{
 	}
 
 	public Object handle(Request request, Response response) throws Exception {
-	    if ("/addrecipe#".contentEquals(request.pathInfo())){
-		String ingredientLine = request.queryParams("ingredientLine");
+	    if ("/addingredients".contentEquals(request.pathInfo())){
 		manDishName = request.queryParams("recipename");
 		manCookingStepsURL = request.queryParams("recipeURL");
 		manCookingTimeInSeconds = Double.parseDouble(request.queryParams("cookingtime"));
 		manNumOfPeopleToServe = Integer.parseInt(request.queryParams("servingsize"));
-		Ingredient i = new Ingredient(ingredientLine);
-		manIngredients.add(i);
+		int numberOfIngredients = Integer.parseInt(request.queryParams("ingredients"));
+		for (int i = 0; i < numberOfIngredients;i++) {
+		    String id = Integer.toString(i)+1;
+			String ingredientLine = request.queryParams("ingredient" + id);
+			Ingredient ingredient = new Ingredient(ingredientLine);
+			manIngredients.add(ingredient);
+		}
+
 	    }
 	    return TagCreator.gethtmlHead("Meal Planner Calendar") + 
-		    RecipeNameForm() + RecipeURLForm() + CookingTimeForm() +  ServingsizeForm() +  IngredientListForm() + submit() + myfunction() +
+		    RecipeNameForm() + RecipeURLForm() + CookingTimeForm() +  ServingsizeForm() +  IngredientListForm() + myfunction() + IngredientList()+
 		    TagCreator.getFooter() + TagCreator.closeTag();
 	}
 
