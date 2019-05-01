@@ -36,7 +36,8 @@ public class MealPlanner {
 		get("/displayrecipelist", recipeListDisplayHandler);//create a display searched recipe path
 		get("/displayfullrecipe", recipeListDisplayHandler);//create a display searched recipe path
 		get("/recipechosen", recipeDisplayHandler);//create a display searched recipe path
-		get("/addrecipe", manualRecipeHandler);//create a display searched recipe path
+		get("/addrecipe", manualRecipeHandler);//create a display of manual recipe
+		get("/addIngredient", manualRecipeHandler);//create a display of manual recipe
 
 		// user input verification and related actions
 
