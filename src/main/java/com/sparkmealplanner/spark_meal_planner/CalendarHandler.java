@@ -3,35 +3,133 @@ package com.sparkmealplanner.spark_meal_planner;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import org.json.JSONObject;
+
 import spark.Request;
 import spark.Response;
 import spark.Route;
 
+/**
+ * The following class handles the calendar display page and related HTML or java elements
+ *
+ */
 public class CalendarHandler implements Route {
+	
+	//create a new calendar and related instance variables
 	Calendar calendar = new Calendar();
-	HashMap<String, String> calendarHashMap = new HashMap<String, String>();
-	private String CalendarDisplayHTML;
+	HashMap<String, Dish> calendarHashMap = calendar.getCalendar();
+	HashMap<String, String> calendarToDisplayHashMap = calendar.getCalendarToDisplay();
+	Dish dish = null;
+	
+	//instance variable to be used in the handler class
 	private String recipeToAdd;
+	private String recipeIDToAdd;
 	String dayAndMealSelected;
-
-	public void displayCalendar() {
-		calendarHashMap = calendar.getCalendar();
+	
+	
+	/**
+	 * Method handler to implement the route class
+	 */
+	public Object handle(Request request, Response response) throws Exception {
 		
+		//if the url was directed to "/calendar"
+		if ("/calendar".equals(request.pathInfo())) {
+			
+			//if the recipe name parameter is not empty, the value is stored in a variable
+			if(request.queryParams("recipename")!=null) {
+				recipeToAdd = request.queryParams("recipename");			
+			}
+
+			//if the recipe id parameter is not empty, the value is stored in a variable
+			if(request.queryParams("recipeid")!=null) {
+				recipeIDToAdd = request.queryParams("recipeid");
+			}
+			
+			//creating a JSON object to create a new dish to be stored in the calendar hashmap
+			JSONObject recipeJSON = YummlyAPIHandler.getGetRecipeJSON(recipeIDToAdd);
+			
+			try {
+				
+				//using dishreader class, create a dish from JSON derived
+				DishReader dr = new DishReader(recipeJSON);
+				dish = dr.getDishCreated();
+			}
+			catch(Exception e){
+				e.printStackTrace();
+				//TODO add the block here
+			}
+	
+			//if calendar option (day+meal) parameter is not empty, the value is stored in a variable
+			if(request.queryParams("calendaroption")!=null) {
+				dayAndMealSelected = request.queryParams("calendaroption");
+				
+				//the variable is added to the hashmaps
+				calendarHashMap.put(dayAndMealSelected, dish);
+				calendarToDisplayHashMap.put(dayAndMealSelected, recipeToAdd);
+			}
+//			else {
+//				//if the user comes to the page directly, the following message will display, 
+//				dayAndMealSelected = "No day and meal has been selected";
+//			}
+		}
+		
+		//if the user pressed the remove button, the following url path is reached
+		if ("/removefromcalendar".equals(request.pathInfo())) {					
+			
+			//parameter value is stored below if it is not empty
+			if(request.queryParams("calendaroption")!=null) {
+				dayAndMealSelected = request.queryParams("calendaroption");
+				
+				//variable value is used to update the HashMaps below
+				calendarHashMap.put(dayAndMealSelected, null);
+				calendarToDisplayHashMap.put(dayAndMealSelected, "-");
+			}
+		}
+		
+		//returns various html parts
+		return TagCreator.gethtmlHead("Meal Planner Calendar")
+				+ TagCreator.createBodyTitle("Calendar")
+				+ displayCalendar() 
+				+ displayRecipeSelected()
+				+ displayAddToCalendarOptions()
+				+ displayRemoveFromCalendarOptions()
+				+ TagCreator.createPrintThisButton()
+				+ TagCreator.getFooter()
+				+ TagCreator.closeTag();
+	}
+
+	/**
+	 * The following method creates the calendar to be displayed in html
+	 * @return calendar to display
+	 */
+	private String displayCalendar() {
+		calendarHashMap = calendar.getCalendar();
+		calendarToDisplayHashMap = calendar.getCalendarToDisplay();
+		
+		//string builder object used for ease of modification
 		StringBuilder sb = new StringBuilder();
 		sb.append("<p>");
+		
+		//creating an html table
 		sb.append("<table>");
+		
+		//creating an html table row
 		sb.append("<tr>");
 		sb.append("<th>Meal</th>");
 
+		//adding days
 		for (String day : Calendar.getDaysOfTheWeek()) {
 			sb.append("<th>" + day + "</th>");
 		}
 		sb.append("</tr>");
 
+		//adding meals
 		for (String meal : Calendar.getMeals()) {
 			sb.append("<tr><th>" + meal + "</th>");
+			
+			//adding assigned dish name from the hashmap
 			for (String day : Calendar.getDaysOfTheWeek()) {
-				sb.append("<th>" + calendarHashMap.get(day +" " +  meal) + "</th>");
+				sb.append("<th>" + calendarToDisplayHashMap.get(day +" " +  meal) + "</th>");
 			}
 			sb.append("</tr>");
 		}
@@ -40,62 +138,71 @@ public class CalendarHandler implements Route {
 		sb.append("</p>");
 
 
-		CalendarDisplayHTML = sb.toString();
+		return sb.toString();
 	}
-
-	public String displayCalendarOptions() {
+	
+	/**
+	 * The following method shows the calendar display options for adding a recipe
+	 * @return
+	 */
+	private String displayAddToCalendarOptions() {
+		//string builder object used for ease of modification
 		StringBuilder sb = new StringBuilder ();
 		
+		//creating an HTML form
 		sb.append("<p><form action=\"/calendar\"method=\"get\">");
 		sb.append("<select id=\"dayandmeal\" name=\"calendaroption\">\"");
 		
+		//adding selection drop-downs
 		sb.append("<option value=\"\" selected=\"selected\" >Select a Calendar Option</option>");
 	
-		for (Entry <String, String> item : calendarHashMap.entrySet()) {
+		for (Entry <String, String> item : calendarToDisplayHashMap.entrySet()) {
 			sb.append("<option value=\""+ item.getKey() + "\" >"+ item.getKey() + "</option>");
 		}
 		sb.append("</select>");
+		
+		//adding the add button
 		sb.append("<button style=\"margin-left: 10px\" type=\"submit\">Add</button></form></p>");
 		
-//		+ "<button style=\"margin-left: 10px\" type=\"submit\">Add</button></form></li>";
-
-		//System.out.println(sb);
 		return  sb.toString();			
 	}
 	
-	public String displayRecipeSelected() {
+	/**
+	 * The following method shows the calendar display options for removing a recipe
+	 * @return
+	 */
+
+	private String displayRemoveFromCalendarOptions() {
+		StringBuilder sb = new StringBuilder ();
+		
+		//creating an HTML form
+		sb.append("<p><form action=\"/removefromcalendar\"method=\"get\">");
+		sb.append("<select id=\"dayandmeal\" name=\"calendaroption\">\"");
+		
+		//adding selection drop-downs
+		sb.append("<option value=\"\" selected=\"selected\" >Select a Calendar Option</option>");
+	
+		for (Entry <String, String> item : calendarToDisplayHashMap.entrySet()) {
+			sb.append("<option value=\""+ item.getKey() + "\" >"+ item.getKey() + "</option>");
+		}
+		sb.append("</select>");
+		
+		//adding the add button
+		sb.append("<button style=\"margin-left: 10px\" type=\"submit\">Remove</button></form></p>");
+		
+		return  sb.toString();			
+	}
+	
+	/**
+	 * The following method shows the label area where the currently selected recipe is displayed for the user
+	 * @return
+	 */
+	private String displayRecipeSelected() {
 		if(recipeToAdd == null) {
-			recipeToAdd = "Not Picked Yet";
+			recipeToAdd = "-";
 		}
 		return "<p><label> Recipe Selected: " 
 				+ recipeToAdd 
 				+ "</label></p>";
-	}
-	
-	
-	public Object handle(Request request, Response response) throws Exception {
-		
-		if(request.queryParams("recipename")!=null) {
-			recipeToAdd = request.queryParams("recipename");			
-		}
-		
-		if(request.queryParams("calendaroption")!=null) {
-			dayAndMealSelected = request.queryParams("calendaroption");
-			calendarHashMap.put(dayAndMealSelected, recipeToAdd);
-		}
-		else {
-			dayAndMealSelected = "No day and meal has been selected";
-		}
-
-		displayCalendar();
-		
-		return TagCreator.gethtmlHead("Meal Planner Calendar")
-				+ TagCreator.createBodyTitle("Calendar")
-				+ CalendarDisplayHTML
-				+ displayRecipeSelected()
-				+ displayCalendarOptions()
-				+ TagCreator.createPrintThisButton()
-				+ TagCreator.getFooter()
-				+ TagCreator.closeTag();
 	}
 }

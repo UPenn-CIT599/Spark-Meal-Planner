@@ -17,15 +17,15 @@ import org.json.*;
  * https://docs.oracle.com/javase/tutorial/networking/urls/readingWriting.html
  */
 public class YummlyAPIHandler {
-	private JSONObject getRecipeJSON;
-	private JSONObject searchRecipeJSON;
+	private static JSONObject getRecipeJSON;
+	private static JSONObject searchRecipeJSON;
 	private String recipeToSearch;
 	private String recipeName;
-	private String dishID;
-	private HashMap<String, String> recipeNameAndDishID = new HashMap<String, String>();
-	private String recipeStepsURL;
-	private String searchRecipeAttributionhtml;
-	private String getRecipeAttributionhtml;
+	private static String dishID;
+	private static HashMap<String, String> recipeNameAndDishID = new HashMap<String, String>();
+	private static String recipeStepsURL;
+	private static String searchRecipeAttributionhtml;
+	private static String getRecipeAttributionhtml;
 
 	/**
 	 * The following constructor creates an API handler object specific to
@@ -40,7 +40,7 @@ public class YummlyAPIHandler {
 	/**
 	 * @return the getRecipeJSON
 	 */
-	public JSONObject getGetRecipeJSON() {
+	public static JSONObject getGetRecipeJSON(String dishID) {
 		return getRecipeJSON;
 	}
 
@@ -49,7 +49,7 @@ public class YummlyAPIHandler {
 	 * 
 	 * @return the recipeNameAndDishID
 	 */
-	public HashMap<String, String> getRecipeNameAndDishID() {
+	public static HashMap<String, String> getRecipeNameAndDishID() {
 		return recipeNameAndDishID;
 	}
 
@@ -58,7 +58,7 @@ public class YummlyAPIHandler {
 	 * 
 	 * @return the searchRecipeJSON
 	 */
-	public JSONObject getSearchRecipeJSON() {
+	public static JSONObject getSearchRecipeJSON(String recipeToSearch) {
 		return searchRecipeJSON;
 	}
 	
@@ -69,7 +69,7 @@ public class YummlyAPIHandler {
 	 * 
 	 * @return the searchRecipeAttributionhtml
 	 */
-	public String getSearchRecipeAttributionhtml() {
+	public static String getSearchRecipeAttributionhtml() {
 		return searchRecipeAttributionhtml;
 	}
 
@@ -78,7 +78,7 @@ public class YummlyAPIHandler {
 	 * 
 	 * @return the getRecipeAttributionhtml
 	 */
-	public String getGetRecipeAttributionhtml() {
+	public static String getGetRecipeAttributionhtml() {
 		return getRecipeAttributionhtml;
 	}
 
@@ -91,9 +91,9 @@ public class YummlyAPIHandler {
 	 * @return hashmap of recipe name and ID
 	 * @throws Exception
 	 */
-	public HashMap<String, String> searchReceipe(String recipeToSearch) throws Exception {
+	public static HashMap<String, String> searchReceipe(String recipeToSearch) throws Exception {
 
-		this.recipeToSearch = recipeToSearch;
+	//	this.recipeToSearch = recipeToSearch;
 		
 		// URLencoding parameter names and values (i.e. replacing " " to "+")
 		recipeToSearch = recipeToSearch.replace(" ", "+");
@@ -178,7 +178,7 @@ public class YummlyAPIHandler {
 	 * @throws Exception
 	 * @return JSON object from Yummly
 	 */
-	public JSONObject getRecipe(String recipeID) throws Exception {
+	public static JSONObject getRecipe(String recipeID) throws Exception {
 
 		// URLencoding parameter names and values (i.e. replacing " " to "+")
 		String url = "http://api.yummly.com/v1/api/recipe/" + recipeID
@@ -234,7 +234,7 @@ public class YummlyAPIHandler {
 	 * @param receipeName recipe name
 	 * @return dishID
 	 */
-	public String getDishID(String receipeName) {
+	public static String getDishID(String receipeName) {
 		dishID = recipeNameAndDishID.get(receipeName);
 		return dishID;
 	}
@@ -245,7 +245,7 @@ public class YummlyAPIHandler {
 	 * 
 	 * @param responseCode response code
 	 */
-	public void getResponseCodeExplanation(int responseCode) {
+	public static void getResponseCodeExplanation(int responseCode) {
 		// error checking for the response code (i.e. 200 being valid, 400 being bad
 		// request, 409 being API limit exceeded, and 500 being Internal Server Error
 

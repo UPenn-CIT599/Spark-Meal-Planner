@@ -10,6 +10,9 @@ import spark.Route;
  */
 public class HomePageHandler implements Route {		
 
+	/**
+	 * The following handler method returns the html elements of the home page of the app
+	 */
 	public Object handle(Request request, Response response) throws Exception {
 		return TagCreator.gethtmlHead("Meal Planner Home Page") 
 				+ TagCreator.createBodyTitle("Welcome To Our Meal Planner")

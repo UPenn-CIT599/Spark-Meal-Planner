@@ -1,5 +1,10 @@
 package com.sparkmealplanner.spark_meal_planner;
 
+/**
+ * This class is created from various static methods that allows the coders to quickly create and reuse
+ * existing HTML codes
+ *
+ */
 public class TagCreator {
 
 	// The following html tags refer to the footer page links
@@ -32,9 +37,9 @@ public class TagCreator {
 	/**
 	 * The following method creates a button html element
 	 * 
-	 * @param pageUrlToDirect
-	 * @param ButtonTextToDisplay
-	 * @return
+	 * @param pageUrlToDirect page url
+	 * @param ButtonTextToDisplay Button text
+	 * @return HTML
 	 */
 	public static String createButton(String pageUrlToDirect, String ButtonTextToDisplay) {
 		return "<button type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/" + pageUrlToDirect + "'\">"
@@ -42,13 +47,13 @@ public class TagCreator {
 	}
 
 	/**
-	 * The following method returns an html element with button with ID parameter to
+	 * The following method returns an html element with button with one ID parameter to
 	 * pass.
 	 * 
-	 * @param pageUrlToDirect
-	 * @param ButtonTextToDisplay
-	 * @param ID
-	 * @return
+	 * @param pageUrlToDirect page url
+	 * @param ButtonTextToDisplay button text
+	 * @param ID ID
+	 * @return HTML
 	 */
 	public static String createButton(String pageUrlToDirect, String ButtonTextToDisplay, String param1Name, String param1Info) {
 		return "<button type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/" + pageUrlToDirect + "?" + param1Name+ "="
@@ -56,26 +61,26 @@ public class TagCreator {
 	}
 
 	/**
-	 * The following method returns an html element with button with ID parameter to
+	 * The following method returns an html element with button with two ID parameters to
 	 * pass.
-	 * 
-	 * @param pageUrlToDirect
-	 * @param ButtonTextToDisplay
-	 * @param ID
-	 * @return
+	 * @param pageUrlToDirect page Url To Direct
+	 * @param ButtonTextToDisplay Button Text To Display
+	 * @param param1Name param#1 Name
+	 * @param param1Info param#1 Info
+	 * @param param2Name param#2Name
+	 * @param param2Info param#2 Info
+	 * @return HTML
 	 */
 	public static String createButton(String pageUrlToDirect, String ButtonTextToDisplay, String param1Name, String param1Info, String param2Name, String param2Info) {
 		return "<button type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/" + pageUrlToDirect + "?" + param1Name+ "="
 				+ param1Info +"&" + param2Name + "=" + param2Info + "'\">" + ButtonTextToDisplay + "</button>";
 	}
-
-	
 	
 	/**
 	 * The following method creates a title in the body tag
 	 * 
-	 * @param title
-	 * @return
+	 * @param title title to display
+	 * @return HTML
 	 */
 	public static String createBodyTitle(String title) {
 		return "<body><h3>" + title + "</h3>";
@@ -84,22 +89,26 @@ public class TagCreator {
 	/**
 	 * The following method create a paragraph html element
 	 * 
-	 * @param text
-	 * @return
+	 * @param text text to display
+	 * @return HTML
 	 */
 	public static String createAParagraph(String text) {
 		return "<p>" + text + "</p>";
 	}
-
 	
+	/**
+	 * The following method creates a print this page button
+	 * @return HTML
+	 */
 	public static String createPrintThisButton() {
 		return "<button onclick=\"window.print()\">Print This Page</button>";
 				
 	}
+	
 	/**
 	 * The following method closes the body and html tags.
 	 * 
-	 * @return
+	 * @return HTML
 	 */
 	public static String closeTag() {
 		return "</body></html>";
