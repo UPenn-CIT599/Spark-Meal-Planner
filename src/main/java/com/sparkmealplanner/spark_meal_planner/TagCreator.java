@@ -91,6 +91,11 @@ public class TagCreator {
 		return "<p>" + text + "</p>";
 	}
 
+	
+	public static String createPrintThisButton() {
+		return "<button onclick=\"window.print()\">Print This Page</button>";
+				
+	}
 	/**
 	 * The following method closes the body and html tags.
 	 * 
@@ -99,4 +104,5 @@ public class TagCreator {
 	public static String closeTag() {
 		return "</body></html>";
 	}
+	
 }

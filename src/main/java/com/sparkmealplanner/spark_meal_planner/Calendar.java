@@ -22,7 +22,7 @@ public class Calendar {
     public Calendar() {
 	for (String day : daysOfTheWeek) {
 	    for (String meal : meals) {
-		String calendarKey = day + meal;// key for the calendar HasMap using the dayOfWeek and meal
+		String calendarKey = day + " "+ meal;// key for the calendar HasMap using the dayOfWeek and meal
 		calendar.put(calendarKey, "Not Picked Yet");
 	    }
 	}

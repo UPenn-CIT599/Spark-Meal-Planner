@@ -19,11 +19,17 @@ public class RecipeDisplayHandler implements Route {
 	public Object handle(Request request, Response response) throws Exception {
 				
 		recipeID = request.queryParams("recipeid");
+		
 		return TagCreator.gethtmlHead("Full Recipe") 
 				+TagCreator.createBodyTitle("Full Recipe")
-				+ getFullRecipeWithAPI() 
+				+ getFullRecipeWithAPI()
+				+ sendToCalendar()
 				+ TagCreator.getFooter()
 				+TagCreator.closeTag();
+	}
+	
+	public String sendToCalendar() {
+		return TagCreator.createButton("calendar", "Send to Calendar", "recipename", dish.getDishName());
 	}
 	
 	/**
