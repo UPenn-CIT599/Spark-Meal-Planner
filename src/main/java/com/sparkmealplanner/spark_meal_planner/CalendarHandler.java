@@ -16,8 +16,15 @@ import spark.Route;
 public class CalendarHandler implements Route {
 	
 	//create a new calendar and related instance variables
-	Calendar calendar = new Calendar();
-	HashMap<String, Dish> calendarHashMap = calendar.getCalendar();
+	static Calendar calendar = new Calendar();
+	static HashMap<String, Dish> calendarHashMap = calendar.getCalendar();
+	/**
+	 * @return the calendarHashMap
+	 */
+	public static HashMap<String, Dish> getCalendarHashMap() {
+		return calendarHashMap;
+	}
+
 	HashMap<String, String> calendarToDisplayHashMap = calendar.getCalendarToDisplay();
 	Dish dish = null;
 	
@@ -126,8 +133,14 @@ public class CalendarHandler implements Route {
 		for (String meal : Calendar.getMeals()) {
 			sb.append("<tr><th>" + meal + "</th>");
 			
+			//<a href=/"+ calendar.get(get(day +" " +  meal)).get ++ /">Visit our HTML tutorial</a>
+			
 			//adding assigned dish name from the hashmap
+			//calendar
+			
 			for (String day : Calendar.getDaysOfTheWeek()) {
+				sb.append("<th>" + "<a href=/\"" + calendarToDisplayHashMap.get(day +" " +  meal) + "</th>");
+			
 				sb.append("<th>" + calendarToDisplayHashMap.get(day +" " +  meal) + "</th>");
 			}
 			sb.append("</tr>");
@@ -204,4 +217,5 @@ public class CalendarHandler implements Route {
 				+ recipeToAdd 
 				+ "</label></p>";
 	}
+	
 }

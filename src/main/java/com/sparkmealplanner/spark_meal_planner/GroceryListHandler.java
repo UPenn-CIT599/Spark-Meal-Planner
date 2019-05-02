@@ -15,6 +15,12 @@ public class GroceryListHandler implements Route {
 	private String dishName;
 	private ArrayList<Ingredient> listOfIngredients;
 	
+	public GroceryListHandler() {
+		HashMap <String, Dish> calendarHashMap = CalendarHandler.getCalendarHashMap();
+		//loop through the HashMap and create an arrayliList of Dish objects.
+		
+	}
+	
 	public Object handle(Request request, Response response) throws Exception {
 		return TagCreator.gethtmlHead("Grocery List") 
 				+ "<body><h3>Grocery List</h3>"
