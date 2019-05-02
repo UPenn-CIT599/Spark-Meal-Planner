@@ -39,11 +39,15 @@ public class Dish {
 		this.numOfPeopleToServe = numOfPeopleToServe;
 	}
 	
-	public Dish(String dishName, ArrayList<Ingredient> ingredients, String cookingStepsURL) {
+	public Dish(String dishName, ArrayList<Ingredient> ingredients, String cookingStepsURL, double cookingTimeInSeconds,
+		int numOfPeopleToServe) {
+	this.dishID = dishID;
 	this.dishName = dishName;
 	this.ingredients = ingredients;
 	this.cookingStepsURL = cookingStepsURL;
-	}
+	this.cookingTimeInSeconds = cookingTimeInSeconds;
+	this.numOfPeopleToServe = numOfPeopleToServe;
+}
 
 	// see the getter methods below
 
