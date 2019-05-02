@@ -29,8 +29,9 @@ public class Dish {
 	 * @param cookingTimeInSeconds cooking time in seconds
 	 * @param numOfPeopleToServe number of people to serve
 	 */
-	public Dish(String dishName, ArrayList<Ingredient> ingredients, String cookingStepsURL, double cookingTimeInSeconds,
+	public Dish(String dishID, String dishName, ArrayList<Ingredient> ingredients, String cookingStepsURL, double cookingTimeInSeconds,
 			int numOfPeopleToServe) {
+		this.dishID = dishID;
 		this.dishName = dishName;
 		this.ingredients = ingredients;
 		this.cookingStepsURL = cookingStepsURL;

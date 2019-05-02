@@ -42,7 +42,7 @@ public class RecipeDisplayHandler implements Route {
 	 * @return HTML
 	 */
 	private String sendToCalendar() {
-		return TagCreator.createButton("calendar", "Send to Calendar", "recipename", dish.getDishName());
+		return TagCreator.createButton("addtocalendar", "Send to Calendar", "recipename", dish.getDishName());
 	}
 	
 	/**

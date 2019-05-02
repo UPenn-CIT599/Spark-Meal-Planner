@@ -17,6 +17,7 @@ public class DishReader {
 	private ArrayList<Dish> listOfDishes;
 	private Dish dishCreated;
 	private String recipeName;
+	private String recipeID;
 	private int numberOfServings;
 	private int totalTimeInSeconds;
 	private ArrayList<Ingredient> ingredientList;
@@ -75,6 +76,9 @@ public class DishReader {
 		recipeName = recipeJSON.getString("name");
 		//System.out.println("Recipe Name: " + recipeName);
 
+		// key "id" stores the name of the recipe in the the JSON object
+		recipeID = recipeJSON.getString("id");
+
 		// key "numberOfServings" stores the number of servingin the the JSON object
 		numberOfServings = recipeJSON.getInt("numberOfServings");
 		//System.out.println("Number of Servings: " + numberOfServings);
@@ -100,8 +104,9 @@ public class DishReader {
 
 		getRecipeAttributionhtml = (String) recipeJSON.getJSONObject("attribution").get("html");
 		
-		dishCreated = new Dish(recipeName, ingredientList, recipeStepsURL, totalTimeInSeconds, numberOfServings);
+		dishCreated = new Dish(recipeID, recipeName, ingredientList, recipeStepsURL, totalTimeInSeconds, numberOfServings);
 		dishCreated.setAttribution(getRecipeAttributionhtml);
+		
 		return dishCreated;
 	}
 

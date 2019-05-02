@@ -16,7 +16,7 @@ public class MealPlanner {
 	public void run() {
 
 		//use http://localhost:4042 in browser
-		port(4046);
+		port(4049);
 
 		//creates various page handlers
 		HomePageHandler homePageHandle = new HomePageHandler(); 
@@ -30,7 +30,7 @@ public class MealPlanner {
 		
 		get("/", homePageHandle); 
 		get("/searchrecipe", recipeSearchHandler); //recipe search page path
-		get("/calendar", calendarHandler); //calendar page path
+		get("/addtocalendar", calendarHandler); //calendar page path
 		get("/removefromcalendar", calendarHandler); //calendar page path
 		
 		get("/grocerylist", groceryListHandler); //grocery list page path

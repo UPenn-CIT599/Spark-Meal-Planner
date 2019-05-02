@@ -84,7 +84,7 @@ public class RecipeListDisplayHandler implements Route {
 					+ TagCreator.createButton("recipechosen", " Show Full Recipe", "recipeid", recipe.getValue())
 					
 					//each line has a button for adding the recipe to calendar
-					+ TagCreator.createButton("calendar", "Send to Calendar", "recipename",recipe.getKey(),"recipeid", recipe.getValue())					
+					+ TagCreator.createButton("addtocalendar", "Send to Calendar", "recipename",recipe.getKey(),"recipeid", recipe.getValue())					
 					);
 		}
 

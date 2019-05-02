@@ -9,7 +9,7 @@ public class TagCreator {
 
 	// The following html tags refer to the footer page links
 	private static final String GoToHome = "<br><br><a href=\"/\">Home </a>";
-	private static final String GoToCalendar = "<a href=\"/calendar\">|  Calendar </a>";
+	private static final String GoToCalendar = "<a href=\"/addtocalendar\">|  Calendar </a>";
 	private static final String GoToGroceryList = "<a href=\"/grocerylist\">|  GroceryList </a>";
 	private static final String GoToSearchRecipe = "<a href=\"/searchrecipe\">|  Search Recipes </a>";
 	private static final String GoToFAQ = "<a href=\"/faqs\">|  Frequently Asked Questions </a>";

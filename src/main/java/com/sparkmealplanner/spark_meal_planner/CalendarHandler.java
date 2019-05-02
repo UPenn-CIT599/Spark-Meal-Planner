@@ -18,6 +18,7 @@ public class CalendarHandler implements Route {
 	//create a new calendar and related instance variables
 	static Calendar calendar = new Calendar();
 	static HashMap<String, Dish> calendarHashMap = calendar.getCalendar();
+	JSONObject json = null;
 	/**
 	 * @return the calendarHashMap
 	 */
@@ -39,7 +40,7 @@ public class CalendarHandler implements Route {
 	public Object handle(Request request, Response response) throws Exception {
 		
 		//if the url was directed to "/calendar"
-		if ("/calendar".equals(request.pathInfo())) {
+		if ("/addtocalendar".equals(request.pathInfo())) {
 			
 			//if the recipe name parameter is not empty, the value is stored in a variable
 			if(request.queryParams("recipename")!=null) {
@@ -49,16 +50,20 @@ public class CalendarHandler implements Route {
 			//if the recipe id parameter is not empty, the value is stored in a variable
 			if(request.queryParams("recipeid")!=null) {
 				recipeIDToAdd = request.queryParams("recipeid");
+					json = YummlyAPIHandler.getRecipe(recipeIDToAdd);				
+					//System.out.println(json.toString());				
 			}
 			
 			//creating a JSON object to create a new dish to be stored in the calendar hashmap
-			JSONObject recipeJSON = YummlyAPIHandler.getGetRecipeJSON(recipeIDToAdd);
+			
+		//	System.out.println(recipeJSON.toString());
 			
 			try {
 				
 				//using dishreader class, create a dish from JSON derived
-				DishReader dr = new DishReader(recipeJSON);
+				DishReader dr = new DishReader(json);
 				dish = dr.getDishCreated();
+				//System.out.println("dish URL: " + dish.getCookingStepsURL());
 			}
 			catch(Exception e){
 				e.printStackTrace();
@@ -73,10 +78,6 @@ public class CalendarHandler implements Route {
 				calendarHashMap.put(dayAndMealSelected, dish);
 				calendarToDisplayHashMap.put(dayAndMealSelected, recipeToAdd);
 			}
-//			else {
-//				//if the user comes to the page directly, the following message will display, 
-//				dayAndMealSelected = "No day and meal has been selected";
-//			}
 		}
 		
 		//if the user pressed the remove button, the following url path is reached
@@ -133,15 +134,25 @@ public class CalendarHandler implements Route {
 		for (String meal : Calendar.getMeals()) {
 			sb.append("<tr><th>" + meal + "</th>");
 			
-			//<a href=/"+ calendar.get(get(day +" " +  meal)).get ++ /">Visit our HTML tutorial</a>
 			
 			//adding assigned dish name from the hashmap
-			//calendar
-			
+			//calendar		
 			for (String day : Calendar.getDaysOfTheWeek()) {
-				sb.append("<th>" + "<a href=/\"" + calendarToDisplayHashMap.get(day +" " +  meal) + "</th>");
-			
-				sb.append("<th>" + calendarToDisplayHashMap.get(day +" " +  meal) + "</th>");
+				String aTag = "";
+				
+				if (calendarHashMap.get(day +" " +  meal) != null){
+					Dish d = calendarHashMap.get(day +" " +  meal);
+				//	System.out.println(d.toString());
+					String dishID = calendarHashMap.get(day +" " +  meal).getDishID();
+				//	System.out.println(dishID);
+					aTag = "<a href=/recipechosen?recipeid=" +  dishID + ">";	
+				}
+				else {
+					aTag = "<a href=/addtocalendar>";
+				}
+										
+				//System.out.println(day +" " +  meal + ":" + aTag);
+				sb.append("<th>" + aTag + calendarToDisplayHashMap.get(day +" " +  meal) + "</th>");
 			}
 			sb.append("</tr>");
 		}
@@ -162,7 +173,7 @@ public class CalendarHandler implements Route {
 		StringBuilder sb = new StringBuilder ();
 		
 		//creating an HTML form
-		sb.append("<p><form action=\"/calendar\"method=\"get\">");
+		sb.append("<p><form action=\"/addtocalendar\"method=\"get\">");
 		sb.append("<select id=\"dayandmeal\" name=\"calendaroption\">\"");
 		
 		//adding selection drop-downs
