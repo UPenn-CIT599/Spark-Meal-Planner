@@ -32,7 +32,7 @@ public class MealPlanner {
 		get("/searchrecipe", recipeSearchHandler); //recipe search page path
 		get("/addtocalendar", calendarHandler); //calendar page path
 		get("/removefromcalendar", calendarHandler); //calendar page path
-		
+		get("/addmanualrecipetocalendar", calendarHandler); //calendar page path		
 		get("/grocerylist", groceryListHandler); //grocery list page path
 		get("/faqs", faqHandler);//retrieve meal plan page path
 		get("/displayrecipelist", recipeListDisplayHandler);//create a display searched recipe path

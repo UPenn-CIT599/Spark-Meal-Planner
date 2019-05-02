@@ -197,6 +197,7 @@ public class ManualRecipeInputHandler implements Route{
 	    }
 	    
 	    return TagCreator.gethtmlHead("Meal Planner Calendar") + 
+	    		TagCreator.createBodyTitle("Enter your recipe below:")+
 		    RecipeNameForm() + RecipeURLForm() + CookingTimeForm() +  ServingsizeForm() +  IngredientList() +  submitButton()+ //myfunction() + 
 		    TagCreator.getFooter() + TagCreator.closeTag();
 	}

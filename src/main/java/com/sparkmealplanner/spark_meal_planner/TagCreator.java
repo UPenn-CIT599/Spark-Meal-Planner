@@ -16,12 +16,16 @@ public class TagCreator {
 	private static final String GoToRecipeInputFromURL = "<a href=\"/addrecipe\"> Add Recipes From URLs </a>";
 
 	public static String returnCSSStyle() {
-		return ".navbar {"
+		return 
+		// Add the style in the navigation bar
+		 ".navbar {"
 		+ "overflow: hidden;"
 		+ " background-color: #333;"
 		+ " position: fixed;"
 		+ " top: 0;"
 		+ " width: 100%;}"
+		
+		// Style the links inside the navigation bar */
 		+ ".navbar a {"
 		+ "float: left;"
 		+ "display: block;"
@@ -30,9 +34,13 @@ public class TagCreator {
 		+ "padding: 14px 16px;"
 		+ "text-decoration: none;"
 		+ "font-size: 17px;}"
+		
+		// Change the color of links on hover 
 		+".navbar a:hover {"
 		+ "background: #f1f1f1;"
 		+"color: black;}"
+		
+		// Style the "active" element to highlight the current page
 		+".navbar a.active {"
 		+"background-color: #4CAF50;"
 		+"color: white;}";
