@@ -25,7 +25,7 @@ public class Calendar {
 			for (String meal : meals) {
 				String calendarKey = day + " " + meal;// key for the calendar HasMap using the dayOfWeek and meal
 				calendar.put(calendarKey, null);
-				calendarToDisplay.put(calendarKey, "-");
+				calendarToDisplay.put(calendarKey, "");
 			}
 		}
 	}

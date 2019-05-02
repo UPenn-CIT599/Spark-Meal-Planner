@@ -50,7 +50,7 @@ public class GroceryListHandler implements Route {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("<div><ul style=\\\"list-style-type:disc;\\\">");
+		sb.append("<div><ul\">");
 
 		for (Entry<String, ArrayList<Ingredient>> groceryItems : groceryList.entrySet()) {
 			

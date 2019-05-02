@@ -80,23 +80,27 @@ public class RecipeListDisplayHandler implements Route {
 		StringBuilder sb = new StringBuilder();
 
 		// creating unordered list to add each recipe
-		sb.append("<div><ul>");
+		sb.append("<ul>");
 
 		for (Entry<String, String> recipe : recipeNameAndDishID.entrySet()) {
-			sb.append("<li>" + recipe.getKey()
+			
+			String aTag = "<a href=/recipechosen?recipeid=" + recipe.getValue() + ">";
+						
+			sb.append("<li>"  + aTag + recipe.getKey()+"</a>"
 
 			// each line has a button for displaying full recipe
-					+ TagCreator.createButton("recipechosen", " Show Full Recipe", "recipeid", recipe.getValue())
+//					+ TagCreator.createButton("recipechosen", "  Show Full Recipe", "recipeid", recipe.getValue())
 
 					// each line has a button for adding the recipe to calendar
-					+ TagCreator.createButton("addtocalendar", "Send to Calendar", "recipename", recipe.getKey(),
-							"recipeid", recipe.getValue()));
+					+ TagCreator.createButton("addtocalendar", " Send to Calendar", "recipename", recipe.getKey(),
+							"recipeid", recipe.getValue()) + "</li>");
+			
 		}
 
 		// adding attribution HTML from yummly
-		sb.append(attributionHtml);
+		sb.append("<br><br>" + attributionHtml);
 
-		sb.append("</ul><br></div>");
+		sb.append("</ul><br>");
 
 		return sb.toString();
 	}

@@ -98,7 +98,7 @@ public class CalendarHandler implements Route {
 
 				// variable value is used to update the HashMaps below
 				calendarHashMap.put(dayAndMealSelected, null);
-				calendarToDisplayHashMap.put(dayAndMealSelected, "-");
+				calendarToDisplayHashMap.put(dayAndMealSelected, "");
 			}
 		}
 
@@ -241,7 +241,7 @@ public class CalendarHandler implements Route {
 	 */
 	private String displayRecipeSelected() {
 		if (recipeToAdd == null) {
-			recipeToAdd = "-";
+			recipeToAdd = "";
 		}
 
 		// creating a label for the user to see which recipe was selected

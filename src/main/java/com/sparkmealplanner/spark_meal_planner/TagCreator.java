@@ -15,6 +15,27 @@ public class TagCreator {
 	private static final String GoToFAQ = "<a href=\"/faqs\"> Frequently Asked Questions </a>";
 	private static final String GoToRecipeInputFromURL = "<a href=\"/addrecipe\"> Add Recipes From URLs </a>";
 
+	public static String returnULListCSSStyle() {
+		return "ul { "+ 
+				"border-left: 5px solid red;" + 
+				"background-color: #f1f1f1;" + 
+				"list-style-type: none;" + 
+				"padding: 10px 20px;" + 
+				"}";
+	}
+	
+	public static String returnButtonCSS() {
+		return ".btn {"
+				+ "border: none;"
+				+ "background-color: inherit;"
+				+ "padding: 14px 28px;"
+				+ "font-size: 16px;"
+				+ "cursor: pointer;"
+				+ "display: inline-block;"
+				+ "}"
+				+ ".btn:hover {background: #eee;}";
+	}
+	
 	public static String returnTableCSSStyle() {
 
 		return "#calendar {"
@@ -58,7 +79,7 @@ public class TagCreator {
 	 * @return html page
 	 */
 	public static String gethtmlHead(String titleText) {
-		return "<html><head><style> " + returnNavBarCSSStyle() + returnTableCSSStyle() + "</style><title>" + titleText
+		return "<html><head><style> " + returnNavBarCSSStyle() + returnButtonCSS() +  returnTableCSSStyle() + returnULListCSSStyle() + "</style><title>" + titleText
 				+ "</title></head>";
 	}
 
