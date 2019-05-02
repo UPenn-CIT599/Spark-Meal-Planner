@@ -20,7 +20,7 @@ public class TagCreator {
 		+ "overflow: hidden;"
 		+ " background-color: #333;"
 		+ " position: fixed;"
-		+ " bottom: 0;"
+		+ " top: 0;"
 		+ " width: 100%;}"
 		+ ".navbar a {"
 		+ "float: left;"
@@ -112,7 +112,7 @@ public class TagCreator {
 	 * @return HTML
 	 */
 	public static String createBodyTitle(String title) {
-		return "<body><h3>" + title + "</h3>";
+		return "<body><br><br><h3>" + title + "</h3>";
 	}
 
 	/**
