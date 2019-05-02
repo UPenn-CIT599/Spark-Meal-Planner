@@ -105,10 +105,13 @@ public class CalendarHandler implements Route {
 		// returns various HTML parts
 		return TagCreator.gethtmlHead("Meal Planner Calendar") + TagCreator.createBodyTitle("Calendar")
 				+ displayCalendar() + displayRecipeSelected() + displayAddToCalendarOptions()
-				+ displayRemoveFromCalendarOptions() + TagCreator.createPrintThisButton() + TagCreator.getFooter()
+				+ displayRemoveFromCalendarOptions() + TagCreator.createPrintThisButton() + displayGoToGroceryListButton()+ TagCreator.getFooter()
 				+ TagCreator.closeTag();
 	}
 
+	public String displayGoToGroceryListButton() {
+		return TagCreator.createButton("grocerylist", "Show Grocery List");
+	}
 	/**
 	 * The following method creates the calendar to be displayed in HTML
 	 * 
