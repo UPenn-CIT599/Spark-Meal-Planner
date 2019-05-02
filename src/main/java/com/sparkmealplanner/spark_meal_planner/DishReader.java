@@ -13,7 +13,8 @@ import org.json.JSONObject;
  */
 public class DishReader {
 	private ArrayList<String> lines;
-	private JSONObject recipeJSON;// we can only use getRecipeJSON from the YummlyAPIHandler class
+	// we can only use getRecipeJSON from the YummlyAPIHandler class
+	private JSONObject recipeJSON;
 	private ArrayList<Dish> listOfDishes;
 	private Dish dishCreated;
 	private String recipeName;
@@ -24,15 +25,15 @@ public class DishReader {
 	private String recipeStepsURL;
 	private String getRecipeAttributionhtml;
 
-	/**
-	 * The following constructor takes in the file lines and reads the dishes
-	 * 
-	 * @param lines lines
-	 */
-	public DishReader(ArrayList<String> lines) {
-		this.lines = lines;
-		readDishFromFileLines();
-	}
+//	/**
+//	 * The following constructor takes in the file lines and reads the dishes
+//	 * 
+//	 * @param lines lines
+//	 */
+//	public DishReader(ArrayList<String> lines) {
+//		this.lines = lines;
+//		readDishFromFileLines();
+//	}
 
 	/**
 	 * The following constructor takes in the JSON object and reads the dishes
@@ -74,18 +75,18 @@ public class DishReader {
 
 		// key "name" stores the name of the recipe in the the JSON object
 		recipeName = recipeJSON.getString("name");
-		//System.out.println("Recipe Name: " + recipeName);
+		// System.out.println("Recipe Name: " + recipeName);
 
 		// key "id" stores the name of the recipe in the the JSON object
 		recipeID = recipeJSON.getString("id");
 
 		// key "numberOfServings" stores the number of servingin the the JSON object
 		numberOfServings = recipeJSON.getInt("numberOfServings");
-		//System.out.println("Number of Servings: " + numberOfServings);
+		// System.out.println("Number of Servings: " + numberOfServings);
 
 		// key "totalTimeInSeconds" stores the total time in the the JSON object
 		totalTimeInSeconds = recipeJSON.getInt("totalTimeInSeconds");
-		//System.out.println("Time in Seconds: " + totalTimeInSeconds);
+		// System.out.println("Time in Seconds: " + totalTimeInSeconds);
 
 		// key "ingredientLines" stores the ingredients in the the JSON object
 		ingredientList = new ArrayList<Ingredient>();
@@ -94,31 +95,30 @@ public class DishReader {
 			Ingredient item = new Ingredient((String) ingredients.get(i));
 			ingredientList.add(item);
 		}
-		//System.out.println("Ingredients:");
-		//System.out.println(ingredients);
 
 		// JSON object "source" stores information on the original source of the recipe
 		JSONObject source = recipeJSON.getJSONObject("source");
 		recipeStepsURL = (String) source.get("sourceRecipeUrl");
-		//System.out.println("Find Recipe steps at: " + recipeStepsURL);
+		// System.out.println("Find Recipe steps at: " + recipeStepsURL);
 
 		getRecipeAttributionhtml = (String) recipeJSON.getJSONObject("attribution").get("html");
-		
-		dishCreated = new Dish(recipeID, recipeName, ingredientList, recipeStepsURL, totalTimeInSeconds, numberOfServings);
+
+		dishCreated = new Dish(recipeID, recipeName, ingredientList, recipeStepsURL, totalTimeInSeconds,
+				numberOfServings);
 		dishCreated.setAttribution(getRecipeAttributionhtml);
-		
+
 		return dishCreated;
 	}
 
-	/**
-	 * The following method reads the file lines and returns a list of dish objects
-	 * 
-	 * @return dish ArrayList
-	 */
-	public ArrayList<Dish> readDishFromFileLines() {
-		listOfDishes = new ArrayList<Dish>();
-
-		// TODO add code
-		return listOfDishes;
-	}
+//	/**
+//	 * The following method reads the file lines and returns a list of dish objects
+//	 * 
+//	 * @return dish ArrayList
+//	 */
+//	public ArrayList<Dish> readDishFromFileLines() {
+//		listOfDishes = new ArrayList<Dish>();
+//
+//		// TODO add code
+//		return listOfDishes;
+//	}
 }

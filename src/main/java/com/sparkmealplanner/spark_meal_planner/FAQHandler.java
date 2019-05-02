@@ -4,6 +4,10 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
+/**
+ * This class handles the FAQ (Frequently Asked Questions) page of this app
+ *
+ */
 public class FAQHandler implements Route {
 
 	private String PageTitle = "Frequently Asked Questions";
@@ -13,18 +17,19 @@ public class FAQHandler implements Route {
 	private String question2 = "How to retrieve a meal plan?";
 	private String answer2 = "Go to your browser's menu bar. Click on \"File\" and \"Open file\". Once clicked, you will be directed to a file explorer. Locate the file that you saved previously and click \"Open\"";
 
+	/**
+	 * The following handle method returns the HTML supporting the FAQ page
+	 */
 	public Object handle(Request request, Response response) throws Exception {
-		return TagCreator.gethtmlHead("Frequently Asked Questions") 
-				+ TagCreator.createBodyTitle(PageTitle)
-				
-				+"<strong>" + TagCreator.createAParagraph(question1) + "</strong>" 
+		return TagCreator.gethtmlHead("Frequently Asked Questions") + TagCreator.createBodyTitle(PageTitle)
+
+				+ "<strong>" + TagCreator.createAParagraph(question1) + "</strong>"
 				+ TagCreator.createAParagraph(answer1)
-			
-				+"<strong>" + TagCreator.createAParagraph(question2) + "</strong>" 
+
+				+ "<strong>" + TagCreator.createAParagraph(question2) + "</strong>"
 				+ TagCreator.createAParagraph(answer2)
-				
-				+TagCreator.getFooter()
-				+TagCreator.closeTag();
-				
+
+				+ TagCreator.getFooter() + TagCreator.closeTag();
+
 	}
 }

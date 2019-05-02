@@ -32,10 +32,11 @@ public class GroceryList {
 	/**
 	 * The following method loops through the ArrayList of dishes for the week and
 	 * creates a HashMap that holds the dish names and maps to their ingredients
+	 * 
 	 * @return groceryList
 	 */
 	public HashMap<String, ArrayList<Ingredient>> getGroceryListFromListOfDishes() {
-		
+
 		groceryList = new HashMap<String, ArrayList<Ingredient>>();
 
 		for (Dish dish : listOfDish) {
@@ -43,7 +44,7 @@ public class GroceryList {
 			listOfIngredients = dish.getIngredients();
 			groceryList.put(dishName, listOfIngredients);
 		}
-		
+
 		return groceryList;
 	}
 
@@ -52,9 +53,9 @@ public class GroceryList {
 	 * Given a grocery list, the following method removed an item based on the
 	 * ingredient line
 	 * 
-	 * @param groceryList grocery list to modify 
+	 * @param groceryList      grocery list to modify
 	 * @param DishNameToChange dish name for the ingredient change
-	 * @param ingredientLine ingredient that need to be removed from grocery list
+	 * @param ingredientLine   ingredient that need to be removed from grocery list
 	 */
 	public void removeIngredientsFromGroceryList(HashMap<String, ArrayList<Ingredient>> groceryList,
 			String DishNameToChange, String ingredientLine) {
@@ -62,11 +63,11 @@ public class GroceryList {
 		// setting the list of ingredients
 		listOfIngredients = groceryList.get(DishNameToChange);
 
-		//loop through ingredients to remove the matching item
-		for(Ingredient eachIngredient: listOfIngredients) {
+		// loop through ingredients to remove the matching item
+		for (Ingredient eachIngredient : listOfIngredients) {
 			String ingredientName = eachIngredient.getIngredientLine();
-			if(ingredientName.equals(ingredientLine)) {
-			listOfIngredients.remove(ingredientName);
+			if (ingredientName.equals(ingredientLine)) {
+				listOfIngredients.remove(ingredientName);
 			}
 		}
 	}
