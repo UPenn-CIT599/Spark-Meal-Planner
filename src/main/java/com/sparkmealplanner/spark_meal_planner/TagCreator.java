@@ -8,13 +8,35 @@ package com.sparkmealplanner.spark_meal_planner;
 public class TagCreator {
 
 	// The following html tags refer to the footer page links
-	private static final String GoToHome = "<br><br><a href=\"/\">Home </a>";
-	private static final String GoToCalendar = "<a href=\"/addtocalendar\">|  Calendar </a>";
-	private static final String GoToGroceryList = "<a href=\"/grocerylist\">|  GroceryList </a>";
-	private static final String GoToSearchRecipe = "<a href=\"/searchrecipe\">|  Search Recipes </a>";
-	private static final String GoToFAQ = "<a href=\"/faqs\">|  Frequently Asked Questions </a>";
-	private static final String GoToRecipeInputFromURL = "<a href=\"/addrecipe\">|  Add Recipes From URLs </a>";
+	private static final String GoToHome = "<a href=\"/\"> Home </a>";
+	private static final String GoToCalendar = "<a href=\"/addtocalendar\"> Calendar </a>";
+	private static final String GoToGroceryList = "<a href=\"/grocerylist\"> GroceryList </a>";
+	private static final String GoToSearchRecipe = "<a href=\"/searchrecipe\"> Search Recipes </a>";
+	private static final String GoToFAQ = "<a href=\"/faqs\"> Frequently Asked Questions </a>";
+	private static final String GoToRecipeInputFromURL = "<a href=\"/addrecipe\"> Add Recipes From URLs </a>";
 
+	public static String returnCSSStyle() {
+		return ".navbar {"
+		+ "overflow: hidden;"
+		+ " background-color: #333;"
+		+ " position: fixed;"
+		+ " bottom: 0;"
+		+ " width: 100%;}"
+		+ ".navbar a {"
+		+ "float: left;"
+		+ "display: block;"
+		+ "color: #f2f2f2;"
+		+ "text-align: center;"
+		+ "padding: 14px 16px;"
+		+ "text-decoration: none;"
+		+ "font-size: 17px;}"
+		+".navbar a:hover {"
+		+ "background: #f1f1f1;"
+		+"color: black;}"
+		+".navbar a.active {"
+		+"background-color: #4CAF50;"
+		+"color: white;}";
+	}
 	/**
 	 * The following returns an html head element
 	 * 
@@ -22,7 +44,7 @@ public class TagCreator {
 	 * @return html page
 	 */
 	public static String gethtmlHead(String titleText) {
-		return "<html><head><style>table, th, td {border: 1px solid black;</style><title>" + titleText + "</title></head>";
+		return "<html><head><style> "+ returnCSSStyle() + "table, th, td {border: 1px solid black;</style><title>" + titleText + "</title></head>";
 	}
 
 	/**
@@ -31,7 +53,14 @@ public class TagCreator {
 	 * @return footer html tag
 	 */
 	public static String getFooter() {
-		return GoToHome + GoToCalendar + GoToGroceryList + GoToSearchRecipe + GoToRecipeInputFromURL + GoToFAQ;
+		return  "<div class=\"navbar\">"+
+				GoToHome 
+				+ GoToCalendar 
+				+ GoToGroceryList 
+				+ GoToSearchRecipe 
+				+ GoToRecipeInputFromURL 
+				+ GoToFAQ
+				+"</div>";
 	}
 
 	/**
