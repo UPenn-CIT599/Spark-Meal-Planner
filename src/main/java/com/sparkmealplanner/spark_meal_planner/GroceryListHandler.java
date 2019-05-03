@@ -39,7 +39,6 @@ public class GroceryListHandler implements Route {
 			removeItemId = Integer.valueOf(request.queryParams("Id"));
 			dishName = request.queryParams("Dish");
 			removefromGroceryList(dishName, removeItemId);
-//			displayGroceryList();
 		}
 
 		return TagCreator.gethtmlHead("Grocery List") + TagCreator.createBodyTitle("Grocery List")
@@ -86,14 +85,8 @@ public class GroceryListHandler implements Route {
 				}
 				Id++;
 
-				// sb.append("<ol><li>" + eachIngredient
-				// + "<button style=\"margin-left: 10px\" onclick=\""
-				// + listOfIngredients.remove(eachIngredient)
-				// + "'\">Remove from shopping list</button>"
-				// + "</li></ol>");
 			}
 
-			// sb.append("<div></ul>");
 		}
 
 		sb.append("<div><br></ul>");
