@@ -10,11 +10,10 @@ import java.util.HashMap;
 public class Calendar {
 	private HashMap<String, Dish> calendar = new HashMap(); // HashMap to store the calendar for a week with dish
 	private HashMap<String, String> calendarToDisplay = new HashMap(); // HashMap to display the calendar in HTML
-	private ArrayList <String> calendarMeals = new ArrayList <String>();//ArrayList of day+meal combination
+	private ArrayList<String> calendarMeals = new ArrayList<String>();// ArrayList of day+meal combination
 	private final static String[] daysOfTheWeek = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
 			"Sunday" };
 	private final static String[] meals = { "Breakfast", "Lunch", "Snack", "Dinner" };
-	
 
 	/**
 	 * The following constructor creates a calendar HashMap. This method loops
@@ -27,7 +26,7 @@ public class Calendar {
 		for (String day : daysOfTheWeek) {
 			for (String meal : meals) {
 				String calendarKey = day + " " + meal;// key for the calendar HasMap using the dayOfWeek and meal
-				
+
 				calendarMeals.add(day + " " + meal);
 				calendar.put(calendarKey, null);
 				calendarToDisplay.put(calendarKey, "");
@@ -35,18 +34,18 @@ public class Calendar {
 		}
 	}
 
-	
 	/**
 	 * Getter Method
+	 * 
 	 * @return the calendarMeals
 	 */
 	public ArrayList<String> getCalendarMeals() {
 		return calendarMeals;
 	}
 
-
 	/**
 	 * Getter method
+	 * 
 	 * @return the daysOfTheWeek
 	 */
 	public static String[] getDaysOfTheWeek() {
@@ -55,6 +54,7 @@ public class Calendar {
 
 	/**
 	 * Getter method
+	 * 
 	 * @return the meals
 	 */
 	public static String[] getMeals() {

@@ -32,9 +32,9 @@ public class GroceryListHandler implements Route {
 	}
 
 	public Object handle(Request request, Response response) throws Exception {
-		
-		//storing the parameter from request in a variable
-		
+
+		// storing the parameter from request in a variable
+
 		if ("/removeFromGroceryList".equals(request.pathInfo())) {
 			removeItemId = Integer.valueOf(request.queryParams("Id"));
 			dishName = request.queryParams("Dish");
@@ -62,25 +62,25 @@ public class GroceryListHandler implements Route {
 		sb.append("<div><ul style=\\\"list-style-type:disc;\\\">");
 
 		for (Entry<String, ArrayList<Ingredient>> groceryItems : groceryList.entrySet()) {
-			
+
 			dishName = groceryItems.getKey();
 			listOfIngredients = groceryItems.getValue();
-			
-			sb.append( "<p><b>" + "Dish Name: " + dishName + "</b><p>");
-			
-			int Id=0;
-			
+
+			sb.append("<p><b>" + "Dish Name: " + dishName + "</b><p>");
+
+			int Id = 0;
+
 			for (Ingredient eachIngredient : listOfIngredients) {
 
-				if(eachIngredient!=null) {
-					
-					sb.append("<li>" + eachIngredient.getIngredientLine() 
+				if (eachIngredient != null) {
+
+					sb.append("<li>" + eachIngredient.getIngredientLine()
 //					+"<button style=\"margin-left: 10px\" type=\"submit\">Remove</button>"
 //					+"<button style=\"margin-left: 10px\" onclick=\"location.href='/removeItem?name" + "'\"type=\\\"submit\\\">Remove</button>" 
-					+ "        "
-					+ TagCreator.createButton("removeFromGroceryList", "Remove", "Dish",dishName,"Id", String.valueOf(Id))
-					+ "</li>"
-					
+							+ "        " + TagCreator.createButton("removeFromGroceryList", "Remove", "Dish", dishName,
+									"Id", String.valueOf(Id))
+							+ "</li>"
+
 					);
 				}
 				Id++;
@@ -94,13 +94,12 @@ public class GroceryListHandler implements Route {
 		return sb.toString();
 
 	}
-	
+
 	/**
 	 * The method is to display grocery list after item is removed from grocery list
 	 */
 	public void removefromGroceryList(String dishName, int removeItemId) {
 		grocery.removeIngredientsFromGroceryList(groceryList, dishName, removeItemId);
 	}
-	
-	
+
 }

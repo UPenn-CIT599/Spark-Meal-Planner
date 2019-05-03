@@ -8,29 +8,35 @@ import org.junit.Test;
 
 public class DishTest {
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
 	@Test
+	/**
+	 * The following method tests the get dish name method based on the dish ID,
+	 * when an API is used.
+	 */
 	public void testGetDishName() {
-	 YummlyAPIHandler api = new YummlyAPIHandler();
-	 JSONObject recipeJSON = null;
-	 try {
-		recipeJSON = api.getRecipe("Honey-Bun-Cake-1536635");
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	 DishReader d = null;
-	 try {
-		d = new DishReader (recipeJSON);
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	 
-	 Dish dish = d.getDishCreated();
-	 System.out.println(dish.getDishName());
+
+		// initialize an empt JSON object
+		JSONObject recipeJSON = null;
+
+		// create a JSON object from Yummly API Handler class
+		try {
+			recipeJSON = YummlyAPIHandler.getRecipe("Honey-Bun-Cake-1536635");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		// initialize a dish object
+		DishReader d = null;
+		try {
+			d = new DishReader(recipeJSON);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		// create a dish object
+		Dish dish = d.getDishCreated();
+		String expected = "Honey Bun Cake";
+		String result = dish.getDishName();
+		// System.out.println(result);
+		assertEquals(expected, result);
 	}
 }

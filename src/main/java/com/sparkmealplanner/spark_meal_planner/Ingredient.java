@@ -1,8 +1,9 @@
 package com.sparkmealplanner.spark_meal_planner;
 
 /**
- * The following class represents an ingredient in a recipe. For future viability of the app, this class
- * has been created. More attributes, such as nutrition information, can be added at a future stage.
+ * The following class represents an ingredient in a recipe. For future
+ * viability of the app, this class has been created. More attributes, such as
+ * nutrition information, can be added at a future stage.
  *
  */
 public class Ingredient {

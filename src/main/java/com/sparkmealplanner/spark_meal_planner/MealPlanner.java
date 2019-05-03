@@ -8,8 +8,7 @@ import java.util.Scanner;
 import org.json.JSONObject;
 
 /**
- * This class contains the logic of the meal planner
- *
+ * This class contains the get and post methods of the handlers
  */
 public class MealPlanner {
 
@@ -17,7 +16,7 @@ public class MealPlanner {
 
 		// use http://localhost:8081 in browser
 		port(8081);
-		
+
 		// creates various page handlers
 		HomePageHandler homePageHandle = new HomePageHandler();
 		RecipeSearchHandler recipeSearchHandler = new RecipeSearchHandler();

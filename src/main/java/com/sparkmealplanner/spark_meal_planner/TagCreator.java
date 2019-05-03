@@ -8,43 +8,36 @@ package com.sparkmealplanner.spark_meal_planner;
 public class TagCreator {
 
 	// The following HTML tags refer to the footer page links
-	private static final String GoToHome = "<a href=\"/\"> Home </a>";
-	private static final String GoToCalendar = "<a href=\"/addtocalendar\"> Calendar </a>";
-	private static final String GoToGroceryList = "<a href=\"/grocerylist\"> GroceryList </a>";
-	private static final String GoToSearchRecipe = "<a href=\"/searchrecipe\"> Search Recipes </a>";
-	private static final String GoToFAQ = "<a href=\"/faqs\"> Frequently Asked Questions </a>";
-	private static final String GoToRecipeInputFromURL = "<a href=\"/addnewrecipe\"> Add Recipes From URLs </a>";
+	private static final String goToHome = "<a href=\"/\"> Home </a>";
+	private static final String goToCalendar = "<a href=\"/addtocalendar\"> Calendar </a>";
+	private static final String goToGroceryList = "<a href=\"/grocerylist\"> GroceryList </a>";
+	private static final String goToSearchRecipe = "<a href=\"/searchrecipe\"> Search Recipes </a>";
+	private static final String goToFAQ = "<a href=\"/faqs\"> Frequently Asked Questions </a>";
+	private static final String goToRecipeInputFromURL = "<a href=\"/addnewrecipe\"> Add Recipes From URLs </a>";
 
-	public static String returnULListCSSStyle() {
-		return "ul { "+ 
-				"border-left: 5px solid red;" + 
-				"background-color: #f1f1f1;" + 
-				"list-style-type: none;" + 
-				"padding: 10px 20px;" + 
-				"}";
+	public static String getULListCSSStyle() {
+		return "ul { " + "border-left: 5px solid red;" + "background-color: #f1f1f1;" + "list-style-type: none;"
+				+ "padding: 10px 20px;" + "}";
 	}
-	
-	public static String returnButtonCSS() {
+
+	public static String getButtonCSS() {
 		return ".btn {"
-		//		+ "border: none;"
+				// + "border: none;"
 				+ "background-color: black;"
-		//		+ "padding: 14px 28px;"
-				+ "font-size: 16px;"
-				+ "cursor: pointer;"
-				+ "display: inline-block;"
-				+ "}"
+				// + "padding: 14px 28px;"
+				+ "font-size: 16px;" + "cursor: pointer;" + "display: inline-block;" + "}"
 				+ ".btn:hover {background: #eee;}";
 	}
-	
-	public static String returnTableCSSStyle() {
+
+	public static String getTableCSSStyle() {
 
 		return "#calendar {"
 				// setting overall height and width in percentage
-				+ "width: 90%;" + "height: 50%;" + "table-layout: fixed;"+  "}"
+				+ "width: 90%;" + "height: 50%;" + "table-layout: fixed;" + "}"
 
 				// setting the attributes of table data elements
-				+ "#calendar td, #customers th {" + "border: 1px solid #ddd;" + "padding: 8px;" + "text-align: center;" + "word-wrap:break-word"
-				+ "}"
+				+ "#calendar td, #customers th {" + "border: 1px solid #ddd;" + "padding: 8px;" + "text-align: center;"
+				+ "word-wrap:break-word" + "}"
 
 				// setting the attributes of table row elements
 				+ "#calendar tr:nth-child(even){background-color: #f2f2f2;}"
@@ -55,7 +48,7 @@ public class TagCreator {
 				+ "background-color: gray;" + "color: white;";
 	}
 
-	public static String returnNavBarCSSStyle() {
+	public static String getNavBarCSSStyle() {
 		return
 		// Add the style in the navigation bar
 		".navbar {" + "overflow: hidden;" + " background-color: #333;" + " position: fixed;" + " top: 0;"
@@ -79,8 +72,8 @@ public class TagCreator {
 	 * @return html page
 	 */
 	public static String gethtmlHead(String titleText) {
-		return "<html><head><style> " + returnNavBarCSSStyle() + returnButtonCSS() +  returnTableCSSStyle() + returnULListCSSStyle() + "</style><title>" + titleText
-				+ "</title></head>";
+		return "<html><head><style> " + getNavBarCSSStyle() + getButtonCSS() + getTableCSSStyle() + getULListCSSStyle()
+				+ "</style><title>" + titleText + "</title></head>";
 	}
 
 	/**
@@ -89,8 +82,8 @@ public class TagCreator {
 	 * @return footer html tag
 	 */
 	public static String getFooter() {
-		return "<div class=\"navbar\">" + GoToHome + GoToCalendar + GoToGroceryList + GoToSearchRecipe
-				+ GoToRecipeInputFromURL + GoToFAQ + "</div>";
+		return "<div class=\"navbar\">" + goToHome + goToCalendar + goToGroceryList + goToSearchRecipe
+				+ goToRecipeInputFromURL + goToFAQ + "</div>";
 	}
 
 	/**
@@ -101,8 +94,8 @@ public class TagCreator {
 	 * @return HTML
 	 */
 	public static String createButton(String pageUrlToDirect, String ButtonTextToDisplay) {
-		return "<button type=\"button\" onclick=\"location.href='/" + pageUrlToDirect + "'\">"
-				+ ButtonTextToDisplay + "</button>";
+		return "<button type=\"button\" onclick=\"location.href='/" + pageUrlToDirect + "'\">" + ButtonTextToDisplay
+				+ "</button>";
 	}
 
 	/**
@@ -154,10 +147,10 @@ public class TagCreator {
 	public static String createButton(String pageUrlToDirect, String ButtonTextToDisplay, String param1Name,
 			String param1Info, String param2Name, String param2Info, String param3Name, String param3Info) {
 		return "<button type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/" + pageUrlToDirect + "?"
-				+ param1Name + "=" + param1Info + "&" + param2Name + "=" + param2Info + "&" + param3Name + "=" + param3Info +"'\">" + ButtonTextToDisplay
-				+ "</button>";
+				+ param1Name + "=" + param1Info + "&" + param2Name + "=" + param2Info + "&" + param3Name + "="
+				+ param3Info + "'\">" + ButtonTextToDisplay + "</button>";
 	}
-	
+
 	/**
 	 * The following method creates a title in the body tag
 	 * 

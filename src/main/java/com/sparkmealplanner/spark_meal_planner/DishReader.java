@@ -25,16 +25,6 @@ public class DishReader {
 	private String recipeStepsURL;
 	private String getRecipeAttributionhtml;
 
-//	/**
-//	 * The following constructor takes in the file lines and reads the dishes
-//	 * 
-//	 * @param lines lines
-//	 */
-//	public DishReader(ArrayList<String> lines) {
-//		this.lines = lines;
-//		readDishFromFileLines();
-//	}
-
 	/**
 	 * The following constructor takes in the JSON object and reads the dishes
 	 * 
@@ -110,15 +100,4 @@ public class DishReader {
 		return dishCreated;
 	}
 
-//	/**
-//	 * The following method reads the file lines and returns a list of dish objects
-//	 * 
-//	 * @return dish ArrayList
-//	 */
-//	public ArrayList<Dish> readDishFromFileLines() {
-//		listOfDishes = new ArrayList<Dish>();
-//
-//		// TODO add code
-//		return listOfDishes;
-//	}
 }

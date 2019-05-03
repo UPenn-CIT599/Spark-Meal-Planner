@@ -114,7 +114,7 @@ public class CalendarHandler implements Route {
 		// returns various HTML parts
 		return TagCreator.gethtmlHead("Meal Planner Calendar") + TagCreator.createBodyTitle("Calendar")
 				+ displayCalendar() + displayRecipeSelected() + displayAddToCalendarOptions()
-				+ displayRemoveFromCalendarOptions() + goBackToSearchButton() + SearchNewRecipesButton()
+				+ displayRemoveFromCalendarOptions() + goBackToSearchButton() + searchNewRecipesButton()
 				+ addRecipeFromURLButton() + TagCreator.createPrintThisButton() + displayGoToGroceryListButton()
 				+ TagCreator.getFooter() + TagCreator.closeTag();
 	}
@@ -282,7 +282,7 @@ public class CalendarHandler implements Route {
 	 * 
 	 * @return HTML
 	 */
-	private String SearchNewRecipesButton() {
+	private String searchNewRecipesButton() {
 		return TagCreator.createButton("searchrecipe", "Search a new recipe");
 	}
 

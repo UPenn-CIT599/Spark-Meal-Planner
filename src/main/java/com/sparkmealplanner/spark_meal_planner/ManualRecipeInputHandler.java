@@ -20,7 +20,7 @@ public class ManualRecipeInputHandler implements Route {
 	private int manNumOfPeopleToServe;
 
 	// form to add ingredients
-	private final String AddIngredientForm = "<div><form action=\"/addingredients\" method=\"get\">Add new Ingredient:"
+	private final String addIngredientForm = "<div><form action=\"/addingredients\" method=\"get\">Add new Ingredient:"
 			+ "<input type=\"text\" name=\"ingredientname\">"
 			+ "<button style=\"margin-left: 10px\" type=\"submit\">Add</button>" + "</form></div>";
 	private static Dish manDish;
@@ -43,7 +43,7 @@ public class ManualRecipeInputHandler implements Route {
 	 * 
 	 * @return string with HTML code for recipe name field
 	 */
-	public String RecipeNameForm() {
+	public String recipeNameForm() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("<div> <form action = \"/addingredients\" method = \"get\">\r\n" + "  Recipe Name:<br>\r\n"
 				+ "  <input type=\"text\" name=\"recipename\" value = \"" + manDishName + "\"required>\r\n" + "  <br>");
@@ -57,7 +57,7 @@ public class ManualRecipeInputHandler implements Route {
 	 * @return string with HTML code for recipe URL field
 	 */
 
-	public String RecipeURLForm() {
+	public String recipeURLForm() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("  Recipe URL:<br>\r\n" + "  <input type=\"URL\" name=\"recipeURL\" value = \"" + manCookingStepsURL
 				+ "\"required>\r\n" + "  <br>");
@@ -69,7 +69,7 @@ public class ManualRecipeInputHandler implements Route {
 	 * 
 	 * @return HTML string
 	 */
-	public String CookingTimeForm() {
+	public String cookingTimeForm() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Cooking Time in Minutes:<br>\r\n" + "  <input type=\"number\" name=\"cookingtime\" value =\""
 				+ manCookingTimeInSeconds + "\"required>\r\n" + "  <br>");
@@ -77,11 +77,11 @@ public class ManualRecipeInputHandler implements Route {
 	}
 
 	/**
-	 * The following class returns the serving size input field be served in HTML
+	 * The following method returns the serving size input field be served in HTML
 	 * 
 	 * @return HTML string
 	 */
-	public String ServingsizeForm() {
+	public String servingsizeForm() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Serving size:<br>\r\n" + "  <input type=\"number\" name=\"servingsize\" value =\""
 				+ manNumOfPeopleToServe + "\"required>\r\n" + "<br><br>"
@@ -91,35 +91,43 @@ public class ManualRecipeInputHandler implements Route {
 	}
 
 	/**
+	 * The following method returns the HTML for displaying the full recipe
 	 * 
-	 * @return
+	 * @return HTML in string
 	 */
-	public String DisplayRecipeButton() {
+	public String displayRecipeButton() {
 
 		String sb = TagCreator.createButton("addrecipe", "Display The recipe");
 		return sb;
 	}
 
 	/**
+	 * The following method returns the HTML for submit button
 	 * 
-	 * @return
+	 * @return HTML in string
 	 */
 	public String submitButton() {
 
 		String sb = TagCreator.createButton("addmanualrecipetocalendar", "Send To Calendar", "recipename", manDishName);
 		return sb;
 	}
-	
+
+	/**
+	 * The following method returns the HTML for a button to submit a new recipe
+	 * 
+	 * @return HTML in string
+	 */
 	public String addnewrecipeButton() {
-	    String sb = TagCreator.createButton("addnewrecipe", "Create a New Recipe");
+		String sb = TagCreator.createButton("addnewrecipe", "Create a New Recipe");
 		return sb;
 	}
 
 	/**
+	 * The following method returns the HTML for ingredient list
 	 * 
-	 * @return
+	 * @return HTML in string
 	 */
-	public String IngredientList() {
+	public String ingredientList() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("<div><ul>");
 		for (Ingredient ingredient : manIngredients) {
@@ -128,7 +136,6 @@ public class ManualRecipeInputHandler implements Route {
 		sb.append("</ul></div>");
 		return sb.toString();
 	}
-
 
 	/**
 	 * getter method
@@ -176,7 +183,8 @@ public class ManualRecipeInputHandler implements Route {
 	}
 
 	/**
-	 * 
+	 * The following handler method returns the HTML elements of the manual reipe
+	 * input page of the app
 	 */
 	public Object handle(Request request, Response response) throws Exception {
 		if ("/addingredients".equals(request.pathInfo())) {
@@ -202,14 +210,14 @@ public class ManualRecipeInputHandler implements Route {
 			manDish = new Dish(manDishName, manIngredients, manCookingStepsURL, manCookingTimeInSeconds,
 					manNumOfPeopleToServe);
 			manDish.setDishID("manual");
-			
+
 			return TagCreator.gethtmlHead("Add Ingredients")
-					+ TagCreator.createBodyTitle("Enter your ingredients below:") + AddIngredientForm + IngredientList()
-					+ DisplayRecipeButton() + TagCreator.getFooter() + TagCreator.closeTag();
+					+ TagCreator.createBodyTitle("Enter your ingredients below:") + addIngredientForm + ingredientList()
+					+ displayRecipeButton() + TagCreator.getFooter() + TagCreator.closeTag();
 		}
 		if ("/addnewrecipe".equals(request.pathInfo())) {
-		    new ManualRecipeInputHandler();
-		    manDishName = "";
+			new ManualRecipeInputHandler();
+			manDishName = "";
 			manIngredients = new ArrayList<Ingredient>();
 			manCookingStepsURL = "";
 			manCookingTimeInSeconds = 0;
@@ -217,9 +225,8 @@ public class ManualRecipeInputHandler implements Route {
 			manDish = null;
 		}
 		return TagCreator.gethtmlHead("Meal Planner Calendar") + TagCreator.createBodyTitle("Enter your recipe below:")
-				+ RecipeNameForm() + RecipeURLForm() + CookingTimeForm() + ServingsizeForm() + IngredientList()
-				+ submitButton() + addnewrecipeButton() +
-				TagCreator.getFooter() + TagCreator.closeTag();
+				+ recipeNameForm() + recipeURLForm() + cookingTimeForm() + servingsizeForm() + ingredientList()
+				+ submitButton() + addnewrecipeButton() + TagCreator.getFooter() + TagCreator.closeTag();
 	}
 
 	public static Dish getManDish() {

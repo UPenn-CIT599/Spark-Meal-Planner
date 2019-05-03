@@ -35,7 +35,7 @@ public class RecipeListDisplayHandler implements Route {
 	 */
 	public Object handle(Request request, Response response) throws Exception {
 		recipeNameAndDishID.clear();
-		
+
 		// storing the parameter from request in a variable
 		recipeToSearch = request.queryParams("recipetosearch");
 
@@ -83,18 +83,16 @@ public class RecipeListDisplayHandler implements Route {
 		sb.append("<ul>");
 
 		for (Entry<String, String> recipe : recipeNameAndDishID.entrySet()) {
-			
+
 			String aTag = "<a href=/recipechosen?recipeid=" + recipe.getValue() + ">";
-						
-			sb.append("<li>"  + aTag + recipe.getKey()+"</a>"
 
-			// each line has a button for displaying full recipe
-//					+ TagCreator.createButton("recipechosen", "  Show Full Recipe", "recipeid", recipe.getValue())
+			sb.append("<li>" + aTag + recipe.getKey() + "</a>"
 
-					// each line has a button for adding the recipe to calendar
+			// each line has a button for adding the recipe to calendar
 					+ TagCreator.createButton("addtocalendar", " Send to Calendar", "recipename", recipe.getKey(),
-							"recipeid", recipe.getValue(), "recipesearched" , recipeToSearch) + "</li>");
-			
+							"recipeid", recipe.getValue(), "recipesearched", recipeToSearch)
+					+ "</li>");
+
 		}
 
 		// adding attribution HTML from yummly
