@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.Map.Entry;
 
 /**
  * This class contains the grocery list and related methods and properties.
@@ -57,18 +58,24 @@ public class GroceryList {
 	 * @param ingredientLine ingredient that need to be removed from grocery list
 	 */
 	public void removeIngredientsFromGroceryList(HashMap<String, ArrayList<Ingredient>> groceryList,
-			String DishNameToChange, String ingredientLine) {
-
-		// setting the list of ingredients
-		listOfIngredients = groceryList.get(DishNameToChange);
-
-		//loop through ingredients to remove the matching item
-		for(Ingredient eachIngredient: listOfIngredients) {
-			String ingredientName = eachIngredient.getIngredientLine();
-			if(ingredientName.equals(ingredientLine)) {
-			listOfIngredients.remove(ingredientName);
+			String DishNameToChange, int ingredientId) {
+		
+		//loop through hashmap to find the dish to change and the item in the arraylist
+		
+		for (Entry<String, ArrayList<Ingredient>> groceryItems: groceryList.entrySet()) {
+			//when the dish name in hashmap is the same as the dish we want to change
+			if(DishNameToChange.equals(groceryItems.getKey())) {
+				// setting the list of ingredients
+				listOfIngredients = groceryList.get(DishNameToChange);
+				//loop through the ingredients list to remove unwanted item
+				for (int i=0; i<listOfIngredients.size(); i++) {
+					if(ingredientId == i) {
+						listOfIngredients.remove(ingredientId);
+					}
+				}
 			}
 		}
+		
 	}
 
 	/**
