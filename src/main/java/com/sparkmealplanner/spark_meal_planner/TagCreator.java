@@ -26,9 +26,9 @@ public class TagCreator {
 	
 	public static String returnButtonCSS() {
 		return ".btn {"
-				+ "border: none;"
-				+ "background-color: inherit;"
-				+ "padding: 14px 28px;"
+		//		+ "border: none;"
+				+ "background-color: black;"
+		//		+ "padding: 14px 28px;"
 				+ "font-size: 16px;"
 				+ "cursor: pointer;"
 				+ "display: inline-block;"
@@ -101,7 +101,7 @@ public class TagCreator {
 	 * @return HTML
 	 */
 	public static String createButton(String pageUrlToDirect, String ButtonTextToDisplay) {
-		return "<button type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/" + pageUrlToDirect + "'\">"
+		return "<button type=\"button\" style=\"margin-left: 10px\" onclick=\"location.href='/" + pageUrlToDirect + "'\">"
 				+ ButtonTextToDisplay + "</button>";
 	}
 
@@ -139,6 +139,25 @@ public class TagCreator {
 				+ "</button>";
 	}
 
+	/**
+	 * The following method returns an html element with button with two ID
+	 * parameters to pass.
+	 * 
+	 * @param pageUrlToDirect     page Url To Direct
+	 * @param ButtonTextToDisplay Button Text To Display
+	 * @param param1Name          param#1 Name
+	 * @param param1Info          param#1 Info
+	 * @param param2Name          param#2Name
+	 * @param param2Info          param#2 Info
+	 * @return HTML
+	 */
+	public static String createButton(String pageUrlToDirect, String ButtonTextToDisplay, String param1Name,
+			String param1Info, String param2Name, String param2Info, String param3Name, String param3Info) {
+		return "<button type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/" + pageUrlToDirect + "?"
+				+ param1Name + "=" + param1Info + "&" + param2Name + "=" + param2Info + "&" + param3Name + "=" + param3Info +"'\">" + ButtonTextToDisplay
+				+ "</button>";
+	}
+	
 	/**
 	 * The following method creates a title in the body tag
 	 * 

@@ -57,7 +57,7 @@ public class GroceryListHandler implements Route {
 			dishName = groceryItems.getKey();
 			listOfIngredients = groceryItems.getValue();
 			
-			sb.append("<li>" + "<p><b>" + "Dish Name: " + dishName + "</b><p>" + "</li>");
+			sb.append( "<p><b>" + "Dish Name: " + dishName + "</b><p>");
 			
 			for (Ingredient eachIngredient : listOfIngredients) {
 

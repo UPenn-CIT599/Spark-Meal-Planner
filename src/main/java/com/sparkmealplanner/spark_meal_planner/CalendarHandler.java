@@ -20,13 +20,14 @@ public class CalendarHandler implements Route {
 	// instance variable to be used in the handler class
 	static Calendar calendar = new Calendar();
 	static HashMap<String, Dish> calendarHashMap = calendar.getCalendar();
-	ArrayList  <String> calendarMeals = calendar.getCalendarMeals();
+	ArrayList<String> calendarMeals = calendar.getCalendarMeals();
 	JSONObject json = null;
 	HashMap<String, String> calendarToDisplayHashMap = calendar.getCalendarToDisplay();
 	Dish dish = null;
 	private String recipeToAdd;
 	private String recipeIDToAdd;
 	String dayAndMealSelected;
+	String recipeSearched;
 
 	/**
 	 * The static getter method to be used in the grocery list class
@@ -48,6 +49,10 @@ public class CalendarHandler implements Route {
 			// if the recipe name parameter is not empty, the value is stored in a variable
 			if (request.queryParams("recipename") != null) {
 				recipeToAdd = request.queryParams("recipename");
+			}
+
+			if (request.queryParams("recipesearched") != null) {
+				recipeSearched = request.queryParams("recipesearched");
 			}
 
 			// if the recipe id parameter is not empty, the value is stored in a variable
@@ -109,13 +114,15 @@ public class CalendarHandler implements Route {
 		// returns various HTML parts
 		return TagCreator.gethtmlHead("Meal Planner Calendar") + TagCreator.createBodyTitle("Calendar")
 				+ displayCalendar() + displayRecipeSelected() + displayAddToCalendarOptions()
-				+ displayRemoveFromCalendarOptions() + TagCreator.createPrintThisButton() + displayGoToGroceryListButton()+ TagCreator.getFooter()
-				+ TagCreator.closeTag();
+				+ displayRemoveFromCalendarOptions() + goBackToSearchButton() + SearchNewRecipesButton()
+				+ addRecipeFromURLButton() + TagCreator.createPrintThisButton() + displayGoToGroceryListButton()
+				+ TagCreator.getFooter() + TagCreator.closeTag();
 	}
 
-	public String displayGoToGroceryListButton() {
+	private String displayGoToGroceryListButton() {
 		return TagCreator.createButton("grocerylist", "Show Grocery List");
 	}
+
 	/**
 	 * The following method creates the calendar to be displayed in HTML
 	 * 
@@ -149,10 +156,10 @@ public class CalendarHandler implements Route {
 
 			for (String day : Calendar.getDaysOfTheWeek()) {
 				String aTag = "";
-				
+
 				if (calendarHashMap.get(day + " " + meal) != null) {
 					// get the dish object from the HashMap and get dishID from it
-					
+
 					Dish d = calendarHashMap.get(day + " " + meal);
 					String dishID = calendarHashMap.get(day + " " + meal).getDishID();
 
@@ -200,10 +207,10 @@ public class CalendarHandler implements Route {
 		// adding selection drop-downs
 		sb.append("<option value=\"\" selected=\"selected\" >Select a Calendar Option</option>");
 
-		//add drop-down items
-			for (String calendarMeal : calendarMeals) {
-				sb.append("<option value=\"" + calendarMeal + "\" >" + calendarMeal + "</option>");			
-			}
+		// add drop-down items
+		for (String calendarMeal : calendarMeals) {
+			sb.append("<option value=\"" + calendarMeal + "\" >" + calendarMeal + "</option>");
+		}
 
 //			for (Entry<String, String> item : calendarToDisplayHashMap.entrySet()) {
 //			sb.append("<option value=\"" + item.getKey() + "\" >" + item.getKey() + "</option>");
@@ -232,9 +239,9 @@ public class CalendarHandler implements Route {
 		// adding selection drop-downs
 		sb.append("<option value=\"\" selected=\"selected\" >Select a Calendar Option</option>");
 
-		//add drop-down items
+		// add drop-down items
 		for (String calendarMeal : calendarMeals) {
-			sb.append("<option value=\"" + calendarMeal + "\" >" + calendarMeal + "</option>");			
+			sb.append("<option value=\"" + calendarMeal + "\" >" + calendarMeal + "</option>");
 		}
 
 		sb.append("</select>");
@@ -258,6 +265,42 @@ public class CalendarHandler implements Route {
 
 		// creating a label for the user to see which recipe was selected
 		return "<p><label> Recipe Selected: " + recipeToAdd + "</label></p>";
+	}
+
+	/**
+	 * The following method creates a go back to search result button
+	 * 
+	 * @return HTML
+	 */
+	private String goBackToSearchButton() {
+		return TagCreator.createButton("displayrecipelist", "Go back to search results", "recipetosearch",
+				recipeSearched);
+	}
+
+	/**
+	 * The following method create a search new recipe button
+	 * 
+	 * @return HTML
+	 */
+	private String SearchNewRecipesButton() {
+		return TagCreator.createButton("searchrecipe", "Search a new recipe");
+	}
+
+	/**
+	 * The following method adds a button to direct users to add recipe from an
+	 * external url
+	 * 
+	 * @return HTML
+	 */
+	private String addRecipeFromURLButton() {
+
+		StringBuilder sb = new StringBuilder();
+
+		// creating a button in HTML
+		sb.append(TagCreator.createButton("addrecipe", "I have a url to add recipe from"));
+		sb.append("<br><br>");
+
+		return sb.toString();
 	}
 
 }

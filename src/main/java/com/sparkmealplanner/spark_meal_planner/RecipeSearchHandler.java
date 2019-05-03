@@ -17,7 +17,7 @@ public class RecipeSearchHandler implements Route {
 
 	// form HTML stored in a variable
 	private final String searchRecipeForm = "<div><form action=\"/displayrecipelist\" method=\"get\">Enter a recipe to search:"
-			+ "<input type=\"text\" size=\"35\" placeholder=\"Type Recipe To Search..\" name=\"recipetosearch\"><br><br>"
+			+ "<input type=\"text\" size=\"30\" placeholder=\" Type recipe to search here..\" name=\"recipetosearch\"><br><br>"
 			+ "<button style=\"margin-left: 10px\">Search</button></li>";
 
 	/**
@@ -28,6 +28,22 @@ public class RecipeSearchHandler implements Route {
 
 		// returns HTML elements
 		return TagCreator.gethtmlHead("Search Recipe") + TagCreator.createBodyTitle("Search My Recipes Below")
-				+ searchRecipeForm + TagCreator.getFooter() + TagCreator.closeTag();
+				+ searchRecipeForm + addRecipeFromURLButton() + TagCreator.getFooter() + TagCreator.closeTag();
+	}
+	
+	/**
+	 * The following method adds a button to direct users to add recipe from an
+	 * external url
+	 * 
+	 * @return HTML
+	 */
+	private String addRecipeFromURLButton() {
+
+		StringBuilder sb = new StringBuilder();
+		sb.append("<br><br>");
+		// creating a button in HTML
+		sb.append(TagCreator.createButton("addrecipe", "I would rather add a recipe on my own"));
+
+		return sb.toString();
 	}
 }
