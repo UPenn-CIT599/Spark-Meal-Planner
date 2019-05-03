@@ -1,9 +1,7 @@
 package com.sparkmealplanner.spark_meal_planner;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Scanner;
 import java.util.Map.Entry;
 
 /**
@@ -76,16 +74,6 @@ public class GroceryList {
 			}
 		}
 		
-	}
-
-	/**
-	 * The following method displays the final grocery list, along with an index
-	 * starting with 1 1. Apples 2. Bananas
-	 */
-	public void displayGroceryList() {
-		/*
-		 * we will utilize GUI for displaying
-		 */
 	}
 
 }
