@@ -155,10 +155,10 @@ public class CalendarHandler implements Route {
 					if (d.getDishID().equals("manual")) {
 
 						// direct to the user inputed recipe URL
-						aTag = "<a href=" + d.getCookingStepsURL() + ">";
+						aTag = "<a href=" + d.getCookingStepsURL() + " target = \"_blank\">";
 					} else {
 						// direct the user to the display recipe page
-						aTag = "<a href=/recipechosen?recipeid=" + dishID + ">";
+						aTag = "<a href=/recipechosen?recipeid=" + dishID + "target = \"_blank\">";
 					}
 				} else {
 					// direct the user to the calendar page (for calendar meals that were not added
