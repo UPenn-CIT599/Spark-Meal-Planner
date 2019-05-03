@@ -13,7 +13,7 @@ public class TagCreator {
 	private static final String GoToGroceryList = "<a href=\"/grocerylist\"> GroceryList </a>";
 	private static final String GoToSearchRecipe = "<a href=\"/searchrecipe\"> Search Recipes </a>";
 	private static final String GoToFAQ = "<a href=\"/faqs\"> Frequently Asked Questions </a>";
-	private static final String GoToRecipeInputFromURL = "<a href=\"/addrecipe\"> Add Recipes From URLs </a>";
+	private static final String GoToRecipeInputFromURL = "<a href=\"/addnewrecipe\"> Add Recipes From URLs </a>";
 
 	public static String returnULListCSSStyle() {
 		return "ul { "+ 

@@ -109,15 +109,12 @@ public class ManualRecipeInputHandler implements Route {
 		String sb = TagCreator.createButton("addmanualrecipetocalendar", "Send To Calendar", "recipename", manDishName);
 		return sb;
 	}
+	
+	public String addnewrecipeButton() {
+	    String sb = TagCreator.createButton("addnewrecipe", "Create a New Recipe");
+		return sb;
+	}
 
-//	public String IngredientListForm() {
-//	    StringBuilder sb = new StringBuilder();
-//	    sb.append("Please enter the number of ingredients in your recipe to proceed with adding the ingredient list:<input type=\"text\" id=\"ingredients\" name=\"ingredients\" value=\"\"><br />\r\n" + 
-//	    	"<a href=\"#\" id=\"addingredients\" onclick=\"addFields()\">Add your list of Ingredients</a>\r\n" + 
-//		"<button style=\"margin-left: 10px\" type=\"submit\">Submit The Recipe</button>" + "</form></div>" +
-//	    	"<div id=\"container\"/>");
-//	    return sb.toString();
-//	}
 	/**
 	 * 
 	 * @return
@@ -132,27 +129,6 @@ public class ManualRecipeInputHandler implements Route {
 		return sb.toString();
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
-	public String myfunction() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("<script>");
-		sb.append("        function addFields(){\r\n"
-				+ "            var number = document.getElementById(\"ingredients\").value;\r\n"
-				+ "            var container = document.getElementById(\"container\");\r\n"
-				+ "            while (container.hasChildNodes()) {\r\n"
-				+ "                container.removeChild(container.lastChild);\r\n" + "            }\r\n"
-				+ "            for (i=0;i<number;i++){\r\n"
-				+ "                container.appendChild(document.createTextNode((i+1)));\r\n"
-				+ "                var input = document.createElement(\"input\");\r\n"
-				+ "                input.type = \"text\";\r\n" + "                container.appendChild(input);\r\n"
-				+ "                container.appendChild(document.createElement(\"br\"));\r\n" + "            }\r\n"
-				+ "        }");
-		sb.append("</script>");
-		return sb.toString();
-	}
 
 	/**
 	 * getter method
@@ -226,15 +202,23 @@ public class ManualRecipeInputHandler implements Route {
 			manDish = new Dish(manDishName, manIngredients, manCookingStepsURL, manCookingTimeInSeconds,
 					manNumOfPeopleToServe);
 			manDish.setDishID("manual");
-//		System.out.println(manDish.getCookingStepsURL());
+			
 			return TagCreator.gethtmlHead("Add Ingredients")
 					+ TagCreator.createBodyTitle("Enter your ingredients below:") + AddIngredientForm + IngredientList()
 					+ DisplayRecipeButton() + TagCreator.getFooter() + TagCreator.closeTag();
 		}
-
+		if ("/addnewrecipe".equals(request.pathInfo())) {
+		    new ManualRecipeInputHandler();
+		    manDishName = "";
+			manIngredients = new ArrayList<Ingredient>();
+			manCookingStepsURL = "";
+			manCookingTimeInSeconds = 0;
+			manNumOfPeopleToServe = 0;
+			manDish = null;
+		}
 		return TagCreator.gethtmlHead("Meal Planner Calendar") + TagCreator.createBodyTitle("Enter your recipe below:")
 				+ RecipeNameForm() + RecipeURLForm() + CookingTimeForm() + ServingsizeForm() + IngredientList()
-				+ submitButton() + // myfunction() +
+				+ submitButton() + addnewrecipeButton() +
 				TagCreator.getFooter() + TagCreator.closeTag();
 	}
 

@@ -38,6 +38,7 @@ public class MealPlanner {
 		get("/recipechosen", recipeDisplayHandler);// create a display searched recipe path
 		get("/addrecipe", manualRecipeHandler);// create a display of manual recipe
 		get("/addingredients", manualRecipeHandler);// create a display of manual recipe
+		get("/addnewrecipe", manualRecipeHandler);// create a display of manual recipe
 		get("/selectameal", calendarHandler);
 		get("/calendar", calendarHandler); // calendar page path
 		get("/addtocalendar", calendarHandler); // calendar page path
