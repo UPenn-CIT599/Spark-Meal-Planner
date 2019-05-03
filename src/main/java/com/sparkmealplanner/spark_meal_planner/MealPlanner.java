@@ -32,6 +32,7 @@ public class MealPlanner {
 		get("/", homePageHandle);
 		get("/searchrecipe", recipeSearchHandler); // recipe search page path
 		get("/grocerylist", groceryListHandler); // grocery list page path
+		get("/removeFromGroceryList", groceryListHandler); // grocery list page path
 		get("/faqs", faqHandler);// retrieve meal plan page path
 		get("/displayrecipelist", recipeListDisplayHandler);// create a display searched recipe path
 		get("/displayfullrecipe", recipeListDisplayHandler);// create a display searched recipe path

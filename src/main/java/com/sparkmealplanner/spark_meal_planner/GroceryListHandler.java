@@ -9,11 +9,12 @@ import spark.Response;
 import spark.Route;
 
 public class GroceryListHandler implements Route {
-
+	private int removeItemId;
 	private ArrayList<Dish> listOfDish;
 	private HashMap<String, ArrayList<Ingredient>> groceryList;
 	private String dishName;
 	private ArrayList<Ingredient> listOfIngredients;
+	private GroceryList grocery;
 
 	/**
 	 * The constructor initiate the dish list from the calendar
@@ -31,6 +32,14 @@ public class GroceryListHandler implements Route {
 	}
 
 	public Object handle(Request request, Response response) throws Exception {
+		
+		//storing the parameter from request in a variable
+		
+		if ("/removeFromGroceryList".equals(request.pathInfo())) {
+			removeItemId = Integer.valueOf(request.queryParams("Id"));
+			dishName = request.queryParams("Dish");
+			removefromGroceryList(dishName, removeItemId);
+		}
 
 		return TagCreator.gethtmlHead("Grocery List") + TagCreator.createBodyTitle("Grocery List")
 				+ displayGroceryList() + TagCreator.createPrintThisButton() + TagCreator.getFooter()
@@ -45,12 +54,12 @@ public class GroceryListHandler implements Route {
 	public String displayGroceryList() {
 
 		GroceryListHandler glh = new GroceryListHandler();
-		GroceryList grocery = new GroceryList(glh.listOfDish);
+		grocery = new GroceryList(glh.listOfDish);
 		groceryList = grocery.getGroceryListFromListOfDishes();
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("<div><ul\">");
+		sb.append("<div><ul style=\\\"list-style-type:disc;\\\">");
 
 		for (Entry<String, ArrayList<Ingredient>> groceryItems : groceryList.entrySet()) {
 			
@@ -59,21 +68,25 @@ public class GroceryListHandler implements Route {
 			
 			sb.append( "<p><b>" + "Dish Name: " + dishName + "</b><p>");
 			
+			int Id=0;
+			
 			for (Ingredient eachIngredient : listOfIngredients) {
 
-				sb.append("<li>" + eachIngredient.getIngredientLine() 
-						+"<button style=\"margin-left: 10px\" type=\"submit\">Remove</button>"
-						+ "</li>"
-						);
+				if(eachIngredient!=null) {
+					
+					sb.append("<li>" + eachIngredient.getIngredientLine() 
+//					+"<button style=\"margin-left: 10px\" type=\"submit\">Remove</button>"
+//					+"<button style=\"margin-left: 10px\" onclick=\"location.href='/removeItem?name" + "'\"type=\\\"submit\\\">Remove</button>" 
+					+ "        "
+					+ TagCreator.createButton("removeFromGroceryList", "Remove", "Dish",dishName,"Id", String.valueOf(Id))
+					+ "</li>"
+					
+					);
+				}
+				Id++;
 
-				// sb.append("<ol><li>" + eachIngredient
-				// + "<button style=\"margin-left: 10px\" onclick=\""
-				// + listOfIngredients.remove(eachIngredient)
-				// + "'\">Remove from shopping list</button>"
-				// + "</li></ol>");
 			}
 
-			// sb.append("<div></ul>");
 		}
 
 		sb.append("<div><br></ul>");
@@ -81,4 +94,13 @@ public class GroceryListHandler implements Route {
 		return sb.toString();
 
 	}
+	
+	/**
+	 * The method is to display grocery list after item is removed from grocery list
+	 */
+	public void removefromGroceryList(String dishName, int removeItemId) {
+		grocery.removeIngredientsFromGroceryList(groceryList, dishName, removeItemId);
+	}
+	
+	
 }
