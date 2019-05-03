@@ -1,6 +1,9 @@
 package com.sparkmealplanner.spark_meal_planner;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map.Entry;
 import org.json.JSONObject;
 import spark.Request;
@@ -17,6 +20,7 @@ public class CalendarHandler implements Route {
 	// instance variable to be used in the handler class
 	static Calendar calendar = new Calendar();
 	static HashMap<String, Dish> calendarHashMap = calendar.getCalendar();
+	ArrayList  <String> calendarMeals = calendar.getCalendarMeals();
 	JSONObject json = null;
 	HashMap<String, String> calendarToDisplayHashMap = calendar.getCalendarToDisplay();
 	Dish dish = null;
@@ -145,9 +149,10 @@ public class CalendarHandler implements Route {
 
 			for (String day : Calendar.getDaysOfTheWeek()) {
 				String aTag = "";
-
+				
 				if (calendarHashMap.get(day + " " + meal) != null) {
 					// get the dish object from the HashMap and get dishID from it
+					
 					Dish d = calendarHashMap.get(day + " " + meal);
 					String dishID = calendarHashMap.get(day + " " + meal).getDishID();
 
@@ -195,9 +200,14 @@ public class CalendarHandler implements Route {
 		// adding selection drop-downs
 		sb.append("<option value=\"\" selected=\"selected\" >Select a Calendar Option</option>");
 
-		for (Entry<String, String> item : calendarToDisplayHashMap.entrySet()) {
-			sb.append("<option value=\"" + item.getKey() + "\" >" + item.getKey() + "</option>");
-		}
+		//add drop-down items
+			for (String calendarMeal : calendarMeals) {
+				sb.append("<option value=\"" + calendarMeal + "\" >" + calendarMeal + "</option>");			
+			}
+
+//			for (Entry<String, String> item : calendarToDisplayHashMap.entrySet()) {
+//			sb.append("<option value=\"" + item.getKey() + "\" >" + item.getKey() + "</option>");
+//		}
 		sb.append("</select>");
 
 		// adding the add button
@@ -222,9 +232,11 @@ public class CalendarHandler implements Route {
 		// adding selection drop-downs
 		sb.append("<option value=\"\" selected=\"selected\" >Select a Calendar Option</option>");
 
-		for (Entry<String, String> item : calendarToDisplayHashMap.entrySet()) {
-			sb.append("<option value=\"" + item.getKey() + "\" >" + item.getKey() + "</option>");
+		//add drop-down items
+		for (String calendarMeal : calendarMeals) {
+			sb.append("<option value=\"" + calendarMeal + "\" >" + calendarMeal + "</option>");			
 		}
+
 		sb.append("</select>");
 
 		// adding the add button
