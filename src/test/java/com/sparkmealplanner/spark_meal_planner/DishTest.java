@@ -33,30 +33,4 @@ public class DishTest {
 	 Dish dish = d.getDishCreated();
 	 System.out.println(dish.getDishName());
 	}
-
-	@Test
-	public void testGetIngredients() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetCookingStepsURL() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetCookingTimeInSeconds() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetNumOfPeopleToServe() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testObject() {
-		fail("Not yet implemented");
-	}
-
 }
