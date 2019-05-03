@@ -1,0 +1,21 @@
+Meal Planner (A Final Group Project for CIT 591)
+
+Instructions for running the app:
+1. Run main() in App.java
+2. Open a new tab in a browser and type in "http://localhost:8081/" as the url
+
+Note: In some instances you may be asked to add the "java-json.jar" to be added to your eclipse library. To
+add the file:
+	*Click on your project folder
+	*Go to File/Properties/Java Build Path/Add external/Jars/Select "java-json.jar" file from the project folder. 
+	
+This meal planner app can make user's meal planning process easy by allowing the user to:
+1. discover new and exiting recipes by powerful by Yummly back-end search capabilities
+2. view the recipe attributes such as serving size, original recipe url, cooking time, etc.
+3. add their recipes from external urls, while allowing the edit recipe attributes, such as ingredients, serving size, etc.
+4. add their favorite recipes to the calendar and grocery list to prepare for the meal plan
+5. view and print the meal plans for the week in a calendar view
+6. view and print the consolidated grocery list for the week
+	
+Instructions with screenshots on how to use the program are provided in the seperate PDF file called "Instructions.pdf."
+

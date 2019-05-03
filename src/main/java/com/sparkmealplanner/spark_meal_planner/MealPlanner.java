@@ -15,8 +15,8 @@ public class MealPlanner {
 
 	public void run() {
 
-		// use http://localhost:4042 in browser
-		port(8092);
+		// use http://localhost:8081 in browser
+		port(8081);
 		
 		// creates various page handlers
 		HomePageHandler homePageHandle = new HomePageHandler();

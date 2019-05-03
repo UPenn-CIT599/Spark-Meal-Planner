@@ -101,7 +101,7 @@ public class TagCreator {
 	 * @return HTML
 	 */
 	public static String createButton(String pageUrlToDirect, String ButtonTextToDisplay) {
-		return "<button type=\"button\" style=\"margin-left: 10px\" onclick=\"location.href='/" + pageUrlToDirect + "'\">"
+		return "<button type=\"button\" onclick=\"location.href='/" + pageUrlToDirect + "'\">"
 				+ ButtonTextToDisplay + "</button>";
 	}
 
