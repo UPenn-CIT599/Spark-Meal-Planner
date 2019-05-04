@@ -37,7 +37,7 @@ public class TagCreator {
 				+ "cursor: pointer;"
 				+ "display: inline-block;"
 				+ "}"
-				+ ".btn:hover {background: #eee;  transition: background-color .6s ease-out;}";
+				+ ".butotn:hover {background: #eee;  transition: background-color .6s ease-out;}";
 	}
 	
 	public static String returnTableCSSStyle() {
