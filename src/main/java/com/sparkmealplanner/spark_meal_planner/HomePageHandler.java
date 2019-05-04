@@ -18,8 +18,8 @@ public class HomePageHandler implements Route {
 		return TagCreator.gethtmlHead("Meal Planner Home Page")
 				+ TagCreator.createBodyTitle("Welcome To Our Meal Planner")
 				+ TagCreator.createAParagraph("This app is designed to make your meal plans easy!") + "<br>"
-				+ TagCreator.createAParagraph("Get started now!")
-				+ TagCreator.createButton("searchrecipe", "Create a Meal Plan") + TagCreator.getFooter()
+	//			+ TagCreator.createAParagraph("Get started now!")
+				+ TagCreator.createButton("searchrecipe", "Create a Meal Plan now!") + TagCreator.getFooter()
 				+ TagCreator.closeTag();
 	}
 

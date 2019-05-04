@@ -18,7 +18,7 @@ public class RecipeSearchHandler implements Route {
 	// form HTML stored in a variable
 	private final String searchRecipeForm = "<div><form action=\"/displayrecipelist\" method=\"get\">Enter a recipe to search:"
 			+ "<input type=\"text\" size=\"30\" placeholder=\" Type recipe to search here..\" name=\"recipetosearch\"><br><br>"
-			+ "<button class =\"button\" style=\"margin-left: 10px\">Search</button></li>";
+			+ "<button class =\"button\">Search</button></li>";
 
 	/**
 	 * Handle method to create a form to collect recipe search term from the user
