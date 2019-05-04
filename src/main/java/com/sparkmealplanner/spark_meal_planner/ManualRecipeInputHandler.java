@@ -26,7 +26,7 @@ public class ManualRecipeInputHandler implements Route {
 	private static Dish manDish;
 
 	/**
-	 * The following constructor creates necessary instance variables
+	 * The following constructor initiates the instance variables needed for the page
 	 */
 	public ManualRecipeInputHandler() {
 		manDishName = "";
@@ -43,7 +43,7 @@ public class ManualRecipeInputHandler implements Route {
 	 * 
 	 * @return string with HTML code for recipe name field
 	 */
-	public String RecipeNameForm() {
+	public String recipeNameForm() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("<div> <form action = \"/addingredients\" method = \"get\">\r\n" + "  Recipe Name:<br>\r\n"
 				+ "  <input type=\"text\" name=\"recipename\" value = \"" + manDishName + "\"required>\r\n" + "  <br>");
@@ -57,7 +57,7 @@ public class ManualRecipeInputHandler implements Route {
 	 * @return string with HTML code for recipe URL field
 	 */
 
-	public String RecipeURLForm() {
+	public String recipeURLForm() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("  Recipe URL:<br>\r\n" + "  <input type=\"URL\" name=\"recipeURL\" value = \"" + manCookingStepsURL
 				+ "\"required>\r\n" + "  <br>");
@@ -65,11 +65,11 @@ public class ManualRecipeInputHandler implements Route {
 	}
 
 	/**
-	 * The following method returns the cooking time field be served in HTML
+	 * The following method returns the cooking time field to be filled in HTML
 	 * 
 	 * @return HTML string
 	 */
-	public String CookingTimeForm() {
+	public String cookingTimeForm() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Cooking Time in Minutes:<br>\r\n" + "  <input type=\"number\" name=\"cookingtime\" value =\""
 				+ manCookingTimeInSeconds + "\"required>\r\n" + "  <br>");
@@ -77,15 +77,15 @@ public class ManualRecipeInputHandler implements Route {
 	}
 
 	/**
-	 * The following class returns the serving size input field be served in HTML
+	 * The following class returns the serving size input field to be filled in HTML
 	 * 
 	 * @return HTML string
 	 */
-	public String ServingsizeForm() {
+	public String servingsizeForm() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Serving size:<br>\r\n" + "  <input type=\"number\" name=\"servingsize\" value =\""
 				+ manNumOfPeopleToServe + "\"required>\r\n" + "<br><br>"
-				+ "<button type=\"submit\">Add Ingredients To Proceed</button>" + "</form></div>" + "  <br>\r\n");
+				+ "<button class = \" button\" type=\"submit\">Add Ingredients To Proceed</button>" + "</form></div>" + "  <br>\r\n");
 //	    sb.append("<button style=\"margin-left: 10px\" type=\"submit\">Submit The Recipe</button>" + "</form></div>");
 		return sb.toString();
 	}
@@ -94,7 +94,7 @@ public class ManualRecipeInputHandler implements Route {
 	 * 
 	 * @return
 	 */
-	public String DisplayRecipeButton() {
+	public String displayRecipeButton() {
 
 		String sb = TagCreator.createButton("addrecipe", "Display The recipe");
 		return sb;
@@ -119,9 +119,9 @@ public class ManualRecipeInputHandler implements Route {
 	 * 
 	 * @return
 	 */
-	public String IngredientList() {
+	public String ingredientList() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("<div><ul>");
+		sb.append("<div><ul class=\"a\">");
 		for (Ingredient ingredient : manIngredients) {
 			sb.append("<li>" + ingredient.getIngredientLine() + "</li>");
 		}
@@ -180,11 +180,9 @@ public class ManualRecipeInputHandler implements Route {
 	 */
 	public Object handle(Request request, Response response) throws Exception {
 		if ("/addingredients".equals(request.pathInfo())) {
-//		System.out.println("Reaching this point");
 			if (request.queryParams("recipename") != null) {
 				manDishName = request.queryParams("recipename");
 			}
-//		System.out.println(manDishName);
 			if (request.queryParams("recipeURL") != null) {
 				manCookingStepsURL = request.queryParams("recipeURL");
 			}
@@ -204,8 +202,8 @@ public class ManualRecipeInputHandler implements Route {
 			manDish.setDishID("manual");
 			
 			return TagCreator.gethtmlHead("Add Ingredients")
-					+ TagCreator.createBodyTitle("Enter your ingredients below:") + AddIngredientForm + IngredientList()
-					+ DisplayRecipeButton() + TagCreator.getFooter() + TagCreator.closeTag();
+					+ TagCreator.createBodyTitle("Enter your ingredients below:") + AddIngredientForm + ingredientList()
+					+ displayRecipeButton() + TagCreator.getFooter() + TagCreator.closeTag();
 		}
 		if ("/addnewrecipe".equals(request.pathInfo())) {
 		    new ManualRecipeInputHandler();
@@ -217,7 +215,7 @@ public class ManualRecipeInputHandler implements Route {
 			manDish = null;
 		}
 		return TagCreator.gethtmlHead("Meal Planner Calendar") + TagCreator.createBodyTitle("Enter your recipe below:")
-				+ RecipeNameForm() + RecipeURLForm() + CookingTimeForm() + ServingsizeForm() + IngredientList()
+				+ recipeNameForm() + recipeURLForm() + cookingTimeForm() + servingsizeForm() + ingredientList()
 				+ submitButton() + addnewrecipeButton() +
 				TagCreator.getFooter() + TagCreator.closeTag();
 	}

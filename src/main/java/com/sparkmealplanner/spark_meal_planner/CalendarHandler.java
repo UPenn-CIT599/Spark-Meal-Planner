@@ -218,7 +218,7 @@ public class CalendarHandler implements Route {
 		sb.append("</select>");
 
 		// adding the add button
-		sb.append("<button style=\"margin-left: 10px\" type=\"submit\">Add</button></form></p>");
+		sb.append("<button class =\"button\" style=\"margin-left: 10px\" type=\"submit\">Add</button></form></p>");
 
 		return sb.toString();
 	}
@@ -247,7 +247,7 @@ public class CalendarHandler implements Route {
 		sb.append("</select>");
 
 		// adding the add button
-		sb.append("<button style=\"margin-left: 10px\" type=\"submit\">Remove</button></form></p>");
+		sb.append("<button class =\"button\" style=\"margin-left: 10px\" type=\"submit\">Remove</button></form></p>");
 
 		return sb.toString();
 	}

@@ -16,34 +16,38 @@ public class TagCreator {
 	private static final String GoToRecipeInputFromURL = "<a href=\"/addnewrecipe\"> Add Recipes From URLs </a>";
 
 	public static String returnULListCSSStyle() {
-		return "ul { "+ 
-				"border-left: 5px solid red;" + 
-				"background-color: #f1f1f1;" + 
+		return "ul.a { "+ 
+//				"border-left: 5px solid red;" + 
+//				"background-color: #f1f1f1;" + 
 				"list-style-type: none;" + 
-				"padding: 10px 20px;" + 
+//				"padding: 10px 20px;" + 
 				"}";
 	}
 	
 	public static String returnButtonCSS() {
-		return ".btn {"
-		//		+ "border: none;"
-				+ "background-color: black;"
-		//		+ "padding: 14px 28px;"
+		return ".button {"
+//				+ "border: none;"
+//				+ "background-color: #555555;"
+				+ "border: 1px solid black;"
+				+ "padding: 3px 3px;"
+				+ "font-family:verdana;"
 				+ "font-size: 16px;"
+//				+ "box-shadow: 0 0 20px rgba(0,0,0,0.2);"
+				+ "border-radius: 5px;"
 				+ "cursor: pointer;"
 				+ "display: inline-block;"
 				+ "}"
-				+ ".btn:hover {background: #eee;}";
+				+ ".btn:hover {background: #eee;  transition: background-color .6s ease-out;}";
 	}
 	
 	public static String returnTableCSSStyle() {
 
 		return "#calendar {"
 				// setting overall height and width in percentage
-				+ "width: 90%;" + "height: 50%;" + "table-layout: fixed;"+  "}"
+				+ "width: 70%;" + "height: 50%;" + "table-layout: fixed;"+  "}"
 
 				// setting the attributes of table data elements
-				+ "#calendar td, #customers th {" + "border: 1px solid #ddd;" + "padding: 8px;" + "text-align: center;" + "word-wrap:break-word"
+				+ "#calendar td, #customers th {" + "border: 1px solid #ddd;" + "padding: 4px;" + "text-align: center;" + "word-wrap:break-word"
 				+ "}"
 
 				// setting the attributes of table row elements
@@ -101,7 +105,7 @@ public class TagCreator {
 	 * @return HTML
 	 */
 	public static String createButton(String pageUrlToDirect, String ButtonTextToDisplay) {
-		return "<button type=\"button\" onclick=\"location.href='/" + pageUrlToDirect + "'\">"
+		return "<button class = \"button\"type=\"button\" onclick=\"location.href='/" + pageUrlToDirect + "'\">"
 				+ ButtonTextToDisplay + "</button>";
 	}
 
@@ -116,7 +120,7 @@ public class TagCreator {
 	 */
 	public static String createButton(String pageUrlToDirect, String ButtonTextToDisplay, String param1Name,
 			String param1Info) {
-		return "<button type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/" + pageUrlToDirect + "?"
+		return "<button class =\"button\" type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/" + pageUrlToDirect + "?"
 				+ param1Name + "=" + param1Info + "'\">" + ButtonTextToDisplay + "</button>";
 	}
 
@@ -134,7 +138,7 @@ public class TagCreator {
 	 */
 	public static String createButton(String pageUrlToDirect, String ButtonTextToDisplay, String param1Name,
 			String param1Info, String param2Name, String param2Info) {
-		return "<button type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/" + pageUrlToDirect + "?"
+		return "<button class =\"button\" type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/" + pageUrlToDirect + "?"
 				+ param1Name + "=" + param1Info + "&" + param2Name + "=" + param2Info + "'\">" + ButtonTextToDisplay
 				+ "</button>";
 	}
@@ -153,7 +157,7 @@ public class TagCreator {
 	 */
 	public static String createButton(String pageUrlToDirect, String ButtonTextToDisplay, String param1Name,
 			String param1Info, String param2Name, String param2Info, String param3Name, String param3Info) {
-		return "<button type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/" + pageUrlToDirect + "?"
+		return "<button class =\"button\" type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/" + pageUrlToDirect + "?"
 				+ param1Name + "=" + param1Info + "&" + param2Name + "=" + param2Info + "&" + param3Name + "=" + param3Info +"'\">" + ButtonTextToDisplay
 				+ "</button>";
 	}
@@ -184,7 +188,7 @@ public class TagCreator {
 	 * @return HTML
 	 */
 	public static String createPrintThisButton() {
-		return "<button onclick=\"window.print()\">Print This Page</button>";
+		return "<button class = \"button\" onclick=\"window.print()\">Print This Page</button>";
 
 	}
 
