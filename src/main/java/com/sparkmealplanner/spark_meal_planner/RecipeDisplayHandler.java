@@ -93,7 +93,7 @@ public class RecipeDisplayHandler implements Route {
 		// display recipe attributes in HTML
 		sb.append("<p> Recipe Name: " + dish.getDishName() + "</p>");
 		sb.append("<p> Recipe Serving Size: " + dish.getNumOfPeopleToServe() + "</p>");
-		sb.append("<p> Cooking time in minutes: " + dish.getCookingTimeInSeconds() / 60 + "</p>");
+		sb.append("<p> Cooking time in minutes: " + (int) dish.getCookingTimeInSeconds() / 60 + "</p>");
 		sb.append("<p> Ingredients: </p>");
 
 		// display recipe ingredients in HTML in an unordered list

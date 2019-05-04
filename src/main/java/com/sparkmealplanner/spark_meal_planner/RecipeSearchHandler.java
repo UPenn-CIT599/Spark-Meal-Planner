@@ -30,7 +30,7 @@ public class RecipeSearchHandler implements Route {
 		return TagCreator.gethtmlHead("Search Recipe") + TagCreator.createBodyTitle("Search My Recipes Below")
 				+ searchRecipeForm + addRecipeFromURLButton() + TagCreator.getFooter() + TagCreator.closeTag();
 	}
-	
+
 	/**
 	 * The following method adds a button to direct users to add recipe from an
 	 * external url

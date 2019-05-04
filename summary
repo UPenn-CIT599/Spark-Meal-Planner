@@ -1,0 +1,42 @@
+Project Name
+Meal Planner
+
+
+Group Members:
+Xue Liu, Krishna Morawala, Vineela Pentyala
+
+
+Project Description: 
+
+The meal planner app aims to simplify a user’s process of creating a meal plan and grocery shopping list on 
+a weekly basis. The meal planner allows a user to select and save their favorite recipes, generate a weekly 
+schedule of meals as well as a grocery list, after considering existing pantry items based on the user input. 
+The recipes to add to the meal plan can be searched from directly from the application as powered by 
+Yummly.com or it can be inputed manually using a user selected URL. The user has access to their meal plans 
+in the calendar view, and for future use, the calendar and grocery lists can be saved or printed. Instructions 
+on saving the page are provided on the Frequently Asked Questions page of the application.
+
+Project work breakdown:
+
+Xue Liu
+Front-end/web application research and implementation
+JUNIT Testings
+
+Classes worked on: 
+GroceryList, GroceryListHandler, Ingredient, DishReader, Dish, Ingredient
+	 											
+Krishna Morawala:
+Project Design and API research and implementation
+Front-end/web application research and implementation
+Summary and read me files
+
+Classes worked on:
+RecipeDishplayHandler, RecipeListDisplayHandler, RecipeSearchHandler, Calendar Handler, TagCreator, YummlyAPIHandler, FAQHandler, DishReader
+
+Vineela Pentyala	
+Front-end/web application research and implementation
+JavaScript implementation and research
+Instructions on the application
+
+Classes worked on:		
+ManuelRecipeInputHandler, Calendar, CalendarHandler, DishReader, Dish

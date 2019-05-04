@@ -28,16 +28,8 @@ public class YummlyAPIHandler {
 	private static String getRecipeAttributionhtml;
 
 	/**
-	 * The following constructor creates an API handler object specific to
-	 * yummly.com API
+	 * Getter method
 	 * 
-	 * @param recipeToSearch recipe name to search
-	 */
-	public YummlyAPIHandler() {
-		// this.recipeToSearch = recipeToSearch;
-	}
-
-	/**
 	 * @return the getRecipeJSON
 	 */
 	public static JSONObject getGetRecipeJSON(String dishID) {
@@ -98,7 +90,7 @@ public class YummlyAPIHandler {
 
 		// searching the recipe and limiting the results to 20 with 10 recipes per page
 		String url = "http://api.yummly.com/v1/api/recipes?_app_id=07657d11&_app_key=6d13fda0951bfe4dc2f12d1690058462&q="
-				+ recipeToSearch + "&maxResult=20&start=10";
+				+ recipeToSearch + "&maxResult=22&start=10";
 
 		// initializing the url object
 		URL yummylySearchURL = new URL(url);
@@ -151,15 +143,10 @@ public class YummlyAPIHandler {
 
 				// JSON object "attribution" stores information such as "text", "url", and
 				// "logo" related to the attribution
-				// System.out.println("Attributions:");
 				JSONObject attribution = searchRecipeJSON.getJSONObject("attribution");
 				searchRecipeAttributionhtml = (String) attribution.get("html");
 				// System.out.println(searchRecipeAttributionhtml);
 				// recipeNameAndDishID.put("Attribution html", searchRecipeAttributionhtml);
-
-				// System.out.println(attribution.get("text") + " at: " +
-				// attribution.get("url"));
-				// System.out.println("Find logo at: " + attribution.get("logo") + "\n");
 
 			}
 			in.close();
@@ -206,7 +193,6 @@ public class YummlyAPIHandler {
 
 				// creating a JSON object to obtain information
 				getRecipeJSON = new JSONObject(inputLine);
-//				System.out.println("passed");
 //				System.out.println(getRecipeJSON.toString());
 
 				// The following is created to meet Yummly's mandatory attribution requirements

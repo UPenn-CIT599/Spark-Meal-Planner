@@ -17,11 +17,9 @@ public class HomePageHandler implements Route {
 	public Object handle(Request request, Response response) throws Exception {
 		return TagCreator.gethtmlHead("Meal Planner Home Page")
 				+ TagCreator.createBodyTitle("Welcome To Our Meal Planner")
-				+ TagCreator.createAParagraph("This app is designed to make your meal plans easy!")
-				+"<br>"
+				+ TagCreator.createAParagraph("This app is designed to make your meal plans easy!") + "<br>"
 				+ TagCreator.createAParagraph("Get started now!")
-				+ TagCreator.createButton("searchrecipe", "Create a Meal Plan") 
-				+ TagCreator.getFooter()
+				+ TagCreator.createButton("searchrecipe", "Create a Meal Plan") + TagCreator.getFooter()
 				+ TagCreator.closeTag();
 	}
 
