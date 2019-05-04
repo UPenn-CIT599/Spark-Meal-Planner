@@ -23,7 +23,7 @@ Front-end/web application research and implementation
 JUNIT Testings
 
 Classes worked on: 
-GroceryList, GroceryListHandler, Ingredient, DishReader, Dish, Ingredient
+GroceryList, GroceryListHandler, DishReader, Dish
 	 											
 Krishna Morawala:
 Project Design and API research and implementation
@@ -34,9 +34,11 @@ Classes worked on:
 RecipeDishplayHandler, RecipeListDisplayHandler, RecipeSearchHandler, Calendar Handler, TagCreator, YummlyAPIHandler, FAQHandler, DishReader
 
 Vineela Pentyala	
-Front-end/web application research and implementation
-JavaScript implementation and research
-Instructions on the application
+Front-end/web application research and implementation - HTML & CSS Styling
+Web App design - identification of classes and designation of classes for each class
+JUNIT Tests, JavaScript implementation and research
+Instructions on the application and project coordination
 
 Classes worked on:		
-ManuelRecipeInputHandler, Calendar, CalendarHandler, DishReader, Dish
+ManualRecipeInputHandler, Calendar, CalendarHandler, DishReader, Dish, Ingredient, TagCreator, 
+converter(included in Design milestone, but dropped the idea later due to constraints in data received from the API)
