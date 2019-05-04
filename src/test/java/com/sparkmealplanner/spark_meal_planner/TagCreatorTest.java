@@ -38,7 +38,7 @@ public class TagCreatorTest {
 	public void testCreateButtonWithNoParameters() {
 		String result = TagCreator.createButton("home", "Home");
 		// System.out.println(result);
-		String expected = "<button type=\"button\" onclick=\"location.href='/home'\">Home</button>";
+		String expected = "<button class=\"button\" type=\"button\" onclick=\"location.href='/home'\">Home</button>";
 		assertEquals(expected, result);
 
 	}
@@ -50,8 +50,8 @@ public class TagCreatorTest {
 	@Test
 	public void testCreateButtonWithOneParameters() {
 		String result = TagCreator.createButton("location1", "Location 1", "Param1", "Param1Info");
-		// System.out.println(result);
-		String expected = "<button type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/location1?Param1=Param1Info'\">Location 1</button>";
+//		System.out.println(result);
+		String expected = "<button class=\"button\" type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/location1?Param1=Param1Info'\">Location 1</button>";
 		assertEquals(expected, result);
 	}
 
@@ -64,7 +64,7 @@ public class TagCreatorTest {
 		String result = TagCreator.createButton("location1", "Location 1", "Param1", "Param1Info", "Param2",
 				"Param2Info");
 //		System.out.println(result);
-		String expected = "<button type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/location1?Param1=Param1Info&Param2=Param2Info'\">Location 1</button>";
+		String expected = "<button class=\"button\" type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/location1?Param1=Param1Info&Param2=Param2Info'\">Location 1</button>";
 		assertEquals(expected, result);
 	}
 
@@ -77,7 +77,8 @@ public class TagCreatorTest {
 		String result = TagCreator.createButton("location1", "Location 1", "Param1", "Param1Info", "Param2",
 				"Param2Info", "Param3", "Param3Info");
 		// System.out.println(result);
-		String expected = "<button type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/location1?Param1=Param1Info&Param2=Param2Info&Param3=Param3Info'\">Location 1</button>";
+		String expected = "<button class=\"button\" type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/location1?Param1=Param1Info&Param2=Param2Info&Param3=Param3Info'\">Location 1</button>";
+		
 		assertEquals(expected, result);
 
 	}
@@ -115,7 +116,7 @@ public class TagCreatorTest {
 	public void testCreatePrintThisButton() {
 		String result = TagCreator.createPrintThisButton();
 		// System.out.println(result);
-		String expected = "<button onclick=\"window.print()\">Print This Page</button>";
+		String expected = "<button class=\"button\" onclick=\"window.print()\">Print This Page</button>";
 		assertEquals(expected, result);
 
 	}

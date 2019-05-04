@@ -105,7 +105,7 @@ public class TagCreator {
 	 * @return HTML
 	 */
 	public static String createButton(String pageUrlToDirect, String ButtonTextToDisplay) {
-		return "<button class = \"button\"type=\"button\" onclick=\"location.href='/" + pageUrlToDirect + "'\">"
+		return "<button class=\"button\" type=\"button\" onclick=\"location.href='/" + pageUrlToDirect + "'\">"
 				+ ButtonTextToDisplay + "</button>";
 	}
 
@@ -120,7 +120,7 @@ public class TagCreator {
 	 */
 	public static String createButton(String pageUrlToDirect, String ButtonTextToDisplay, String param1Name,
 			String param1Info) {
-		return "<button class =\"button\" type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/" + pageUrlToDirect + "?"
+		return "<button class=\"button\" type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/" + pageUrlToDirect + "?"
 				+ param1Name + "=" + param1Info + "'\">" + ButtonTextToDisplay + "</button>";
 	}
 
@@ -138,7 +138,7 @@ public class TagCreator {
 	 */
 	public static String createButton(String pageUrlToDirect, String ButtonTextToDisplay, String param1Name,
 			String param1Info, String param2Name, String param2Info) {
-		return "<button class =\"button\" type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/" + pageUrlToDirect + "?"
+		return "<button class=\"button\" type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/" + pageUrlToDirect + "?"
 				+ param1Name + "=" + param1Info + "&" + param2Name + "=" + param2Info + "'\">" + ButtonTextToDisplay
 				+ "</button>";
 	}
@@ -157,7 +157,7 @@ public class TagCreator {
 	 */
 	public static String createButton(String pageUrlToDirect, String ButtonTextToDisplay, String param1Name,
 			String param1Info, String param2Name, String param2Info, String param3Name, String param3Info) {
-		return "<button class =\"button\" type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/" + pageUrlToDirect + "?"
+		return "<button class=\"button\" type=\"button\" \"margin-left: 10px\" onclick=\"location.href='/" + pageUrlToDirect + "?"
 				+ param1Name + "=" + param1Info + "&" + param2Name + "=" + param2Info + "&" + param3Name + "=" + param3Info +"'\">" + ButtonTextToDisplay
 				+ "</button>";
 	}
@@ -188,7 +188,7 @@ public class TagCreator {
 	 * @return HTML
 	 */
 	public static String createPrintThisButton() {
-		return "<button class = \"button\" onclick=\"window.print()\">Print This Page</button>";
+		return "<button class=\"button\" onclick=\"window.print()\">Print This Page</button>";
 
 	}
 

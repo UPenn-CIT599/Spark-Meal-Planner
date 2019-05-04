@@ -55,7 +55,7 @@ public class RecipeListDisplayHandler implements Route {
 		StringBuilder sb = new StringBuilder();
 
 		// creating a button in HTML
-		sb.append(TagCreator.createButton("addrecipe", "I have a url to add recipe from"));
+		sb.append(TagCreator.createButton("addnewrecipe", "I have a url to add recipe from"));
 
 		return sb.toString();
 	}

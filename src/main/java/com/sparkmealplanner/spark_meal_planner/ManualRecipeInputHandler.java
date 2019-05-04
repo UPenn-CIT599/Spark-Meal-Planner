@@ -59,7 +59,7 @@ public class ManualRecipeInputHandler implements Route {
 
 	public String recipeURLForm() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("  Recipe URL:<br>\r\n" + "  <input type=\"URL\" name=\"recipeURL\" value = \"" + manCookingStepsURL
+		sb.append("Recipe URL:<br>\r\n" + "  <input type=\"URL\" name=\"recipeURL\" value = \"" + manCookingStepsURL
 				+ "\"required>\r\n" + "  <br>");
 		return sb.toString();
 	}
