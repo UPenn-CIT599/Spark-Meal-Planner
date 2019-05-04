@@ -26,18 +26,22 @@ public class TagCreator {
 	
 	public static String returnButtonCSS() {
 		return ".button {"
-//				+ "border: none;"
-//				+ "background-color: #555555;"
-				+ "border: 1px solid black;"
+				+ "border: none;"
+				+ "background-color: White;"
+				+ "color: black;"
+				+ "padding: 6px 8px;"
+				+ "text-align: center;"
+				+ "text-decoration: none;"
+				+ "border: 2px solid #555555;"
 				+ "padding: 3px 3px;"
 				+ "font-family:verdana;"
-				+ "font-size: 16px;"
-//				+ "box-shadow: 0 0 20px rgba(0,0,0,0.2);"
-				+ "border-radius: 5px;"
+				+ "font-size: 12px;"
+				+ "margin: 6px 4px"
 				+ "cursor: pointer;"
 				+ "display: inline-block;"
+				+ "transition-duration: 0.4s"
 				+ "}"
-				+ ".butotn:hover {background: #eee;  transition: background-color .6s ease-out;}";
+				+ ".button:hover {background-color: #555555; color:white;}";
 	}
 	
 	public static String returnTableCSSStyle() {

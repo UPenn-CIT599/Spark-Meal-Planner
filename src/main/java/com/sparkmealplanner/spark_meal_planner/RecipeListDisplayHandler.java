@@ -69,9 +69,9 @@ public class RecipeListDisplayHandler implements Route {
 
 		// searching Yummly using the API handler and related attributes
 		try {
-			YummlyAPIHandler.searchReceipe(recipeToSearch);
-			attributionHtml = YummlyAPIHandler.getSearchRecipeAttributionhtml();
-			recipeNameAndDishID = YummlyAPIHandler.getRecipeNameAndDishID();
+		    	YummlyAPIHandler.searchReceipe(recipeToSearch);
+		    	attributionHtml = YummlyAPIHandler.getSearchRecipeAttributionhtml();
+		    	recipeNameAndDishID = YummlyAPIHandler.getRecipeNameAndDishID();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
