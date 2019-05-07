@@ -63,19 +63,12 @@ public class GroceryListTest {
 
 	}
 
-	// @Before
-	// public void setUp() throws Exception {
-	// }
-
 	/**
 	 * The test is to test if both dishes are added the dish list
 	 */
 	@Test
 	public void testAllDishesAddtoDishList() {
-		// for (Dish eachdish: listOfDish) {
-		// System.out.println(eachdish.getDishName());
-		// }
-		// System.out.println(listOfDish.size());
+
 		assertEquals(2, listOfDish.size());
 	}
 
@@ -99,9 +92,11 @@ public class GroceryListTest {
 		assertEquals("Apple Jellies", dishNames.get(0));
 		assertEquals("Coconut Cake", dishNames.get(1));
 	}
+
 	/**
-	 * The method is to read the Ingredient ArrayList in groceryList hashmap, to return
-	 * a String ArrayList for testing
+	 * The method is to read the Ingredient ArrayList in groceryList hashmap, to
+	 * return a String ArrayList for testing
+	 * 
 	 * @param dishInGroceryList
 	 * @return groceryListDishLines
 	 */
@@ -109,7 +104,8 @@ public class GroceryListTest {
 
 		// get groceryList for dish "Apple Jellies"
 		groceryListDishLines = new ArrayList<String>();
-		//loop through the dish select and return the name of each grocery item (Ingredient line)
+		// loop through the dish select and return the name of each grocery item
+		// (Ingredient line)
 		for (Ingredient ingredientLines : groceryList.get(dishInGroceryList)) {
 			groceryListDishLines.add(ingredientLines.getIngredientLine());
 		}
@@ -125,30 +121,12 @@ public class GroceryListTest {
 	@Test
 	public void testGetGroceryListFromListOfDishes_TestGroceryListValue() {
 
-//		// get groceryList for dish "Apple Jellies"
-//		groceryListDish1Lines = new ArrayList<String>();
-//
-//		for (Ingredient ingredientLines : groceryList.get("Apple Jellies")) {
-//			groceryListDish1Lines.add(ingredientLines.getIngredientLine());
-//		}
-		
 		groceryListDish1Lines = getGroceryListString("Apple Jellies");
 		groceryListDish2Lines = getGroceryListString("Coconut Cake");
-		
-		// System.out.println(groceryListDish1Lines);
 
 		// test HashMap Value of Dish 1
 		assertEquals(Arrays.asList("3 pounds of apples", "1 cup of water", "1 1/2 cups of sugar", "juice of 1 lemon"),
 				groceryListDish1Lines);
-
-//		// get groceryList for dish "Apple Jellies"
-//		groceryListDish2Lines = new ArrayList<String>();
-//
-//		for (Ingredient ingredientLines : groceryList.get("Coconut Cake")) {
-//			groceryListDish2Lines.add(ingredientLines.getIngredientLine());
-//		}
-
-		// System.out.println(groceryListDish2Lines);
 
 		// test HashMap Value of Dish 2
 		assertEquals(Arrays.asList("1 box of butter cake mix", "2 cups sugar", "16 oz cantainer sour cream",
