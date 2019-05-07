@@ -2,7 +2,7 @@ Meal Planner (A Final Group Project for CIT 591)
 
 Instructions for running the app:
 1. Run main() in App.java
-2. Open a new tab in a browser and type in "http://localhost:8081/" as the url
+2. Open a new tab in a browser and type in "http://localhost:8095/" as the url
 
 Note: In some instances you may be asked to add the "java-json.jar" to be added to your eclipse library. To
 add the file:
