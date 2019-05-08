@@ -178,7 +178,7 @@ public class YummlyAPIHandler {
 		int responseCode = connection.getResponseCode();
 
 		// System.out.println("Response Code : " + responseCode);
-		getResponseCodeExplanation(responseCode);
+//		getResponseCodeExplanation(responseCode);
 
 		// continue the process only if a valid response code of 200 is given by API
 		// (valid response)

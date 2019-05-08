@@ -66,8 +66,10 @@ public class CalendarHandler implements Route {
 
 			try {
 				// using dishreader class, create a dish from JSON derived
-				DishReader dr = new DishReader(json);
-				dish = dr.getDishCreated();
+				if(json != null) {
+					DishReader dr = new DishReader(json);
+					dish = dr.getDishCreated();					
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

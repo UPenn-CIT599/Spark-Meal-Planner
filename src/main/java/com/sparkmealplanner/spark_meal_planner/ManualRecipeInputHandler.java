@@ -71,8 +71,8 @@ public class ManualRecipeInputHandler implements Route {
 	 */
 	public String cookingTimeForm() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Cooking Time in Minutes:<br>\r\n" + "  <input type=\"number\" name=\"cookingtime\" value =\""
-				+ manCookingTimeInSeconds + "\"required>\r\n" + "  <br>");
+		sb.append("Cooking Time in Minutes:<br>\r\n" + "  <input type=\"number\" name=\"cookingtime\" min = \"1\"value =\""
+				+ (int) manCookingTimeInSeconds + "\"required>\r\n" + "  <br>");
 		return sb.toString();
 	}
 
@@ -83,7 +83,7 @@ public class ManualRecipeInputHandler implements Route {
 	 */
 	public String servingsizeForm() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Serving size:<br>\r\n" + "  <input type=\"number\" name=\"servingsize\" value =\""
+		sb.append("Serving size:<br>\r\n" + "  <input type=\"number\" name=\"servingsize\" min = \"1\" value =\""
 				+ manNumOfPeopleToServe + "\"required>\r\n" + "<br><br>"
 				+ "<button class = \" button\" type=\"submit\">Add Ingredients To Proceed</button>" + "</form></div>" + "  <br>\r\n");
 //	    sb.append("<button style=\"margin-left: 10px\" type=\"submit\">Submit The Recipe</button>" + "</form></div>");
@@ -187,7 +187,7 @@ public class ManualRecipeInputHandler implements Route {
 				manCookingStepsURL = request.queryParams("recipeURL");
 			}
 			if (request.queryParams("cookingtime") != null) {
-				manCookingTimeInSeconds = Double.parseDouble(request.queryParams("cookingtime"));
+				manCookingTimeInSeconds = Double.parseDouble(request.queryParams("cookingtime")) * 60;
 			}
 			if (request.queryParams("servingsize") != null) {
 				manNumOfPeopleToServe = Integer.parseInt(request.queryParams("servingsize"));
