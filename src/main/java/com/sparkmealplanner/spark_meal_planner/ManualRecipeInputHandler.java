@@ -91,7 +91,8 @@ public class ManualRecipeInputHandler implements Route {
 	}
 
 	/**
-	 * 
+	 * The following method creates a button with the text "Display the Recipe". Clicking on this button takes the user to a page from where
+	 * they can add it to the calendar
 	 * @return
 	 */
 	public String displayRecipeButton() {
@@ -101,7 +102,7 @@ public class ManualRecipeInputHandler implements Route {
 	}
 
 	/**
-	 * 
+	 * This method creates an html button that lets the user submit the recipe for the creation of a dish object and lets them add it to their calendar
 	 * @return
 	 */
 	public String submitButton() {
@@ -110,13 +111,16 @@ public class ManualRecipeInputHandler implements Route {
 		return sb;
 	}
 	
+	/**
+	 *  This method creates an html button that lets the user to refresh the recipe adding page to default blank fields
+	 */
 	public String addnewrecipeButton() {
 	    String sb = HtmlWriter.createButton("addnewrecipe", "Create a New Recipe");
 		return sb;
 	}
 
 	/**
-	 * 
+	 * This method creates an html unordered list object to display the list of ingredients entered by the user for a recipe
 	 * @return
 	 */
 	public String ingredientList() {
@@ -176,7 +180,7 @@ public class ManualRecipeInputHandler implements Route {
 	}
 
 	/**
-	 * 
+	 * Handle method to create a form to collect details of a recipe from the user
 	 */
 	public Object handle(Request request, Response response) throws Exception {
 		if ("/addingredients".equals(request.pathInfo())) {
@@ -207,7 +211,7 @@ public class ManualRecipeInputHandler implements Route {
 		}
 		if ("/addnewrecipe".equals(request.pathInfo())) {
 		    new ManualRecipeInputHandler();
-		    manDishName = "";
+		    	manDishName = "";
 			manIngredients = new ArrayList<Ingredient>();
 			manCookingStepsURL = "";
 			manCookingTimeInSeconds = 0;
@@ -219,7 +223,10 @@ public class ManualRecipeInputHandler implements Route {
 				+ submitButton() + addnewrecipeButton() +
 				HtmlWriter.getFooter() + HtmlWriter.closeTag();
 	}
-
+	/**
+	 * getter method
+	 * @return a manually input dish object
+	 */
 	public static Dish getManDish() {
 		return manDish;
 	}
