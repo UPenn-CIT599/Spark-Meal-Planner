@@ -107,6 +107,9 @@ public class TagCreator {
 				// Style the "active" element to highlight the current page
 				+ ".navbar a.active {" + "background-color: #4CAF50;" + "color: white;}";
 	}
+	public static String returnBodyStyle() {
+	    return "body {font-family:verdana;}";
+	}
 
 	/**
 	 * The following returns an html head element
@@ -115,7 +118,7 @@ public class TagCreator {
 	 * @return html page
 	 */
 	public static String gethtmlHead(String titleText) {
-		return "<html><head><style> " + returnNavBarCSSStyle() + returnButtonCSS() +  returnTableCSSStyle() + returnULListCSSStyle() + "</style><title>" + titleText
+		return "<html><head><style> " + returnBodyStyle() + returnNavBarCSSStyle() + returnButtonCSS() +  returnTableCSSStyle() + returnULListCSSStyle() + "</style><title>" + titleText
 				+ "</title></head>";
 	}
 

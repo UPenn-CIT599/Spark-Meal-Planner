@@ -1,4 +1,4 @@
-Project Name
+﻿Project Name
 Meal Planner
 
 
@@ -19,11 +19,12 @@ on saving the page are provided on the Frequently Asked Questions page of the ap
 Project work breakdown:
 
 Xue Liu
-Front-end/web application research and implementation
+Front-end/web application research and implementation - HTML
+Collaboration on project and web app design
 JUNIT Testings
 
 Classes worked on: 
-GroceryList, GroceryListHandler, DishReader, Dish
+GroceryList, GroceryListHandler, DishReader, Dish, Ingredient
 	 											
 Krishna Morawala:
 Project Design and API research and implementation

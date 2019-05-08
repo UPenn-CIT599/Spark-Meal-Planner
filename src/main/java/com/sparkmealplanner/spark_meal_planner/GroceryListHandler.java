@@ -31,6 +31,9 @@ public class GroceryListHandler implements Route {
 		}
 	}
 
+	/**
+	 * Method to handle grocery list page
+	 */
 	public Object handle(Request request, Response response) throws Exception {
 
 		// storing the parameter from request in a variable
@@ -42,7 +45,8 @@ public class GroceryListHandler implements Route {
 		}
 
 		return TagCreator.gethtmlHead("Grocery List") + TagCreator.createBodyTitle("Grocery List")
-				+ displayGroceryList() + TagCreator.createPrintThisButton() + TagCreator.getFooter()
+				+ displayGroceryList() + TagCreator.createPrintThisButton()
+				+ TagCreator.createButton("calendar", "Go Back To Calendar") + TagCreator.getFooter()
 				+ TagCreator.closeTag();
 	}
 
@@ -74,17 +78,12 @@ public class GroceryListHandler implements Route {
 
 				if (eachIngredient != null) {
 
-					sb.append("<li>" + eachIngredient.getIngredientLine()
-//					+"<button style=\"margin-left: 10px\" type=\"submit\">Remove</button>"
-//					+"<button style=\"margin-left: 10px\" onclick=\"location.href='/removeItem?name" + "'\"type=\\\"submit\\\">Remove</button>" 
-							+ "        " + TagCreator.createButton("removeFromGroceryList", "Remove", "Dish", dishName,
-									"Id", String.valueOf(Id))
-							+ "</li>"
+					sb.append("<li>" + eachIngredient.getIngredientLine() + "        " + TagCreator.createButton(
+							"removeFromGroceryList", "Remove", "Dish", dishName, "Id", String.valueOf(Id)) + "</li>"
 
 					);
 				}
 				Id++;
-
 			}
 
 		}

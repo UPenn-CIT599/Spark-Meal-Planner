@@ -25,7 +25,7 @@ public class GroceryList {
 	 */
 	public GroceryList(ArrayList<Dish> listOfDish) {
 		this.listOfDish = listOfDish;
-//		getGroceryListFromListOfDishes();
+		// getGroceryListFromListOfDishes();
 	}
 
 	/**
