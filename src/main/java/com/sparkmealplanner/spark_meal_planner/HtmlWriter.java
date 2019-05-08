@@ -10,7 +10,7 @@ public class HtmlWriter {
 	// The following HTML tags refer to the footer page links
 	private static final String GoToHome = "<a href=\"/\"> Home </a>";
 	private static final String GoToCalendar = "<a href=\"/addtocalendar\"> Calendar </a>";
-	private static final String GoToGroceryList = "<a href=\"/grocerylist\"> GroceryList </a>";
+	private static final String GoToGroceryList = "<a href=\"/grocerylist\"> Grocery List </a>";
 	private static final String GoToSearchRecipe = "<a href=\"/searchrecipe\"> Search Recipes </a>";
 	private static final String GoToFAQ = "<a href=\"/faqs\"> Frequently Asked Questions </a>";
 	private static final String GoToRecipeInputFromURL = "<a href=\"/addnewrecipe\"> Add Recipes From URLs </a>";
