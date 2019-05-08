@@ -96,7 +96,7 @@ public class ManualRecipeInputHandler implements Route {
 	 */
 	public String displayRecipeButton() {
 
-		String sb = TagCreator.createButton("addrecipe", "Display The recipe");
+		String sb = HtmlWriter.createButton("addrecipe", "Display The recipe");
 		return sb;
 	}
 
@@ -106,12 +106,12 @@ public class ManualRecipeInputHandler implements Route {
 	 */
 	public String submitButton() {
 
-		String sb = TagCreator.createButton("addmanualrecipetocalendar", "Send To Calendar", "recipename", manDishName);
+		String sb = HtmlWriter.createButton("addmanualrecipetocalendar", "Send To Calendar", "recipename", manDishName);
 		return sb;
 	}
 	
 	public String addnewrecipeButton() {
-	    String sb = TagCreator.createButton("addnewrecipe", "Create a New Recipe");
+	    String sb = HtmlWriter.createButton("addnewrecipe", "Create a New Recipe");
 		return sb;
 	}
 
@@ -201,9 +201,9 @@ public class ManualRecipeInputHandler implements Route {
 					manNumOfPeopleToServe);
 			manDish.setDishID("manual");
 			
-			return TagCreator.gethtmlHead("Add Ingredients")
-					+ TagCreator.createBodyTitle("Enter your ingredients below:") + AddIngredientForm + ingredientList()
-					+ displayRecipeButton() + TagCreator.getFooter() + TagCreator.closeTag();
+			return HtmlWriter.gethtmlHead("Add Ingredients")
+					+ HtmlWriter.createBodyTitle("Enter your ingredients below:") + AddIngredientForm + ingredientList()
+					+ displayRecipeButton() + HtmlWriter.getFooter() + HtmlWriter.closeTag();
 		}
 		if ("/addnewrecipe".equals(request.pathInfo())) {
 		    new ManualRecipeInputHandler();
@@ -214,10 +214,10 @@ public class ManualRecipeInputHandler implements Route {
 			manNumOfPeopleToServe = 0;
 			manDish = null;
 		}
-		return TagCreator.gethtmlHead("Meal Planner Calendar") + TagCreator.createBodyTitle("Enter your recipe below:")
+		return HtmlWriter.gethtmlHead("Meal Planner Calendar") + HtmlWriter.createBodyTitle("Enter your recipe below:")
 				+ recipeNameForm() + recipeURLForm() + cookingTimeForm() + servingsizeForm() + ingredientList()
 				+ submitButton() + addnewrecipeButton() +
-				TagCreator.getFooter() + TagCreator.closeTag();
+				HtmlWriter.getFooter() + HtmlWriter.closeTag();
 	}
 
 	public static Dish getManDish() {

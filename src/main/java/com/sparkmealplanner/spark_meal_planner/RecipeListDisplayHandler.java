@@ -40,8 +40,8 @@ public class RecipeListDisplayHandler implements Route {
 		recipeToSearch = request.queryParams("recipetosearch");
 
 		// returning HTML
-		return TagCreator.gethtmlHead("Recipe List") + TagCreator.createBodyTitle(pageTitle) + searchRecipeWithAPI()
-				+ addRecipeFromURLButton() + TagCreator.getFooter() + TagCreator.closeTag();
+		return HtmlWriter.gethtmlHead("Recipe List") + HtmlWriter.createBodyTitle(pageTitle) + searchRecipeWithAPI()
+				+ addRecipeFromURLButton() + HtmlWriter.getFooter() + HtmlWriter.closeTag();
 	}
 
 	/**
@@ -55,7 +55,7 @@ public class RecipeListDisplayHandler implements Route {
 		StringBuilder sb = new StringBuilder();
 
 		// creating a button in HTML
-		sb.append(TagCreator.createButton("addnewrecipe", "I have a url to add recipe from"));
+		sb.append(HtmlWriter.createButton("addnewrecipe", "I have a url to add recipe from"));
 
 		return sb.toString();
 	}
@@ -89,7 +89,7 @@ public class RecipeListDisplayHandler implements Route {
 			sb.append("<li>" + aTag + recipe.getKey() + "</a>"
 
 			// each line has a button for adding the recipe to calendar
-					+ TagCreator.createButton("addtocalendar", " Send to Calendar", "recipename", recipe.getKey(),
+					+ HtmlWriter.createButton("addtocalendar", " Send to Calendar", "recipename", recipe.getKey(),
 							"recipeid", recipe.getValue(), "recipesearched", recipeToSearch)
 					+ "</li>");
 

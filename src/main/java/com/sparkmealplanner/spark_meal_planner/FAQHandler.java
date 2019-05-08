@@ -24,17 +24,17 @@ public class FAQHandler implements Route {
 	 * The following handle method returns the HTML supporting the FAQ page
 	 */
 	public Object handle(Request request, Response response) throws Exception {
-		return TagCreator.gethtmlHead("Frequently Asked Questions") + TagCreator.createBodyTitle(pageTitle)
+		return HtmlWriter.gethtmlHead("Frequently Asked Questions") + HtmlWriter.createBodyTitle(pageTitle)
 
 		// inserting question 1 and answer 1 in HTML
-				+ "<strong>" + TagCreator.createAParagraph(question1) + "</strong>"
-				+ TagCreator.createAParagraph(answer1)
+				+ "<strong>" + HtmlWriter.createAParagraph(question1) + "</strong>"
+				+ HtmlWriter.createAParagraph(answer1)
 
 				// inserting question 2 and answer 2 in HTML
-				+ "<strong>" + TagCreator.createAParagraph(question2) + "</strong>"
-				+ TagCreator.createAParagraph(answer2)
+				+ "<strong>" + HtmlWriter.createAParagraph(question2) + "</strong>"
+				+ HtmlWriter.createAParagraph(answer2)
 
-				+ TagCreator.getFooter() + TagCreator.closeTag();
+				+ HtmlWriter.getFooter() + HtmlWriter.closeTag();
 
 	}
 }

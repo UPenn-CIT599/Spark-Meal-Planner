@@ -114,15 +114,15 @@ public class CalendarHandler implements Route {
 		}
 
 		// returns various HTML parts
-		return TagCreator.gethtmlHead("Meal Planner Calendar") + TagCreator.createBodyTitle("Calendar")
+		return HtmlWriter.gethtmlHead("Meal Planner Calendar") + HtmlWriter.createBodyTitle("Calendar")
 				+ displayCalendar() + displayRecipeSelected() + displayAddToCalendarOptions()
 				+ displayRemoveFromCalendarOptions() + goBackToSearchButton() + searchNewRecipesButton()
-				+ addRecipeFromURLButton() + TagCreator.createPrintThisButton() + displayGoToGroceryListButton()
-				+ TagCreator.getFooter() + TagCreator.closeTag();
+				+ addRecipeFromURLButton() + HtmlWriter.createPrintThisButton() + displayGoToGroceryListButton()
+				+ HtmlWriter.getFooter() + HtmlWriter.closeTag();
 	}
 
 	private String displayGoToGroceryListButton() {
-		return TagCreator.createButton("grocerylist", "Show Grocery List");
+		return HtmlWriter.createButton("grocerylist", "Show Grocery List");
 	}
 
 	/**
@@ -275,7 +275,7 @@ public class CalendarHandler implements Route {
 	 * @return HTML
 	 */
 	private String goBackToSearchButton() {
-		return TagCreator.createButton("displayrecipelist", "Go back to search results", "recipetosearch",
+		return HtmlWriter.createButton("displayrecipelist", "Go back to search results", "recipetosearch",
 				recipeSearched);
 	}
 
@@ -285,7 +285,7 @@ public class CalendarHandler implements Route {
 	 * @return HTML
 	 */
 	private String searchNewRecipesButton() {
-		return TagCreator.createButton("searchrecipe", "Search a new recipe");
+		return HtmlWriter.createButton("searchrecipe", "Search a new recipe");
 	}
 
 	/**
@@ -299,7 +299,7 @@ public class CalendarHandler implements Route {
 		StringBuilder sb = new StringBuilder();
 
 		// creating a button in HTML
-		sb.append(TagCreator.createButton("addrecipe", "I have a url to add recipe from"));
+		sb.append(HtmlWriter.createButton("addrecipe", "I have a url to add recipe from"));
 		sb.append("<br><br>");
 
 		return sb.toString();

@@ -27,8 +27,8 @@ public class RecipeSearchHandler implements Route {
 	public Object handle(Request request, Response response) throws Exception {
 
 		// returns HTML elements
-		return TagCreator.gethtmlHead("Search Recipe") + TagCreator.createBodyTitle("Search My Recipes Below")
-				+ searchRecipeForm + addRecipeFromURLButton() + TagCreator.getFooter() + TagCreator.closeTag();
+		return HtmlWriter.gethtmlHead("Search Recipe") + HtmlWriter.createBodyTitle("Search My Recipes Below")
+				+ searchRecipeForm + addRecipeFromURLButton() + HtmlWriter.getFooter() + HtmlWriter.closeTag();
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class RecipeSearchHandler implements Route {
 		StringBuilder sb = new StringBuilder();
 		sb.append("<br><br>");
 		// creating a button in HTML
-		sb.append(TagCreator.createButton("addrecipe", "I would rather add a recipe on my own"));
+		sb.append(HtmlWriter.createButton("addrecipe", "I would rather add a recipe on my own"));
 
 		return sb.toString();
 	}

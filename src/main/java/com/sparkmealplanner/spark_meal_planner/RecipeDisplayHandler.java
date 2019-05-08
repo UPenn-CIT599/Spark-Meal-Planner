@@ -32,8 +32,8 @@ public class RecipeDisplayHandler implements Route {
 		recipeID = request.queryParams("recipeid");
 
 		// returning html elements
-		return TagCreator.gethtmlHead("Full Recipe") + TagCreator.createBodyTitle("Full Recipe")
-				+ getFullRecipeWithAPI() + sendToCalendar() + TagCreator.getFooter() + TagCreator.closeTag();
+		return HtmlWriter.gethtmlHead("Full Recipe") + HtmlWriter.createBodyTitle("Full Recipe")
+				+ getFullRecipeWithAPI() + sendToCalendar() + HtmlWriter.getFooter() + HtmlWriter.closeTag();
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class RecipeDisplayHandler implements Route {
 	 * @return HTML
 	 */
 	private String sendToCalendar() {
-		return TagCreator.createButton("addtocalendar", "Send to Calendar", "recipename", dish.getDishName());
+		return HtmlWriter.createButton("addtocalendar", "Send to Calendar", "recipename", dish.getDishName());
 	}
 
 	/**

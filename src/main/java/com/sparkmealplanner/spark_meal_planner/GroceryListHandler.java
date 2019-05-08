@@ -44,10 +44,10 @@ public class GroceryListHandler implements Route {
 			removefromGroceryList(dishName, removeItemId);
 		}
 
-		return TagCreator.gethtmlHead("Grocery List") + TagCreator.createBodyTitle("Grocery List")
-				+ displayGroceryList() + TagCreator.createPrintThisButton()
-				+ TagCreator.createButton("calendar", "Go Back To Calendar") + TagCreator.getFooter()
-				+ TagCreator.closeTag();
+		return HtmlWriter.gethtmlHead("Grocery List") + HtmlWriter.createBodyTitle("Grocery List")
+				+ displayGroceryList() + HtmlWriter.createPrintThisButton()
+				+ HtmlWriter.createButton("calendar", "Go Back To Calendar") + HtmlWriter.getFooter()
+				+ HtmlWriter.closeTag();
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class GroceryListHandler implements Route {
 
 				if (eachIngredient != null) {
 
-					sb.append("<li>" + eachIngredient.getIngredientLine() + "        " + TagCreator.createButton(
+					sb.append("<li>" + eachIngredient.getIngredientLine() + "        " + HtmlWriter.createButton(
 							"removeFromGroceryList", "Remove", "Dish", dishName, "Id", String.valueOf(Id)) + "</li>"
 
 					);

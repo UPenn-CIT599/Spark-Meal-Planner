@@ -15,12 +15,12 @@ public class HomePageHandler implements Route {
 	 * the app
 	 */
 	public Object handle(Request request, Response response) throws Exception {
-		return TagCreator.gethtmlHead("Meal Planner Home Page")
-				+ TagCreator.createBodyTitle("Welcome To Our Meal Planner")
-				+ TagCreator.createAParagraph("This app is designed to make your meal plans easy!") + "<br>"
-	//			+ TagCreator.createAParagraph("Get started now!")
-				+ TagCreator.createButton("searchrecipe", "Create a Meal Plan now!") + TagCreator.getFooter()
-				+ TagCreator.closeTag();
+		return HtmlWriter.gethtmlHead("Meal Planner Home Page")
+				+ HtmlWriter.createBodyTitle("Welcome To Our Meal Planner")
+				+ HtmlWriter.createAParagraph("This app is designed to make your meal plans easy!") + "<br>"
+	//			+ HtmlWriter.createAParagraph("Get started now!")
+				+ HtmlWriter.createButton("searchrecipe", "Create a Meal Plan now!") + HtmlWriter.getFooter()
+				+ HtmlWriter.closeTag();
 	}
 
 }

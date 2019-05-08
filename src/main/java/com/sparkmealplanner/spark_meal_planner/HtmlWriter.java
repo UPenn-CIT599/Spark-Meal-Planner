@@ -5,7 +5,7 @@ package com.sparkmealplanner.spark_meal_planner;
  * quickly create and reuse existing HTML codes
  *
  */
-public class TagCreator {
+public class HtmlWriter {
 
 	// The following HTML tags refer to the footer page links
 	private static final String GoToHome = "<a href=\"/\"> Home </a>";
