@@ -90,7 +90,7 @@ public class YummlyAPIHandler {
 
 		// searching the recipe and limiting the results to 20 with 10 recipes per page
 		String url = "http://api.yummly.com/v1/api/recipes?_app_id=07657d11&_app_key=6d13fda0951bfe4dc2f12d1690058462&q="
-				+ recipeToSearch + "&maxResult=22&start=10";
+				+ recipeToSearch + "&maxResult=21&start=10";
 
 		// initializing the url object
 		URL yummylySearchURL = new URL(url);
