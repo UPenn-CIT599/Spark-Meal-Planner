@@ -19,7 +19,7 @@ public class HtmlWriter {
 		return "ul.a { "+ 
 //				"border-left: 5px solid red;" + 
 //				"background-color: #f1f1f1;" + 
-				"list-style-type: none;" + 
+				"list-style-type: square; !important" + 
 //				"padding: 10px 20px;" + 
 				"}";
 	}
@@ -27,19 +27,21 @@ public class HtmlWriter {
 	public static String returnButtonCSS() {
 		return ".button {" + 
 				"font-family: 'Roboto', sans-serif;" + 
-			 	"padding: 6px 8px;"+
+			 	"padding: 3px 4px;"+
 	//			"font-size: 11px;" + 
 				"text-transform: uppercase;" + 
 				"letter-spacing: 1px;" + 
 				"font-weight: 500;" + 
 				"color: black;" + 
 				"background-color: #fff;" + 
-				"border: none;" + 
+				"border: 1px solid #555555;"+
+//				"border: none;" + 
 				"border-radius: 7px;" + 
 				"box-shadow: 0px 8px 15px rgba(0.05, 0.05, 0.05, 0.07);" + 
 				"transition: all 0.3s ease 0s;" + 
 				"cursor: pointer;" + 
 				"outline: none;" + 
+				"margin: 6px 4px"+
 				"  }" + 
 				".button:hover {" + 
 				"  background-color: #555555;" + 
