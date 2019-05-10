@@ -116,7 +116,7 @@ public class CalendarHandler implements Route {
 		// returns various HTML parts
 		return HtmlWriter.gethtmlHead("Meal Planner Calendar") + HtmlWriter.createBodyTitle("Calendar")
 				+ displayCalendar() + displayRecipeSelected() + displayAddToCalendarOptions()
-				+ displayRemoveFromCalendarOptions() + goBackToSearchButton() + searchNewRecipesButton()
+				+ displayRemoveFromCalendarOptions()  + searchNewRecipesButton()
 				+ addRecipeFromURLButton() + HtmlWriter.createPrintThisButton() + displayGoToGroceryListButton()
 				+ HtmlWriter.getFooter() + HtmlWriter.closeTag();
 	}
@@ -269,15 +269,15 @@ public class CalendarHandler implements Route {
 		return "<p><label> Recipe Selected: " + recipeToAdd + "</label></p>";
 	}
 
-	/**
-	 * The following method creates a go back to search result button
-	 * 
-	 * @return HTML
-	 */
-	private String goBackToSearchButton() {
-		return HtmlWriter.createButton("displayrecipelist", "Go back to search results", "recipetosearch",
-				recipeSearched);
-	}
+//	/**
+//	 * The following method creates a go back to search result button
+//	 * 
+//	 * @return HTML
+//	 */
+//	private String goBackToSearchButton() {
+//		return HtmlWriter.createButton("displayrecipelist", "Go back to search results", "recipetosearch",
+//				recipeSearched);
+//	}
 
 	/**
 	 * The following method create a search new recipe button
