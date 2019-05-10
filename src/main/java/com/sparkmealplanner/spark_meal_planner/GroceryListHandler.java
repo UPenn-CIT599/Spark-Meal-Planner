@@ -9,6 +9,7 @@ import spark.Response;
 import spark.Route;
 
 public class GroceryListHandler implements Route {
+	private HashMap<String, Dish> calendarHashMap;
 	private int removeItemId;
 	private ArrayList<Dish> listOfDish;
 	private HashMap<String, ArrayList<Ingredient>> groceryList;
@@ -20,21 +21,30 @@ public class GroceryListHandler implements Route {
 	 * The constructor initiate the dish list from the calendar
 	 */
 	public GroceryListHandler() {
-		HashMap<String, Dish> calendarHashMap = CalendarHandler.getCalendarHashMap();
+		calendarHashMap = new HashMap<String, Dish>();
 		listOfDish = new ArrayList<Dish>();
-		// loop through the HashMap and create an arrayliList of Dish objects.
-		for (Entry<String, Dish> mealsCalendar : calendarHashMap.entrySet()) {
-			Dish dishOnCalendar = mealsCalendar.getValue();
-			if (dishOnCalendar != null) {
-				listOfDish.add(dishOnCalendar);
-			}
-		}
+		groceryList = new HashMap<String, ArrayList<Ingredient>>();
+		listOfIngredients = new ArrayList<Ingredient>();
+//		grocery = new GroceryList();
 	}
 
 	/**
 	 * Method to handle grocery list page
 	 */
 	public Object handle(Request request, Response response) throws Exception {
+
+		calendarHashMap = CalendarHandler.getCalendarHashMap();
+		listOfDish.clear();
+		
+		// loop through the HashMap and create an arrayliList of Dish objects.
+		for (Entry<String, Dish> mealsCalendar : calendarHashMap.entrySet()) {
+			if (mealsCalendar.getValue() != null) {
+				Dish dishOnCalendar = mealsCalendar.getValue();
+				listOfDish.add(dishOnCalendar);
+			}
+		}
+		
+		
 
 		// storing the parameter from request in a variable
 
@@ -57,8 +67,7 @@ public class GroceryListHandler implements Route {
 	 */
 	public String displayGroceryList() {
 
-		GroceryListHandler glh = new GroceryListHandler();
-		grocery = new GroceryList(glh.listOfDish);
+		grocery = new GroceryList(listOfDish);
 		groceryList = grocery.getGroceryListFromListOfDishes();
 
 		StringBuilder sb = new StringBuilder();

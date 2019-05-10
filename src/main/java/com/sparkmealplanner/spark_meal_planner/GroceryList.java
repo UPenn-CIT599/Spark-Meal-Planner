@@ -29,6 +29,12 @@ public class GroceryList {
 	}
 
 	/**
+	 * Adding the default constructor.
+	 */
+	public GroceryList() {
+		// getGroceryListFromListOfDishes();
+	}
+	/**
 	 * The following method loops through the ArrayList of dishes for the week and
 	 * creates a HashMap that holds the dish names and maps to their ingredients
 	 * 
