@@ -20,9 +20,9 @@ public class HtmlWriterTest {
 	@Test
 	public void testGetFooter() {
 		String result = HtmlWriter.getFooter();
-		// System.out.println(result);
+		System.out.println(result);
 		String expected = "<div class=\"navbar\">" + "<a href=\"/\"> Home </a>"
-				+ "<a href=\"/addtocalendar\"> Calendar </a>" + "<a href=\"/grocerylist\"> GroceryList </a>"
+				+ "<a href=\"/addtocalendar\"> Calendar </a>" + "<a href=\"/grocerylist\"> Grocery List </a>"
 				+ "<a href=\"/searchrecipe\"> Search Recipes </a>"
 				+ "<a href=\"/addnewrecipe\"> Add Recipes From URLs </a>"
 				+ "<a href=\"/faqs\"> Frequently Asked Questions </a></div>";

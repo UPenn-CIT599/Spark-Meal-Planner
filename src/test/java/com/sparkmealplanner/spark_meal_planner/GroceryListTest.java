@@ -46,10 +46,10 @@ public class GroceryListTest {
 				Arrays.asList(new Ingredient[] { ingredient5, ingredient6, ingredient7, ingredient8, ingredient9 }));
 
 		// set dish1
-		Dish dish1 = new Dish("Apple Jellies", dish1Ingredients, "http://www.lottieanddoof.com/2008/10/apple-jellies/",
-				105, 4);
+		Dish dish1 = new Dish("manual", "Apple Jellies", dish1Ingredients,
+				"http://www.lottieanddoof.com/2008/10/apple-jellies/", 105, 4);
 		// set dish2
-		Dish dish2 = new Dish("Coconut Cake", dish2Ingredients,
+		Dish dish2 = new Dish("manual", "Coconut Cake", dish2Ingredients,
 				"https://www.plainchicken.com/2019/04/coconut-cake.html", 40, 11);
 
 		// add dish1 and dish2 to the list of dishes

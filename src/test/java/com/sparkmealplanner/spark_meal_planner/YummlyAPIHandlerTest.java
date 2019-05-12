@@ -25,7 +25,7 @@ public class YummlyAPIHandlerTest {
 		}
 
 		int listSize = YummlyAPIHandler.getRecipeNameAndDishID().size();
-		//System.out.println(listSize);
+		// System.out.println(listSize);
 		assertEquals(listSize, 20);
 	}
 
@@ -33,19 +33,23 @@ public class YummlyAPIHandlerTest {
 	 * Test method for {@link yummlyAPIHandler#getDishID(java.lang.String)}.
 	 * 
 	 * @throws Exception checks for the correct dishID for a recipe name (dish
-	 *                   checked against Yummly as of 05/08/2019)
+	 *                   checked against Yummly as of 05/12/2019) Yummly platform at
+	 *                   times changes the dishDI and hence this test may fail. As
+	 *                   of 5/12/2019, it passed
 	 */
 	@Test
 	public void testGetDishID() throws Exception {
 		YummlyAPIHandler.searchReceipe("cake");
 
 		String dishID = YummlyAPIHandler.getDishID("Honey Bun Cake");
-		//System.out.println(dishID);
+		// System.out.println(dishID);
 		assertEquals("Honey-Bun-Cake-1536635", dishID);
 	}
 
 	/**
-	 * The following method checks for the correct JSON object return
+	 * The following method checks for the correct JSON object return checked
+	 * against Yummly as of 05/12/2019 Yummly platform at times changes the dishDI
+	 * and hence this test may fail. As of 5/12/2019, it passed
 	 */
 	@Test
 	public void testGetJSON() {

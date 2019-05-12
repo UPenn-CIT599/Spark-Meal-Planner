@@ -1,6 +1,8 @@
 ﻿Project Name
 Meal Planner
 
+Link to GithHub:
+https://github.com/UPenn-CIT599/Spark-Meal-Planner.git
 
 Group Members:
 Xue Liu, Krishna Morawala, Vineela Pentyala
@@ -31,7 +33,7 @@ GroceryList, GroceryListHandler, DishReader, Dish, Ingredient
 Krishna Morawala:
 Project Design and API research and implementation
 Front-end/web application research and implementation
-Summary and read me files
+Prepared summary and read me files
 
 Classes worked on:
 RecipeDishplayHandler, RecipeListDisplayHandler, RecipeSearchHandler, Calendar Handler, TagCreator, YummlyAPIHandler, FAQHandler, DishReader
