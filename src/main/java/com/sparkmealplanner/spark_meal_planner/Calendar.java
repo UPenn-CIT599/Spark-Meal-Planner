@@ -8,28 +8,33 @@ import java.util.HashMap;
  *
  */
 public class Calendar {
-	private HashMap<String, Dish> calendar = new HashMap(); // HashMap to store the calendar for a week with dish
-	private HashMap<String, String> calendarToDisplay = new HashMap(); // HashMap to display the calendar in HTML
-	private ArrayList<String> calendarMeals = new ArrayList<String>();// ArrayList of day+meal combination
+
+	// HashMap to store the calendar for a week with dish to pass from
+	// CalendarHandler to GroceryListHandler
+	private HashMap<String, Dish> calendar = new HashMap();
+
+	// HashMap to display the calendar in HTML
+	private HashMap<String, String> calendarToDisplay = new HashMap();
+
+	// ArrayList of day+meal combination to be able to sort the drop down options in
+	// the CalendarHandler class
+	private ArrayList<String> calendarMeals = new ArrayList<String>();
+
 	private final static String[] daysOfTheWeek = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
 			"Sunday" };
 	private final static String[] meals = { "Breakfast", "Lunch", "Snack", "Dinner" };
 
 	/**
-	 * The following constructor creates a calendar HashMap. This method loops
-	 * through the dayOfTheWeek and meal String[] and a calendarKey is created by
-	 * adding the Strings for dayOfWeek and meal which creates a unique key. This is
-	 * initially mapped to a default dish called 'Not Picked Yet'
+	 * The following constructor creates both calendar HashMaps.
 	 * 
 	 */
 	public Calendar() {
 		for (String day : daysOfTheWeek) {
 			for (String meal : meals) {
 				String calendarKey = day + " " + meal;// key for the calendar HasMap using the dayOfWeek and meal
-
 				calendarMeals.add(day + " " + meal);
-				calendar.put(calendarKey, null);
-				calendarToDisplay.put(calendarKey, "");
+				calendar.put(calendarKey, null);// initially the dish objects are set as null
+				calendarToDisplay.put(calendarKey, "");// setting initial dish name text to be ""
 			}
 		}
 	}

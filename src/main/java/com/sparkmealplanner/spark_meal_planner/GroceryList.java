@@ -6,8 +6,8 @@ import java.util.Map.Entry;
 
 /**
  * This class contains the grocery list and related methods and properties.
- * grocery list contains list of ingredients, along with their quantities by
- * each dish
+ * grocery list contains list of ingredient (included in the ingredient lines)
+ * by each dish
  */
 public class GroceryList {
 
@@ -25,26 +25,27 @@ public class GroceryList {
 	 */
 	public GroceryList(ArrayList<Dish> listOfDish) {
 		this.listOfDish = listOfDish;
-		// getGroceryListFromListOfDishes();
 	}
 
 	/**
 	 * Adding the default constructor.
 	 */
 	public GroceryList() {
-		// getGroceryListFromListOfDishes();
+
 	}
+
 	/**
 	 * The following method loops through the ArrayList of dishes for the week and
 	 * creates a HashMap that holds the dish names and maps to their ingredients
 	 * 
-	 * @return groceryList
+	 * @return groceryListHashMap
 	 */
 	public HashMap<String, ArrayList<Ingredient>> getGroceryListFromListOfDishes() {
 
 		groceryList = new HashMap<String, ArrayList<Ingredient>>();
 
 		for (Dish dish : listOfDish) {
+			// getting dish information and storing in a HashMap
 			dishName = dish.getDishName();
 			listOfIngredients = dish.getIngredients();
 			groceryList.put(dishName, listOfIngredients);
@@ -55,7 +56,7 @@ public class GroceryList {
 
 	/**
 	 * 
-	 * Given a grocery list, the following method removed an item based on the
+	 * Given a grocery list, the following method removes an item based on the
 	 * ingredient line
 	 * 
 	 * @param groceryList      grocery list to modify
@@ -66,12 +67,14 @@ public class GroceryList {
 			String DishNameToChange, int ingredientId) {
 
 		// loop through hashmap to find the dish to change and the item in the arraylist
-
 		for (Entry<String, ArrayList<Ingredient>> groceryItems : groceryList.entrySet()) {
+
 			// when the dish name in hashmap is the same as the dish we want to change
 			if (DishNameToChange.equals(groceryItems.getKey())) {
+
 				// setting the list of ingredients
 				listOfIngredients = groceryList.get(DishNameToChange);
+
 				// loop through the ingredients list to remove unwanted item
 				for (int i = 0; i < listOfIngredients.size(); i++) {
 					if (ingredientId == i) {

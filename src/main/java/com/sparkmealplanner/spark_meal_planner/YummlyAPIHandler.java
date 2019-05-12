@@ -79,29 +79,27 @@ public class YummlyAPIHandler {
 	 * recipe ID.
 	 * 
 	 * @return hashmap of recipe name and ID
-	 * @throws Exception
+	 * @throws IOException, JSONException
 	 */
-	public static HashMap<String, String> searchReceipe(String recipeToSearch) throws Exception {
-
-		// this.recipeToSearch = recipeToSearch;
+	public static HashMap<String, String> searchReceipe(String recipeToSearch) throws IOException, JSONException {
 
 		// URLencoding parameter names and values (i.e. replacing " " to "+")
 		recipeToSearch = recipeToSearch.replace(" ", "+");
 
-		// searching the recipe and limiting the results to 20 with 10 recipes per page
+		// searching the recipe and limiting the results to 21 with 10 recipes per page
 		String url = "http://api.yummly.com/v1/api/recipes?_app_id=07657d11&_app_key=6d13fda0951bfe4dc2f12d1690058462&q="
 				+ recipeToSearch + "&maxResult=21&start=10";
 
 		// initializing the url object
-		URL yummylySearchURL = new URL(url);
-		// System.out.println("search url: " + yummylySearchURL);
+		URL yummylySearchURL;
+		yummylySearchURL = new URL(url);
 
 		// opens the connection
-		HttpURLConnection connection = (HttpURLConnection) yummylySearchURL.openConnection();
+		HttpURLConnection connection;
+		connection = (HttpURLConnection) yummylySearchURL.openConnection();
 
 		// checking response code for continuation of the process
 		int responseCode = connection.getResponseCode();
-		// System.out.println("Response Code : " + responseCode);
 		getResponseCodeExplanation(responseCode);
 
 		// continue the process only if a valid response code of 200 is given by API
@@ -114,17 +112,14 @@ public class YummlyAPIHandler {
 			while ((inputLine = in.readLine()) != null) {
 
 				// creating a JSON object to obtain information
-				JSONObject searchRecipeJSON = new JSONObject(inputLine);
-				searchRecipeJSON = searchRecipeJSON;
-//				System.out.println();
+				JSONObject searchRecipeJSON;
+				searchRecipeJSON = new JSONObject(inputLine);
 
 				// creating JSON array which is linked to key "matches" in the JSON object
 				JSONArray receipesArray = searchRecipeJSON.getJSONArray("matches");
-//				System.out.println("total recipes " + receipesArray.length());
 
 				// looping through the JSON array
 				for (int i = 0; i < receipesArray.length(); i++) {
-//					System.out.println(receipesArray.get(i));
 
 					// creating JSON object of dish info
 					JSONObject dishInfo = (JSONObject) receipesArray.get(i);
@@ -132,12 +127,8 @@ public class YummlyAPIHandler {
 					// key "recipeName" stores the name of the recipe in the the JSON object
 					String recipeName = (String) dishInfo.get("recipeName");
 
-					// adding index in front of the recipe name
-					// System.out.println(i + 1 + ". " + recipeName);
-
 					// storing dish ID
 					String dishID = (String) dishInfo.get("id");
-//					System.out.println("Dish Id: " + dishInfo.get("id") + "\n");
 					recipeNameAndDishID.put(recipeName, dishID);
 				}
 
@@ -145,9 +136,6 @@ public class YummlyAPIHandler {
 				// "logo" related to the attribution
 				JSONObject attribution = searchRecipeJSON.getJSONObject("attribution");
 				searchRecipeAttributionhtml = (String) attribution.get("html");
-				// System.out.println(searchRecipeAttributionhtml);
-				// recipeNameAndDishID.put("Attribution html", searchRecipeAttributionhtml);
-
 			}
 			in.close();
 		}
@@ -160,15 +148,14 @@ public class YummlyAPIHandler {
 	 * object
 	 * 
 	 * @param recipeID recipeID
-	 * @throws Exception
+	 * @throws IOException, JSONException
 	 * @return JSON object from Yummly
 	 */
-	public static JSONObject getRecipe(String recipeID) throws Exception {
+	public static JSONObject getRecipe(String recipeID) throws IOException, JSONException {
 
 		// URLencoding parameter names and values (i.e. replacing " " to "+")
 		String url = "http://api.yummly.com/v1/api/recipe/" + recipeID
 				+ "?_app_id=07657d11&_app_key=6d13fda0951bfe4dc2f12d1690058462";
-		// System.out.println("get recipe url: " + url);
 
 		// initializing the url and connection objects
 		URL yummylySearchURL = new URL(url);
@@ -176,9 +163,6 @@ public class YummlyAPIHandler {
 
 		// checking response code for continuation of the process
 		int responseCode = connection.getResponseCode();
-
-		// System.out.println("Response Code : " + responseCode);
-//		getResponseCodeExplanation(responseCode);
 
 		// continue the process only if a valid response code of 200 is given by API
 		// (valid response)
@@ -193,14 +177,12 @@ public class YummlyAPIHandler {
 
 				// creating a JSON object to obtain information
 				getRecipeJSON = new JSONObject(inputLine);
-//				System.out.println(getRecipeJSON.toString());
 
 				// The following is created to meet Yummly's mandatory attribution requirements
 
 				// JSON object "source" stores information on the original source of the recipe
 				JSONObject source = getRecipeJSON.getJSONObject("source");
 				recipeStepsURL = (String) source.get("sourceRecipeUrl");
-				// System.out.println("Find Recipe steps at: " + recipeStepsURL);
 
 				// JSON object "attribution" stores information such as "text", "url", and
 				// "logo" related to the attribution
@@ -230,6 +212,7 @@ public class YummlyAPIHandler {
 	 * @param responseCode response code
 	 */
 	public static void getResponseCodeExplanation(int responseCode) {
+
 		// error checking for the response code (i.e. 200 being valid, 400 being bad
 		// request, 409 being API limit exceeded, and 500 being Internal Server Error
 

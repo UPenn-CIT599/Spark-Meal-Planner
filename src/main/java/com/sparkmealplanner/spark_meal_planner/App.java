@@ -8,6 +8,7 @@ package com.sparkmealplanner.spark_meal_planner;
 public class App {
 	public static void main(String[] args) {
 
+		// running the application
 		MealPlanner mp = new MealPlanner();
 		mp.run();
 	}

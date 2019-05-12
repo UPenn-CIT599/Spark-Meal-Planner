@@ -1,10 +1,8 @@
 package com.sparkmealplanner.spark_meal_planner;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map.Entry;
+import org.json.JSONException;
 import org.json.JSONObject;
 import spark.Request;
 import spark.Response;
@@ -17,7 +15,7 @@ import spark.Route;
  */
 public class CalendarHandler implements Route {
 
-	// instance variable to be used in the handler class
+	// instance variables to be used in the handler class
 	static Calendar calendar = new Calendar();
 	static HashMap<String, Dish> calendarHashMap = calendar.getCalendar();
 	ArrayList<String> calendarMeals = calendar.getCalendarMeals();
@@ -66,16 +64,16 @@ public class CalendarHandler implements Route {
 
 			try {
 				// using dishreader class, create a dish from JSON derived
-				if(json != null) {
+				if (json != null) {
 					DishReader dr = new DishReader(json);
-					dish = dr.getDishCreated();					
+					dish = dr.getDishCreated();
 				}
-			} catch (Exception e) {
+			} catch (JSONException e) {
 				e.printStackTrace();
 			}
 		}
 
-		// if the url was directed to "/addtocalendar"
+		// if the url was directed to "/addtomanualrecipetocalendar"
 		if ("/addmanualrecipetocalendar".equals(request.pathInfo())) {
 
 			// if the recipe name parameter is not empty, the value is stored in a variable
@@ -116,11 +114,16 @@ public class CalendarHandler implements Route {
 		// returns various HTML parts
 		return HtmlWriter.gethtmlHead("Meal Planner Calendar") + HtmlWriter.createBodyTitle("Calendar")
 				+ displayCalendar() + displayRecipeSelected() + displayAddToCalendarOptions()
-				+ displayRemoveFromCalendarOptions()  + searchNewRecipesButton()
-				+ addRecipeFromURLButton() + HtmlWriter.createPrintThisButton() + displayGoToGroceryListButton()
-				+ HtmlWriter.getFooter() + HtmlWriter.closeTag();
+				+ displayRemoveFromCalendarOptions() + searchNewRecipesButton() + addRecipeFromURLButton()
+				+ HtmlWriter.createPrintThisButton() + displayGoToGroceryListButton() + HtmlWriter.getFooter()
+				+ HtmlWriter.closeTag();
 	}
 
+	/**
+	 * This method shows the go to grocery list button in HTML
+	 * 
+	 * @return HTML
+	 */
 	private String displayGoToGroceryListButton() {
 		return HtmlWriter.createButton("grocerylist", "Show Grocery List");
 	}
@@ -157,7 +160,7 @@ public class CalendarHandler implements Route {
 			sb.append("<tr><th>" + meal + "</th>");
 
 			for (String day : Calendar.getDaysOfTheWeek()) {
-				String aTag = "";
+				String aTag = ""; // intialize the variables
 
 				if (calendarHashMap.get(day + " " + meal) != null) {
 					// get the dish object from the HashMap and get dishID from it
@@ -183,9 +186,10 @@ public class CalendarHandler implements Route {
 				// add the links to each table data element
 				sb.append("<td>" + aTag + calendarToDisplayHashMap.get(day + " " + meal) + "</td>");
 			}
+			// end of row declaration in HTML
 			sb.append("</tr>");
 		}
-
+		// end of table in HTML
 		sb.append("</table>");
 		sb.append("</p>");
 
@@ -195,7 +199,7 @@ public class CalendarHandler implements Route {
 	/**
 	 * The following method shows the calendar display options for adding a recipe
 	 * 
-	 * @return
+	 * @return HTML
 	 */
 	private String displayAddToCalendarOptions() {
 
@@ -214,10 +218,7 @@ public class CalendarHandler implements Route {
 			sb.append("<option value=\"" + calendarMeal + "\" >" + calendarMeal + "</option>");
 		}
 
-//			for (Entry<String, String> item : calendarToDisplayHashMap.entrySet()) {
-//			sb.append("<option value=\"" + item.getKey() + "\" >" + item.getKey() + "</option>");
-//		}
-		sb.append("</select>");
+		sb.append("</select>");// end of selection tag
 
 		// adding the add button
 		sb.append("<button class =\"button\" style=\"margin-left: 10px\" type=\"submit\">Add</button></form></p>");
@@ -246,6 +247,7 @@ public class CalendarHandler implements Route {
 			sb.append("<option value=\"" + calendarMeal + "\" >" + calendarMeal + "</option>");
 		}
 
+		// end of selection tag
 		sb.append("</select>");
 
 		// adding the add button
@@ -258,7 +260,7 @@ public class CalendarHandler implements Route {
 	 * The following method shows the label area where the currently selected recipe
 	 * is displayed for the user
 	 * 
-	 * @return
+	 * @return HTML
 	 */
 	private String displayRecipeSelected() {
 		if (recipeToAdd == null) {
@@ -269,18 +271,8 @@ public class CalendarHandler implements Route {
 		return "<p><label> Recipe Selected: " + recipeToAdd + "</label></p>";
 	}
 
-//	/**
-//	 * The following method creates a go back to search result button
-//	 * 
-//	 * @return HTML
-//	 */
-//	private String goBackToSearchButton() {
-//		return HtmlWriter.createButton("displayrecipelist", "Go back to search results", "recipetosearch",
-//				recipeSearched);
-//	}
-
 	/**
-	 * The following method create a search new recipe button
+	 * The following method creates a "search new recipe" button
 	 * 
 	 * @return HTML
 	 */
@@ -290,7 +282,7 @@ public class CalendarHandler implements Route {
 
 	/**
 	 * The following method adds a button to direct users to add recipe from an
-	 * external url
+	 * external URL
 	 * 
 	 * @return HTML
 	 */

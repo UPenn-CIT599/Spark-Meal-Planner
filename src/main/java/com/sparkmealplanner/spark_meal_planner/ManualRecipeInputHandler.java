@@ -1,14 +1,13 @@
 package com.sparkmealplanner.spark_meal_planner;
 
 import java.util.ArrayList;
-import java.util.Scanner;
-
 import spark.Request;
 import spark.Response;
 import spark.Route;
 
 /**
- * This is a class to be used when user wants to manually input a recipe
+ * This is a class to be used for the page of the app when user wants to
+ * manually input a recipe from an external url
  */
 public class ManualRecipeInputHandler implements Route {
 
@@ -26,7 +25,8 @@ public class ManualRecipeInputHandler implements Route {
 	private static Dish manDish;
 
 	/**
-	 * The following constructor initiates the instance variables needed for the page
+	 * The following constructor initiates the instance variables needed for the
+	 * page
 	 */
 	public ManualRecipeInputHandler() {
 		manDishName = "";
@@ -71,8 +71,9 @@ public class ManualRecipeInputHandler implements Route {
 	 */
 	public String cookingTimeForm() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Cooking Time in Minutes:<br>\r\n" + "  <input type=\"number\" name=\"cookingtime\" min = \"1\"value =\""
-				+ (int) manCookingTimeInSeconds + "\"required>\r\n" + "  <br>");
+		sb.append("Cooking Time in Minutes:<br>\r\n"
+				+ "  <input type=\"number\" name=\"cookingtime\" min = \"1\"value =\"" + (int) manCookingTimeInSeconds
+				+ "\"required>\r\n" + "  <br>");
 		return sb.toString();
 	}
 
@@ -85,15 +86,17 @@ public class ManualRecipeInputHandler implements Route {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Serving size:<br>\r\n" + "  <input type=\"number\" name=\"servingsize\" min = \"1\" value =\""
 				+ manNumOfPeopleToServe + "\"required>\r\n" + "<br><br>"
-				+ "<button class = \" button\" type=\"submit\">Add Ingredients To Proceed</button>" + "</form></div>" + "  <br>\r\n");
-//	    sb.append("<button style=\"margin-left: 10px\" type=\"submit\">Submit The Recipe</button>" + "</form></div>");
+				+ "<button class = \" button\" type=\"submit\">Add Ingredients To Proceed</button>" + "</form></div>"
+				+ "  <br>\r\n");
 		return sb.toString();
 	}
 
 	/**
-	 * The following method creates a button with the text "Display the Recipe". Clicking on this button takes the user to a page from where
-	 * they can add it to the calendar
-	 * @return
+	 * The following method creates a button with the text "Display the Recipe".
+	 * Clicking on this button takes the user to a page from where they can add it
+	 * to the calendar
+	 * 
+	 * @return HTML string
 	 */
 	public String displayRecipeButton() {
 
@@ -102,26 +105,33 @@ public class ManualRecipeInputHandler implements Route {
 	}
 
 	/**
-	 * This method creates an html button that lets the user submit the recipe for the creation of a dish object and lets them add it to their calendar
-	 * @return
+	 * This method creates an html button that lets the user submit the recipe for
+	 * the creation of a dish object and lets them add it to their calendar
+	 * 
+	 * @return HTML string
 	 */
 	public String submitButton() {
 
 		String sb = HtmlWriter.createButton("addmanualrecipetocalendar", "Send To Calendar", "recipename", manDishName);
 		return sb;
 	}
-	
+
 	/**
-	 *  This method creates an html button that lets the user to refresh the recipe adding page to default blank fields
+	 * This method creates an HTML button that lets the user to refresh the recipe
+	 * adding page to default blank fields
+	 * 
+	 * @return HTML string
 	 */
 	public String addnewrecipeButton() {
-	    String sb = HtmlWriter.createButton("addnewrecipe", "Create a New Recipe");
+		String sb = HtmlWriter.createButton("addnewrecipe", "Create a New Recipe");
 		return sb;
 	}
 
 	/**
-	 * This method creates an html unordered list object to display the list of ingredients entered by the user for a recipe
-	 * @return
+	 * This method creates an HTML unordered list object to display the list of
+	 * ingredients entered by the user for a recipe
+	 * 
+	 * @return HTML string
 	 */
 	public String ingredientList() {
 		StringBuilder sb = new StringBuilder();
@@ -132,7 +142,6 @@ public class ManualRecipeInputHandler implements Route {
 		sb.append("</ul></div>");
 		return sb.toString();
 	}
-
 
 	/**
 	 * getter method
@@ -183,7 +192,10 @@ public class ManualRecipeInputHandler implements Route {
 	 * Handle method to create a form to collect details of a recipe from the user
 	 */
 	public Object handle(Request request, Response response) throws Exception {
+
 		if ("/addingredients".equals(request.pathInfo())) {
+
+			// storing variables from the request
 			if (request.queryParams("recipename") != null) {
 				manDishName = request.queryParams("recipename");
 			}
@@ -201,30 +213,52 @@ public class ManualRecipeInputHandler implements Route {
 				Ingredient thisIngredient = new Ingredient(ingredientLine);
 				manIngredients.add(thisIngredient);
 			}
-			manDish = new Dish(manDishName, manIngredients, manCookingStepsURL, manCookingTimeInSeconds,
+
+			// creating a dish object
+			manDish = new Dish("manual", manDishName, manIngredients, manCookingStepsURL, manCookingTimeInSeconds,
 					manNumOfPeopleToServe);
-			manDish.setDishID("manual");
-			
+
+			// returns the "add ingredients page" first
 			return HtmlWriter.gethtmlHead("Add Ingredients")
 					+ HtmlWriter.createBodyTitle("Enter your ingredients below:") + AddIngredientForm + ingredientList()
 					+ displayRecipeButton() + HtmlWriter.getFooter() + HtmlWriter.closeTag();
 		}
+		
+		// this is the default page where the user clicks the link to add recipe from
+		// URL manually
 		if ("/addnewrecipe".equals(request.pathInfo())) {
-		    new ManualRecipeInputHandler();
-		    	manDishName = "";
+
+			// creating an instance of the Handler
+			new ManualRecipeInputHandler();
+
+			// initializing the variables with each request to clear prior recipe
+			// information
+			manDishName = "";
 			manIngredients = new ArrayList<Ingredient>();
 			manCookingStepsURL = "";
 			manCookingTimeInSeconds = 0;
 			manNumOfPeopleToServe = 0;
 			manDish = null;
+
+			// default HTML landing page (does not have an option to submit to calendar
+			// until the ingredient add page is shown).
+			return HtmlWriter.gethtmlHead("Meal Planner Calendar")
+					+ HtmlWriter.createBodyTitle("Enter your recipe below:") + recipeNameForm() + recipeURLForm()
+					+ cookingTimeForm() + servingsizeForm() + ingredientList() + HtmlWriter.getFooter()
+					+ HtmlWriter.closeTag();
+
 		}
+
+		// once the user comes back from the "add ingredient" page, the user lands here
+		// (extra option of submitting to the calendar)
 		return HtmlWriter.gethtmlHead("Meal Planner Calendar") + HtmlWriter.createBodyTitle("Enter your recipe below:")
 				+ recipeNameForm() + recipeURLForm() + cookingTimeForm() + servingsizeForm() + ingredientList()
-				+ submitButton() + addnewrecipeButton() +
-				HtmlWriter.getFooter() + HtmlWriter.closeTag();
+				+ submitButton() + addnewrecipeButton() + HtmlWriter.getFooter() + HtmlWriter.closeTag();
 	}
+
 	/**
 	 * getter method
+	 * 
 	 * @return a manually input dish object
 	 */
 	public static Dish getManDish() {

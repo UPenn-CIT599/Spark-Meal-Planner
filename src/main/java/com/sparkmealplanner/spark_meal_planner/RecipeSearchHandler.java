@@ -1,9 +1,5 @@
 package com.sparkmealplanner.spark_meal_planner;
 
-import java.util.HashMap;
-
-import org.json.JSONObject;
-
 import spark.Request;
 import spark.Response;
 import spark.Route;
@@ -33,7 +29,7 @@ public class RecipeSearchHandler implements Route {
 
 	/**
 	 * The following method adds a button to direct users to add recipe from an
-	 * external url
+	 * external URL
 	 * 
 	 * @return HTML
 	 */

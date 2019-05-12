@@ -15,74 +15,35 @@ public class HtmlWriter {
 	private static final String GoToFAQ = "<a href=\"/faqs\"> Frequently Asked Questions </a>";
 	private static final String GoToRecipeInputFromURL = "<a href=\"/addnewrecipe\"> Add Recipes From URLs </a>";
 
-	public static String returnULListCSSStyle() {
-		return "ul.a { "+ 
-//				"border-left: 5px solid red;" + 
-//				"background-color: #f1f1f1;" + 
-				"list-style-type: square; !important" + 
-//				"padding: 10px 20px;" + 
-				"}";
-	}
-	
+	/**
+	 * The following method creates an button CSS styling
+	 * 
+	 * @return CSS styling in String
+	 */
 	public static String returnButtonCSS() {
-		return ".button {" + 
-				"font-family: 'Roboto', sans-serif;" + 
-			 	"padding: 3px 4px;"+
-	//			"font-size: 11px;" + 
-				"text-transform: uppercase;" + 
-				"letter-spacing: 1px;" + 
-				"font-weight: 500;" + 
-				"color: black;" + 
-				"background-color: #fff;" + 
-				"border: 1px solid #555555;"+
-//				"border: none;" + 
-				"border-radius: 7px;" + 
-				"box-shadow: 0px 8px 15px rgba(0.05, 0.05, 0.05, 0.07);" + 
-				"transition: all 0.3s ease 0s;" + 
-				"cursor: pointer;" + 
-				"outline: none;" + 
-				"margin: 6px 4px"+
-				"  }" + 
-				".button:hover {" + 
-				"  background-color: #555555;" + 
-				"  box-shadow: 0px 8px 15px rgba(0.05, 0.05, 0.05, 0.07);" + 
-				"  color: #fff;" + 
-				"  transform: translateY(-7px);" + 
-				"}";
-		
-//		return ".button {"
-//				+ "border: none;"
-//				+ "background-color: White;"
-//				+ "color: black;"
-//				+ "padding: 6px 8px;"
-//				+ "text-align: center;"
-//				+ "text-decoration: none;"
-//				+ "border: none;"
-//				+ "padding: 3px 3px;"
-//				+ "font-family: times new roman;"
-//				+ "font-size: 14px;"
-//				+ "margin: 6px 4px"
-//				+ "cursor: pointer;"
-//				+ "display: inline-block;"
-//				+ "transition-duration: 0.4s"
-//				+ "box-shadow: 0 0 20px rgba (0, 0, 0, 0.2);"
-//			//	+ "border-radius: 10px;"
-//				+ "}"
-//				+ ".button:hover {"
-//				+ "background-color: #555555; "
-//				+ "color:white;"
-//				+ "}";
+		return ".button {" + "font-family: 'Roboto', sans-serif;" + "padding: 3px 4px;" + "text-transform: uppercase;"
+				+ "letter-spacing: 1px;" + "font-weight: 500;" + "color: black;" + "background-color: #fff;"
+				+ "border: 1px solid #555555;" + "border-radius: 7px;"
+				+ "box-shadow: 0px 8px 15px rgba(0.05, 0.05, 0.05, 0.07);" + "transition: all 0.3s ease 0s;"
+				+ "cursor: pointer;" + "outline: none;" + "margin: 6px 4px" + "  }" + ".button:hover {"
+				+ "  background-color: #555555;" + "  box-shadow: 0px 8px 15px rgba(0.05, 0.05, 0.05, 0.07);"
+				+ "  color: #fff;" + "  transform: translateY(-7px);" + "}";
 	}
-	
+
+	/**
+	 * The following method creates the table CSS styling
+	 * 
+	 * @return CSS styling in String
+	 */
 	public static String returnTableCSSStyle() {
 
 		return "#calendar {"
 				// setting overall height and width in percentage
-				+ "width: 70%;" + "height: 50%;" + "table-layout: fixed;"+  "}"
+				+ "width: 70%;" + "height: 50%;" + "table-layout: fixed;" + "}"
 
 				// setting the attributes of table data elements
-				+ "#calendar td, #customers th {" + "border: 1px solid #ddd;" + "padding: 4px;" + "text-align: center;" + "word-wrap:break-word"
-				+ "}"
+				+ "#calendar td, #customers th {" + "border: 1px solid #ddd;" + "padding: 4px;" + "text-align: center;"
+				+ "word-wrap:break-word" + "}"
 
 				// setting the attributes of table row elements
 				+ "#calendar tr:nth-child(even){background-color: #f2f2f2;}"
@@ -93,6 +54,12 @@ public class HtmlWriter {
 				+ "background-color: gray;" + "color: white;";
 	}
 
+	/**
+	 * The following method returns the CSS styling for the navigation bar of the
+	 * page
+	 * 
+	 * @return CSS styling in String
+	 */
 	public static String returnNavBarCSSStyle() {
 		return
 		// Add the style in the navigation bar
@@ -109,8 +76,14 @@ public class HtmlWriter {
 				// Style the "active" element to highlight the current page
 				+ ".navbar a.active {" + "background-color: #4CAF50;" + "color: white;}";
 	}
+
+	/**
+	 * The following method returns the CSS styling for the HTML body tag
+	 * 
+	 * @return HTML styling in String
+	 */
 	public static String returnBodyStyle() {
-	    return "body {font-family:verdana;}";
+		return "body {font-family:verdana;}";
 	}
 
 	/**
@@ -120,8 +93,8 @@ public class HtmlWriter {
 	 * @return html page
 	 */
 	public static String gethtmlHead(String titleText) {
-		return "<html><head><style> " + returnBodyStyle() + returnNavBarCSSStyle() + returnButtonCSS() +  returnTableCSSStyle() + returnULListCSSStyle() + "</style><title>" + titleText
-				+ "</title></head>";
+		return "<html><head><style> " + returnBodyStyle() + returnNavBarCSSStyle() + returnButtonCSS()
+				+ returnTableCSSStyle() + "</style><title>" + titleText + "</title></head>";
 	}
 
 	/**
@@ -147,7 +120,7 @@ public class HtmlWriter {
 	}
 
 	/**
-	 * The following method returns an html element with button with one ID
+	 * The following method returns an HTML element with button with one ID
 	 * parameter to pass.
 	 * 
 	 * @param pageUrlToDirect     page url
@@ -181,7 +154,7 @@ public class HtmlWriter {
 	}
 
 	/**
-	 * The following method returns an html element with button with two ID
+	 * The following method returns an html element with button with three ID
 	 * parameters to pass.
 	 * 
 	 * @param pageUrlToDirect     page Url To Direct
@@ -190,15 +163,17 @@ public class HtmlWriter {
 	 * @param param1Info          param#1 Info
 	 * @param param2Name          param#2Name
 	 * @param param2Info          param#2 Info
+	 * @param param3Name          param#3Name
+	 * @param param3Info          param#3 Info
 	 * @return HTML
 	 */
 	public static String createButton(String pageUrlToDirect, String ButtonTextToDisplay, String param1Name,
 			String param1Info, String param2Name, String param2Info, String param3Name, String param3Info) {
 		return "<button class=\"button\" type=\"button\" onclick=\"location.href='/" + pageUrlToDirect + "?"
-				+ param1Name + "=" + param1Info + "&" + param2Name + "=" + param2Info + "&" + param3Name + "=" + param3Info +"'\">" + ButtonTextToDisplay
-				+ "</button>";
+				+ param1Name + "=" + param1Info + "&" + param2Name + "=" + param2Info + "&" + param3Name + "="
+				+ param3Info + "'\">" + ButtonTextToDisplay + "</button>";
 	}
-	
+
 	/**
 	 * The following method creates a title in the body tag
 	 * 
@@ -210,7 +185,7 @@ public class HtmlWriter {
 	}
 
 	/**
-	 * The following method create a paragraph html element
+	 * The following method create a paragraph HTML element
 	 * 
 	 * @param text text to display
 	 * @return HTML
@@ -230,7 +205,7 @@ public class HtmlWriter {
 	}
 
 	/**
-	 * The following method closes the body and html tags.
+	 * The following method closes the body and HTML tags.
 	 * 
 	 * @return HTML
 	 */

@@ -1,17 +1,15 @@
 package com.sparkmealplanner.spark_meal_planner;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map.Entry;
-
+import org.json.JSONException;
 import org.json.JSONObject;
-
 import spark.Request;
 import spark.Response;
 import spark.Route;
 
 /**
- * The following class handles the HMTL and java elements of the recipe full
+ * The following class handles the HMTL and java elements of the full recipe
  * display of the app
  *
  */
@@ -43,7 +41,8 @@ public class RecipeDisplayHandler implements Route {
 	 * @return HTML
 	 */
 	private String sendToCalendar() {
-		return HtmlWriter.createButton("addtocalendar", "Send to Calendar", "recipename", dish.getDishName(), "recipeid", recipeID);
+		return HtmlWriter.createButton("addtocalendar", "Send to Calendar", "recipename", dish.getDishName(),
+				"recipeid", recipeID);
 	}
 
 	/**
@@ -63,11 +62,13 @@ public class RecipeDisplayHandler implements Route {
 	 * @return HTML
 	 */
 	private String getFullRecipeWithAPI() {
+
 		// initialization of variables
 		String recipeStepsURL = "";
 		ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
 
 		try {
+
 			// get JSON and recipe url using the YummlyAPIHandler class
 			YummlyAPIHandler.getRecipe(recipeID);
 			JSONObject recipeJSON = YummlyAPIHandler.getGetRecipeJSON(recipeID);
@@ -81,7 +82,10 @@ public class RecipeDisplayHandler implements Route {
 			// get dish ingredients to show
 			ingredients = dish.getIngredients();
 
-		} catch (Exception e) {
+		} catch (JSONException e) {
+			e.printStackTrace();
+
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
@@ -106,7 +110,8 @@ public class RecipeDisplayHandler implements Route {
 		sb.append("</ul>");
 
 		// display original recipe url HTML anchor tag
-		sb.append("<p><a href=\"" + dish.getCookingStepsURL() + "\">Visit original recipe site </a></p>");
+		sb.append("<p><a href=\"" + dish.getCookingStepsURL()
+				+ "\"target=\"_blank\">Visit original recipe site </a></p>");
 		sb.append("<p>" + dish.getAttribution() + "</p>");
 
 		sb.append("</div>");

@@ -2,10 +2,6 @@ package com.sparkmealplanner.spark_meal_planner;
 
 import static spark.Spark.get;
 import static spark.Spark.port;
-import static spark.Spark.post;
-import java.util.ArrayList;
-import java.util.Scanner;
-import org.json.JSONObject;
 
 /**
  * This class contains the get and post methods of the handlers
@@ -31,19 +27,19 @@ public class MealPlanner {
 		get("/", homePageHandle);
 		get("/searchrecipe", recipeSearchHandler); // recipe search page path
 		get("/grocerylist", groceryListHandler); // grocery list page path
-		get("/removeFromGroceryList", groceryListHandler); // grocery list page path
-		get("/faqs", faqHandler);// retrieve meal plan page path
-		get("/displayrecipelist", recipeListDisplayHandler);// create a display searched recipe path
-		get("/displayfullrecipe", recipeListDisplayHandler);// create a display searched recipe path
-		get("/recipechosen", recipeDisplayHandler);// create a display searched recipe path
-		get("/addrecipe", manualRecipeHandler);// create a display of manual recipe
-		get("/addingredients", manualRecipeHandler);// create a display of manual recipe
-		get("/addnewrecipe", manualRecipeHandler);// create a display of manual recipe
-		get("/selectameal", calendarHandler);
+		get("/removeFromGroceryList", groceryListHandler); // remove from grocery list page path
+		get("/faqs", faqHandler);// FAQ page path
+		get("/displayrecipelist", recipeListDisplayHandler);// display searched recipe list path
+		get("/displayfullrecipe", recipeListDisplayHandler);// display full recipe path
+		get("/recipechosen", recipeDisplayHandler);// recipe chosen path
+		get("/addrecipe", manualRecipeHandler);// add recipe path
+		get("/addingredients", manualRecipeHandler);// add ingredient path
+		get("/addnewrecipe", manualRecipeHandler);// add new recipe path
+		get("/selectameal", calendarHandler); // select a meal page path
 		get("/calendar", calendarHandler); // calendar page path
-		get("/addtocalendar", calendarHandler); // calendar page path
-		get("/removefromcalendar", calendarHandler); // calendar page path
-		get("/addmanualrecipetocalendar", calendarHandler); // calendar page path
+		get("/addtocalendar", calendarHandler); // add to calendar page path
+		get("/removefromcalendar", calendarHandler); // remove from calendar page path
+		get("/addmanualrecipetocalendar", calendarHandler); // add manual recipe to calendar page path
 
 	}
 }

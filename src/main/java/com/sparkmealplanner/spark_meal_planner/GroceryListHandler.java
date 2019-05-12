@@ -8,7 +8,12 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
+/**
+ * This class handles the Grocery List page of this app
+ *
+ */
 public class GroceryListHandler implements Route {
+	// instance variables
 	private HashMap<String, Dish> calendarHashMap;
 	private int removeItemId;
 	private ArrayList<Dish> listOfDish;
@@ -25,7 +30,6 @@ public class GroceryListHandler implements Route {
 		listOfDish = new ArrayList<Dish>();
 		groceryList = new HashMap<String, ArrayList<Ingredient>>();
 		listOfIngredients = new ArrayList<Ingredient>();
-//		grocery = new GroceryList();
 	}
 
 	/**
@@ -34,8 +38,8 @@ public class GroceryListHandler implements Route {
 	public Object handle(Request request, Response response) throws Exception {
 
 		calendarHashMap = CalendarHandler.getCalendarHashMap();
-		listOfDish.clear();
-		
+		listOfDish.clear();// clears the list before each request
+
 		// loop through the HashMap and create an arrayliList of Dish objects.
 		for (Entry<String, Dish> mealsCalendar : calendarHashMap.entrySet()) {
 			if (mealsCalendar.getValue() != null) {
@@ -43,14 +47,13 @@ public class GroceryListHandler implements Route {
 				listOfDish.add(dishOnCalendar);
 			}
 		}
-		
-		
 
 		// storing the parameter from request in a variable
-
 		if ("/removeFromGroceryList".equals(request.pathInfo())) {
 			removeItemId = Integer.valueOf(request.queryParams("Id"));
 			dishName = request.queryParams("Dish");
+
+			// removes an item from the grocery list
 			removefromGroceryList(dishName, removeItemId);
 		}
 
@@ -66,13 +69,13 @@ public class GroceryListHandler implements Route {
 	 * @return groceryList
 	 */
 	public String displayGroceryList() {
-
+		// create a new grocery list object every time a request is made
 		grocery = new GroceryList(listOfDish);
+		// get a new list of dish from the calendar every time the request is made
 		groceryList = grocery.getGroceryListFromListOfDishes();
-
 		StringBuilder sb = new StringBuilder();
 
-		sb.append("<div><ul style=\"list-style-type:disc;\">");
+		sb.append("<div><ul style=\"list-style-type:disc;\">");// unordered list
 
 		for (Entry<String, ArrayList<Ingredient>> groceryItems : groceryList.entrySet()) {
 

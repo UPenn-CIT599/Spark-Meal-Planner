@@ -1,14 +1,17 @@
 package com.sparkmealplanner.spark_meal_planner;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map.Entry;
+
+import org.json.JSONException;
 
 import spark.Request;
 import spark.Response;
 import spark.Route;
 
 /**
- * The following class handles the HMTL and java elements of the recipe list
+ * The following class handles the HTML and java elements of the recipe list
  * display from search page of the app
  *
  */
@@ -30,10 +33,12 @@ public class RecipeListDisplayHandler implements Route {
 	}
 
 	/**
-	 * The following method handles the HMTL and java elements of the recipe list
+	 * The following method handles the HTML and java elements of the recipe list
 	 * display from search page of the app
 	 */
 	public Object handle(Request request, Response response) throws Exception {
+
+		// every time the request is made, the HashMap is cleared
 		recipeNameAndDishID.clear();
 
 		// storing the parameter from request in a variable
@@ -69,13 +74,14 @@ public class RecipeListDisplayHandler implements Route {
 
 		// searching Yummly using the API handler and related attributes
 		try {
-		    	YummlyAPIHandler.searchReceipe(recipeToSearch);
-		    	attributionHtml = YummlyAPIHandler.getSearchRecipeAttributionhtml();
-		    	recipeNameAndDishID = YummlyAPIHandler.getRecipeNameAndDishID();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			YummlyAPIHandler.searchReceipe(recipeToSearch);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+		attributionHtml = YummlyAPIHandler.getSearchRecipeAttributionhtml();
+		recipeNameAndDishID = YummlyAPIHandler.getRecipeNameAndDishID();
 
 		StringBuilder sb = new StringBuilder();
 

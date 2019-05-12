@@ -15,8 +15,9 @@ public class FAQHandler implements Route {
 	private String pageTitle = "Frequently Asked Questions";
 	private ArrayList<String> questionsAndAnswers;
 
+	// setting questions and answers below in variables
 	private String question1 = "How to can I create a meal plan?";
-	
+
 	private String answer1 = "When you start the application, click on "
 			+ "\"Create A Meal Plan Now\" button or simply go to \"Search Recipes\" in the navigation bar.";
 
@@ -49,10 +50,10 @@ public class FAQHandler implements Route {
 	 * The following handle method returns the HTML supporting the FAQ page
 	 */
 	public Object handle(Request request, Response response) throws Exception {
-		
+
 		questionsAndAnswers = new ArrayList<String>();
 
-		//adding all the questions and answers to the arrayList
+		// adding all the questions and answers to the arrayList
 		questionsAndAnswers.add(question1);
 		questionsAndAnswers.add(answer1);
 		questionsAndAnswers.add(question2);
@@ -65,29 +66,28 @@ public class FAQHandler implements Route {
 		questionsAndAnswers.add(answer5);
 		questionsAndAnswers.add(question6);
 		questionsAndAnswers.add(answer6);
-		
-		//initialize the string builder object
+
+		// initialize the string builder object
 		StringBuilder sb = new StringBuilder();
-		
-		//adding the heading
+
+		// adding the heading
 		sb.append(HtmlWriter.gethtmlHead("Frequently Asked Questions"));
-		
-		//adding the body
+
+		// adding the body
 		sb.append(HtmlWriter.createBodyTitle(pageTitle));
-		
-		//adding different HTML formatting for questions and answers
+
+		// adding different HTML formatting for questions and answers
 		for (int i = 0; i < questionsAndAnswers.size(); i++) {
-			if(i%2 == 0) {
+			if (i % 2 == 0) {
 				sb.append("<strong>" + HtmlWriter.createAParagraph(questionsAndAnswers.get(i)) + "</strong>");
-			}
-			else {
-				sb.append(HtmlWriter.createAParagraph(questionsAndAnswers.get(i)));					
+			} else {
+				sb.append(HtmlWriter.createAParagraph(questionsAndAnswers.get(i)));
 			}
 		}
-		
-		//adding the footer and the closing tab
+
+		// adding the footer and the closing tab
 		sb.append(HtmlWriter.getFooter() + HtmlWriter.closeTag());
-		
-		return  sb.toString();		
+
+		return sb.toString();
 	}
 }
