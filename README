@@ -18,3 +18,4 @@ This meal planner app can make user's meal planning process easy by allowing the
 6. view and print the consolidated grocery list for the week
 	
 Instructions with screenshots on how to use the program are provided in the seperate PDF file called "Instructions.pdf."
+Note: The underlying Yummly API that searches the recipes, providing the users with their ingredients and steps, is no loner available starting September 2019 due to it's limited free availability to students and scholars.
